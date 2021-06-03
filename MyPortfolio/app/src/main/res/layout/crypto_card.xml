@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cryptoColRelLayout">
+
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/cryptoCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="3dp"
+                android:text="Crypto Code"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+
+            <TextView
+                android:id="@+id/cryptoValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Rp 100.000.000"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/cryptoAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:layout_marginRight="10dp"
+                android:text="100"
+                android:textSize="14sp"
+                android:layout_below="@+id/cryptoValue"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/addTransactionBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:text="+"
+                android:textSize="20sp"
+                android:padding="0dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="7dp"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cryptoExpandRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cryptoColRelLayout"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/txtEditAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100.50"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/txtAvgBuyPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avg Buy Price"
+
+                android:textSize="18sp"
+                android:layout_below="@+id/txtAmount"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/txtEditAvgBuyPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avg Buy Price"
+                android:textSize="18sp"
+                android:layout_below="@+id/txtAmount"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/txtAvgBuyValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avg Buy Value"
+                android:textSize="18sp"
+                android:layout_below="@id/txtAvgBuyPrice"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/txtEditAvgBuyValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avg Buy Value"
+                android:textSize="18sp"
+                android:layout_below="@id/txtAvgBuyPrice"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/txtCurrentValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Value"
+                android:textSize="18sp"
+                android:layout_below="@id/txtAvgBuyValue"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:id="@+id/txtEditCurrentValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Value"
+                android:textSize="18sp"
+                android:layout_below="@id/txtAvgBuyValue"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/txtUnrealized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unrealized"
+                android:textSize="18sp"
+                android:layout_below="@id/txtCurrentValue"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+            <TextView
+                android:id="@+id/txtEditUnrealized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp350.000"
+                android:textSize="18sp"
+                android:layout_below="@id/txtEditCurrentValue"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/txtEditPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250%"
+                android:textSize="18sp"
+                android:layout_below="@id/txtEditUnrealized"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More Details"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="12sp"
+                android:minHeight="20dp"
+                android:layout_below="@+id/txtUnrealized"/>
+
+
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
