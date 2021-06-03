@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="475dp"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="330dp"
+    android:layout_height="350dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="5dp"
     android:layout_gravity="center"
+    android:elevation="15dp"
+    android:padding="0dp"
     app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
 
         <TextView
             android:id="@+id/txtPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:text="Price: "/>
@@ -23,7 +28,9 @@
             android:id="@+id/txtAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@+id/txtPrice"
@@ -32,7 +39,9 @@
             android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@+id/txtAmount"
@@ -42,7 +51,9 @@
             android:id="@+id/txtType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@+id/txtDate"
@@ -51,41 +62,45 @@
         <EditText
             android:id="@+id/editTextPrice"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:ems="8"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="10dp"
             android:inputType="number"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/txtPrice" />
+            android:layout_alignBottom="@+id/txtPrice"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/editTextAmount"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:ems="8"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="10dp"
             android:inputType="number"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/txtAmount" />
+            android:layout_alignBottom="@+id/txtAmount"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/editTextDate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:ems="8"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="10dp"
             android:inputType="date"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/txtDate" />
+            android:layout_alignBottom="@+id/txtDate"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/editTextType"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:ems="8"
+            android:textColor="@color/black"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="10dp"
             android:inputType="date"
@@ -97,18 +112,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
-            android:layout_marginRight="50dp"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="50dp"/>
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="100dp"
-            android:layout_marginLeft="50dp"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="50dp"/>
 
     </RelativeLayout>
 

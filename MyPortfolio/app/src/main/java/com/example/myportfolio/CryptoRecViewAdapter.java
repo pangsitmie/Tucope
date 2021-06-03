@@ -2,6 +2,7 @@ package com.example.myportfolio;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -58,6 +60,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
                 myDialog.setContentView(R.layout.crypto_add_transaction_popup);
                 myDialog.show();
             }
+
         });
 
         if(cryptos.get(position).isExpanded()){
