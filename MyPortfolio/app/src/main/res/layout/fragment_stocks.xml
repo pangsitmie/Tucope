@@ -106,7 +106,7 @@
                     android:layout_below="@+id/totalCurrentValue"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="3dp"
-                    android:text="Rp10.000.000.000"
+                    android:text="Rp1.000.000.000"
                     android:textColor="@color/white"
                     android:textSize="33sp"
                     android:textStyle="bold" />
