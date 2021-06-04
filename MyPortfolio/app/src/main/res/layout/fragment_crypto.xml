@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <ImageView
         android:id="@+id/profileImage"
@@ -25,7 +26,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="Cryptos"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -93,10 +94,9 @@
                     android:layout_below="@+id/totalBuyValue"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
                     android:text="Current Value"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -105,11 +105,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/totalCurrentValue"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
-                    android:text="Rp 100.000.00000"
+                    android:text="Rp100.000.00000"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
+                    android:textSize="33sp"
                     android:textStyle="bold" />
 
                 <Button
@@ -120,6 +119,7 @@
                     android:layout_marginLeft="60dp"
                     android:backgroundTint="@color/white_grey"
                     android:text="ADD"
+                    android:textStyle="bold"
                     android:textColor="@color/grey_primary" />
 
                 <Button
@@ -131,6 +131,7 @@
                     android:layout_marginRight="60dp"
                     android:backgroundTint="@color/white_grey"
                     android:text="Delete"
+                    android:textStyle="bold"
                     android:textColor="@color/grey_primary" />
 
 

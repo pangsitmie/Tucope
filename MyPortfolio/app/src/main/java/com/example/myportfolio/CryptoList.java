@@ -2,7 +2,7 @@ package com.example.myportfolio;
 
 import java.util.ArrayList;
 
-public class CryptosData {
+public class CryptoList {
     private String cryptoCode, cryptoName;
     private double avgBuyPrice, totalBuyValue, amount, unrealized, currentValue;
     private boolean isExpanded;
@@ -10,7 +10,7 @@ public class CryptosData {
     ArrayList<CryptosTransactions> transactions = new ArrayList<CryptosTransactions>();
 
 
-    public CryptosData(String cryptoCode) {
+    public CryptoList(String cryptoCode) {
         this.cryptoCode = cryptoCode;
         this.avgBuyPrice =0;
         this.totalBuyValue =0;

@@ -2,23 +2,18 @@ package com.example.myportfolio;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -27,7 +22,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     private static final String TAG = "StocksRecViewAdapter";
     private Context mContext;
 
-    private ArrayList<CryptosData> cryptos = new ArrayList<>();
+    private ArrayList<CryptoList> cryptos = new ArrayList<>();
 
 
     //dialog
@@ -75,7 +70,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     public int getItemCount() {return cryptos.size();}
 
     //set arraylist setter
-    public void setCryptos(ArrayList<CryptosData> cryptos) {
+    public void setCryptos(ArrayList<CryptoList> cryptos) {
         this.cryptos = cryptos;
         notifyDataSetChanged();
     }
@@ -112,7 +107,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             cryptoColRelLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CryptosData crypto = cryptos.get((getAdapterPosition()));
+                    CryptoList crypto = cryptos.get((getAdapterPosition()));
                     crypto.setExpanded(!crypto.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }

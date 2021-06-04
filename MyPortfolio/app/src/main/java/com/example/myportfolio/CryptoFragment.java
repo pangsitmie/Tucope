@@ -1,12 +1,14 @@
 package com.example.myportfolio;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.Locale;
 
 public class CryptoFragment extends Fragment {
@@ -31,7 +30,15 @@ public class CryptoFragment extends Fragment {
     private TextView editTotalBuyValue,  editTotalCurrentValue;
     private Button addBtn, deleteBtn;
 
+    //popup
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText itemName;
+    private Button saveBtn;
 
+    public String addItemName;
+
+    public ArrayList<CryptoList> cryptoList = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,12 +57,14 @@ public class CryptoFragment extends Fragment {
         cryptosRecView.setAdapter(adapter);
         cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //buttons functionality
+
+
 
         //crypto arraylsit initialization
-        ArrayList<CryptosData> cryptos = new ArrayList<>();
-        cryptos.add(new CryptosData("ETH"));
-        cryptos.add(new CryptosData("VET"));
-        cryptos.add(new CryptosData("DOGE"));
+/*        cryptoList.add(new CryptoList("ETH"));
+        cryptoList.add(new CryptoList("VET"));
+        cryptoList.add(new CryptoList("DOGE"));*/
 
         //CryptoTotal Initialization
         CryptoTotal cryptoTotal = new CryptoTotal();
@@ -69,9 +78,48 @@ public class CryptoFragment extends Fragment {
         editTotalCurrentValue.setText(formatTotalCurrentValue);
 
 
-        adapter.setCryptos(cryptos);
+
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNewCryptoItemDialog();
+
+            }
+        });
+        adapter.setCryptos(cryptoList);
 
         return v;
+    }
+
+    private void createNewCryptoItemDialog()
+    {
+        dialogBuilder = new AlertDialog.Builder(getActivity());
+        final View itemPopupView = getLayoutInflater().inflate(R.layout.popup,null);
+        itemName = (EditText) itemPopupView.findViewById(R.id.editItemName);
+        saveBtn = (Button) itemPopupView.findViewById(R.id.saveBtn);
+
+        dialogBuilder.setView(itemPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                setItemName(itemName.getText().toString());
+                Toast.makeText(getContext(), itemName.getText().toString()+" clicked", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+    private void setItemName(String str)
+    {
+        addItemName = str;
+        cryptoList.add(new CryptoList(addItemName));
+        Toast.makeText(getContext(), "Add btn clicked", Toast.LENGTH_SHORT).show();
+        adapter.setCryptos(cryptoList);
     }
 
 }

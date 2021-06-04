@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent"
+    app:cardElevation="5dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="3dp"
     android:layout_marginBottom="10dp"
     android:layout_marginLeft="3dp"
     android:layout_marginRight="3dp">
@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white_grey">
+        android:background="@color/gray">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:text="Crypto Code"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
 
             <TextView
@@ -46,7 +46,7 @@
                 android:text="Rp 100.000.000"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/cryptoAmount"
                 android:layout_width="wrap_content"
@@ -54,6 +54,7 @@
                 android:layout_toLeftOf="@+id/addTransactionBtn"
                 android:layout_marginRight="10dp"
                 android:text="100"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_below="@+id/cryptoValue"
                 android:layout_marginBottom="10dp"/>
@@ -67,10 +68,13 @@
                 android:layout_marginRight="20dp"
                 android:layout_centerVertical="true"
                 android:text="+"
-                android:textSize="20sp"
-                android:padding="0dp"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingLeft="0dp"
                 android:textStyle="bold"
-                android:layout_marginBottom="7dp"/>
+                android:backgroundTint="@color/grey_light" />
 
 
         </RelativeLayout>
@@ -90,7 +94,8 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txtEditAmount"
                 android:layout_width="wrap_content"
@@ -100,14 +105,15 @@
                 android:textSize="18sp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/txtAvgBuyPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Avg Buy Price"
-
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:layout_below="@+id/txtAmount"
                 android:layout_marginLeft="20dp"
@@ -121,7 +127,8 @@
                 android:layout_below="@+id/txtAmount"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/txtAvgBuyValue"
@@ -131,7 +138,8 @@
                 android:textSize="18sp"
                 android:layout_below="@id/txtAvgBuyPrice"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txtEditAvgBuyValue"
                 android:layout_width="wrap_content"
@@ -141,7 +149,8 @@
                 android:layout_below="@id/txtAvgBuyPrice"
                 android:layout_marginRight="20dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/txtCurrentValue"
@@ -151,7 +160,8 @@
                 android:textSize="18sp"
                 android:layout_below="@id/txtAvgBuyValue"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txtEditCurrentValue"
                 android:layout_width="wrap_content"
@@ -161,7 +171,8 @@
                 android:layout_below="@id/txtAvgBuyValue"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txtUnrealized"
                 android:layout_width="wrap_content"
@@ -171,7 +182,8 @@
                 android:layout_below="@id/txtCurrentValue"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/txtEditUnrealized"
                 android:layout_width="wrap_content"
@@ -181,7 +193,8 @@
                 android:layout_below="@id/txtEditCurrentValue"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/txtEditPercentage"
@@ -189,13 +202,13 @@
                 android:layout_height="wrap_content"
                 android:text="250%"
                 android:textSize="18sp"
-                android:layout_below="@id/txtEditUnrealized"
+                android:layout_toLeftOf="@id/txtEditAmount"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
             <Button
+                android:id="@+id/btnMoreDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="More Details"
@@ -203,10 +216,23 @@
                 android:layout_marginBottom="20dp"
                 android:textSize="12sp"
                 android:minHeight="20dp"
-                android:layout_below="@+id/txtUnrealized"/>
+                android:layout_below="@+id/txtUnrealized"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"/>
 
-
-
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtUnrealized"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/white"
+                android:minHeight="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Delete"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
 
         </RelativeLayout>
