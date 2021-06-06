@@ -10,6 +10,7 @@ public class CryptoList {
     ArrayList<CryptosTransactions> transactions = new ArrayList<CryptosTransactions>();
 
 
+    public CryptoList(){};
     public CryptoList(String cryptoCode) {
         this.cryptoCode = cryptoCode;
         this.avgBuyPrice =0;

@@ -57,6 +57,10 @@ public class CryptoFragment extends Fragment {
         cryptosRecView.setAdapter(adapter);
         cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
+
+
+
         //buttons functionality
 
 
@@ -117,6 +121,7 @@ public class CryptoFragment extends Fragment {
     private void setItemName(String str)
     {
         addItemName = str;
+
         cryptoList.add(new CryptoList(addItemName));
         Toast.makeText(getContext(), "Add btn clicked", Toast.LENGTH_SHORT).show();
         adapter.setCryptos(cryptoList);

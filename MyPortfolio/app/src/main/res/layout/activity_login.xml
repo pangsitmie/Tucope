@@ -7,7 +7,6 @@
     android:background="@color/grey_primary"
     tools:context=".activity_login">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -46,7 +45,7 @@
 
     <Button
         android:id="@+id/btnSignup"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
@@ -65,22 +64,23 @@
 
     <Button
         android:id="@+id/btnGoogle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:backgroundTint="@color/grey_light"
+        android:backgroundTint="@color/white"
         android:minWidth="330dp"
         android:minHeight="60dp"
         android:text="Continue with Google"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignup"
+        android:drawableLeft="@drawable/google_icon"/>
 
     <Button
         android:id="@+id/btnLogin"

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "851783376377",
+    "firebase_url": "https://my-portfolio-roundbytes-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "my-portfolio-roundbytes",
     "storage_bucket": "my-portfolio-roundbytes.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "851783376377-162n34iult057ohmnidj4hakhmdvpfkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myportfolio",
+            "certificate_hash": "a1bf647d7c214857e1a7ef88a56c934d1cee7d28"
+          }
+        },
         {
           "client_id": "851783376377-rbhk2r79djfajsegpij890lr4khdlm43.apps.googleusercontent.com",
           "client_type": 3

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/txtEditName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name:"
@@ -27,7 +27,7 @@
             android:ems="4"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/txtName"
+            android:layout_toRightOf="@+id/txtEditName"
             android:text=""/>
         <Button
             android:id="@+id/saveBtn"

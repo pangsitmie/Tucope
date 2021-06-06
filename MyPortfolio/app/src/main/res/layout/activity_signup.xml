@@ -24,7 +24,7 @@
 
 
     <EditText
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtEditEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -45,13 +45,13 @@
         android:textColor="@color/white"
         android:textSize="33dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintEnd_toEndOf="@+id/txtEditEmail"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintStart_toStartOf="@+id/txtEditEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditEmail" />
 
     <EditText
-        android:id="@+id/txtName"
+        android:id="@+id/txtEditName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -71,12 +71,12 @@
         android:textColor="@color/white"
         android:textSize="33dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txtName"
-        app:layout_constraintStart_toStartOf="@+id/txtName"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+        app:layout_constraintEnd_toEndOf="@+id/txtEditName"
+        app:layout_constraintStart_toStartOf="@+id/txtEditName"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditName" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtEditPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -96,12 +96,12 @@
         android:textColor="@color/white"
         android:textSize="33dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txtPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/txtEditPassword"
+        app:layout_constraintStart_toStartOf="@+id/txtEditPassword"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditPassword" />
 
     <EditText
-        android:id="@+id/txtConfirmPassword"
+        android:id="@+id/txtEditConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_square_button"
