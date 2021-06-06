@@ -51,7 +51,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="30dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/yellow"
         android:minWidth="330dp"
         android:minHeight="60dp"
         android:text="Sign up free"
@@ -65,7 +65,6 @@
 
     <Button
         android:id="@+id/btnGoogle"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -89,8 +88,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
         android:minHeight="60dp"
         android:text="Log in"
         android:textAllCaps="false"
