@@ -39,12 +39,28 @@ public class SignupActivity extends AppCompatActivity {
                 String tempEmail = editTextEmail.getText().toString();
                 String tempPassword = editTextPassword.getText().toString();
 
+                //initialize new user
                 User user = new User(tempName,tempEmail,tempPassword);
+
+                //initial StockList and CryptoList
+                //StocksList stocksList = new StocksList();
+                CryptoList cryptoList = new CryptoList();
+
+                //Initialize CryptoTotal
+                CryptoTotal cryptoTotal = new CryptoTotal();
+
+
+
+
 
                 //push new database to firebase
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference(tempName);
-                myRef.setValue(user);
+                myRef.child("A_Info").setValue(user);
+                //myRef.child("StocksList").setValue(stocksList);
+                myRef.child("CryptoTotal").setValue(cryptoTotal);
+                myRef.child("CryptoTotal").child("CryptoList").setValue(cryptoTotal);
+
 
                 //--------------------------
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

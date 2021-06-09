@@ -13,9 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 public class StocksFragment extends Fragment {
@@ -37,10 +34,10 @@ public class StocksFragment extends Fragment {
         stocksRecView.setAdapter(adapter);
         stocksRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ArrayList<StocksData> stocks = new ArrayList<>();
-        stocks.add(new StocksData("ADRO",55, 1188, 6537445));
-        stocks.add(new StocksData("ANTM",10, 1151, 1151970));
-        stocks.add(new StocksData("ADRO",19, 5759, 10942500));
+        ArrayList<StocksList> stocks = new ArrayList<>();
+        stocks.add(new StocksList("ADRO",55, 1188, 6537445));
+        stocks.add(new StocksList("ANTM",10, 1151, 1151970));
+        stocks.add(new StocksList("ADRO",19, 5759, 10942500));
 
 
 

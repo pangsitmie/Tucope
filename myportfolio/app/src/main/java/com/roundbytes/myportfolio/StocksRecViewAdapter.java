@@ -25,7 +25,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
 
     //Array List
-    private ArrayList<StocksData> stocks = new ArrayList<>();
+    private ArrayList<StocksList> stocks = new ArrayList<>();
 
     //constructor
     public StocksRecViewAdapter(Context mContext) {
@@ -58,7 +58,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
     public int getItemCount() {return stocks.size();}
 
     //set arraylist setter
-    public void setStocks(ArrayList<StocksData> stocks) {
+    public void setStocks(ArrayList<StocksList> stocks) {
         this.stocks = stocks;
         notifyDataSetChanged();
     }
@@ -92,7 +92,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
             stocksColRelLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    StocksData stock = stocks.get((getAdapterPosition()));
+                    StocksList stock = stocks.get((getAdapterPosition()));
                     stock.setExpanded(!stock.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }

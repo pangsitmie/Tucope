@@ -2,15 +2,19 @@ package com.roundbytes.myportfolio;
 
 import java.util.ArrayList;
 
-public class StocksData {
+public class StocksList {
     private String name;
     private int lot, share;
     private double avgBuyPrice, avgBuyValue;
     private boolean isExpanded;
 
-    private ArrayList<StocksTransactions> transactions = new ArrayList<>();
+    private ArrayList<StocksTransactions> transactions;
 
-    public StocksData(String name, int lot, double avgBuyPrice, double avgBuyValue) {
+    public StocksList() {
+        transactions = new ArrayList<StocksTransactions>();
+    }
+
+    public StocksList(String name, int lot, double avgBuyPrice, double avgBuyValue) {
         this.name = name;
         this.lot = lot;
         this.share = lot*100;

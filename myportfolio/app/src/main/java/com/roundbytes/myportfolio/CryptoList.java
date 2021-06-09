@@ -7,10 +7,12 @@ public class CryptoList {
     private double avgBuyPrice, totalBuyValue, amount, unrealized, currentValue;
     private boolean isExpanded;
 
-    ArrayList<CryptosTransactions> transactions = new ArrayList<CryptosTransactions>();
+    private ArrayList<CryptosTransactions> transactions;
 
 
-    public CryptoList(){};
+    public CryptoList(){
+        transactions = new ArrayList<CryptosTransactions>();
+    };
     public CryptoList(String cryptoCode) {
         this.cryptoCode = cryptoCode;
         this.avgBuyPrice =0;

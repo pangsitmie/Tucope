@@ -4,8 +4,8 @@ public class CryptoTotal {
     double totalBuyValue, totalCurrentValue;
 
     public CryptoTotal(){
-        this.totalBuyValue =1000000.0;
-        this.totalCurrentValue =10000000.0;
+        this.totalBuyValue =0.0;
+        this.totalCurrentValue =0.0;
     }
 
     public void addTransaction(double d)
