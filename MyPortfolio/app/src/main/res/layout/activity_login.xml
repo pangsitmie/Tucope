@@ -71,6 +71,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/round_square_button"
         android:minHeight="50dp"
+        android:inputType="textPassword"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3"
