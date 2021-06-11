@@ -23,6 +23,8 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        DAOUser dao = new DAOUser();
+
 
         editTextEmail = findViewById(R.id.txtEditEmail);
         editTextName = findViewById(R.id.txtEditName);
@@ -39,31 +41,24 @@ public class SignupActivity extends AppCompatActivity {
                 String tempEmail = editTextEmail.getText().toString();
                 String tempPassword = editTextPassword.getText().toString();
 
-                //initialize new user
-                User user = new User(tempName,tempEmail,tempPassword);
-
-                //initial StockList and CryptoList
-                //StocksList stocksList = new StocksList();
-                CryptoList cryptoList = new CryptoList();
-
-                //Initialize CryptoTotal
-                CryptoTotal cryptoTotal = new CryptoTotal();
-
-
-
-
-
-                //push new database to firebase
+                //DATABASE INITIALIZATION
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
+                //INITIALIZE THE USER CLASS
+                User user = new User(tempName,tempEmail,tempPassword);
+                //CREATE NEW USER CLASS IN DATABASE (NAME)------------------
                 DatabaseReference myRef = database.getReference(tempName);
+                //PUSH USER A_VALUE(PERSONAL INFO) TO DATABASE--------------
                 myRef.child("A_Info").setValue(user);
-                //myRef.child("StocksList").setValue(stocksList);
+                //INITIALIZE CRYPTOTOTAL AND STOCKTOTAL
+                CryptoTotal cryptoTotal = new CryptoTotal();
+                StockTotal stockTotal = new StockTotal();
+                //PUSH CRYPTOTOTAL AND STOCKTOTAL TO DATABASE---------------
                 myRef.child("CryptoTotal").setValue(cryptoTotal);
-                myRef.child("CryptoTotal").child("CryptoList").setValue(cryptoTotal);
+                myRef.child("StockTotal").setValue(stockTotal);
 
-
-                //--------------------------
+                //----------INTENT----------------
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("username",tempName);
                 startActivity(intent);
             }
         });

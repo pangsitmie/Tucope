@@ -1,31 +1,31 @@
 package com.roundbytes.myportfolio;
 
 public class CryptoTotal {
-    double totalBuyValue, totalCurrentValue;
+    double totalCryptoBuyValue, totalCryptoCurrentValue;
 
     public CryptoTotal(){
-        this.totalBuyValue =0.0;
-        this.totalCurrentValue =0.0;
+        this.totalCryptoBuyValue =0.0;
+        this.totalCryptoCurrentValue =0.0;
     }
 
     public void addTransaction(double d)
     {
-        totalBuyValue+=d;
+        totalCryptoBuyValue +=d;
     }
 
-    public double getTotalBuyValue() {
-        return totalBuyValue;
+    public double getTotalCryptoBuyValue() {
+        return totalCryptoBuyValue;
     }
 
-    public void setTotalBuyValue(double totalBuyValue) {
-        this.totalBuyValue = totalBuyValue;
+    public void setTotalCryptoBuyValue(double totalCryptoBuyValue) {
+        this.totalCryptoBuyValue = totalCryptoBuyValue;
     }
 
-    public double getTotalCurrentValue() {
-        return totalCurrentValue;
+    public double getTotalCryptoCurrentValue() {
+        return totalCryptoCurrentValue;
     }
 
-    public void setTotalCurrentValue(double totalCurrentValue) {
-        this.totalCurrentValue = totalCurrentValue;
+    public void setTotalCryptoCurrentValue(double totalCryptoCurrentValue) {
+        this.totalCryptoCurrentValue = totalCryptoCurrentValue;
     }
 }

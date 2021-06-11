@@ -1,9 +1,13 @@
 package com.roundbytes.myportfolio;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class User {
     public String name;
     public String email;
     public String password;
+
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

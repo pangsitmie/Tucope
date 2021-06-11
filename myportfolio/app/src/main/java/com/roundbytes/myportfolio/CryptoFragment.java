@@ -1,7 +1,9 @@
 package com.roundbytes.myportfolio;
 
 import android.app.AlertDialog;
+import android.icu.text.CaseMap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -24,11 +32,14 @@ import java.util.Locale;
 public class CryptoFragment extends Fragment {
     @Nullable
 
+    private static final String TAG = "FIREBASECALL";
+
     private RecyclerView cryptosRecView;
     private CryptoRecViewAdapter adapter;
     private CardView cryptoDetails;
     private TextView editTotalBuyValue,  editTotalCurrentValue;
     private Button addBtn, deleteBtn;
+    private String username;
 
     //popup
     private AlertDialog.Builder dialogBuilder;
@@ -37,50 +48,51 @@ public class CryptoFragment extends Fragment {
     private Button saveBtn;
 
     public String addItemName;
+    //FIREBASE REALTIME DATABASE VARIABLE
+    public FirebaseDatabase database;
+    public DatabaseReference myRef;
 
-    public ArrayList<CryptoList> cryptoList = new ArrayList<>();
+
+    public ArrayList<CryptoItem> cryptoArray = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crypto, container , false);
+        viewInitialization(v);
 
-
-        cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);
-        editTotalBuyValue = v.findViewById(R.id.editTotalBuyValue);
-        editTotalCurrentValue = v.findViewById(R.id.editTotalCurrentValue);
-        addBtn = v.findViewById(R.id.btnAdd);
-        deleteBtn = v.findViewById(R.id.btnDelete);
-
-        cryptosRecView = v.findViewById(R.id.cryptoRecView);
+        //SET RECYCLERVIEW ADAPTER
         adapter = new CryptoRecViewAdapter(getActivity());
-
         cryptosRecView.setAdapter(adapter);
         cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
+        //FIREBASE REALTIME DATABASE INITIALIZATION
+        username = MainActivity.username;
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(username);
 
-
-
-        //buttons functionality
-
-
-
-        //crypto arraylsit initialization
-/*        cryptoList.add(new CryptoList("ETH"));
-        cryptoList.add(new CryptoList("VET"));
-        cryptoList.add(new CryptoList("DOGE"));*/
 
         //CryptoTotal Initialization
-        CryptoTotal cryptoTotal = new CryptoTotal();
+        //CryptoTotal cryptoTotal = new CryptoTotal();
 
+        DatabaseReference jerielRef = FirebaseDatabase.getInstance().getReference("Jeriel");
+        DatabaseReference cryptoTotalRef = jerielRef.child("CryptoTotal");
+        DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalBuyValue");
 
-        //currency format
-        String formatTotalBuyValue = NumberFormat.getCurrencyInstance(new Locale("id","ID")).format(cryptoTotal.getTotalBuyValue());
-        String formatTotalCurrentValue = NumberFormat.getCurrencyInstance(new Locale("id","ID")).format(cryptoTotal.getTotalCurrentValue());
-        //display value
-        editTotalBuyValue.setText(formatTotalBuyValue);
-        editTotalCurrentValue.setText(formatTotalCurrentValue);
+        totalBuyValueRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                String val = snapshot.getValue().toString();
+                Log.d(TAG,val);
+                editTotalBuyValue.setText(val);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
 
@@ -91,7 +103,7 @@ public class CryptoFragment extends Fragment {
 
             }
         });
-        adapter.setCryptos(cryptoList);
+        adapter.setCryptos(cryptoArray);
 
         return v;
     }
@@ -113,6 +125,9 @@ public class CryptoFragment extends Fragment {
             public void onClick(View v) {
                 //
                 setItemName(itemName.getText().toString());
+                //add the crypto code to database
+                CryptoItem cryptoItem = new CryptoItem(itemName.getText().toString());
+                myRef.child("CryptoTotal").child("CryptoList").child(itemName.getText().toString()).setValue(cryptoItem);
                 Toast.makeText(getContext(), itemName.getText().toString()+" clicked", Toast.LENGTH_SHORT).show();
 
             }
@@ -122,9 +137,19 @@ public class CryptoFragment extends Fragment {
     {
         addItemName = str;
 
-        cryptoList.add(new CryptoList(addItemName));
+        cryptoArray.add(new CryptoItem(addItemName));
+
         Toast.makeText(getContext(), "Add btn clicked", Toast.LENGTH_SHORT).show();
-        adapter.setCryptos(cryptoList);
+        adapter.setCryptos(cryptoArray);
+    }
+    private void viewInitialization(View v)
+    {
+        cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);
+        editTotalBuyValue = v.findViewById(R.id.editTotalBuyValue);
+        editTotalCurrentValue = v.findViewById(R.id.editTotalCurrentValue);
+        addBtn = v.findViewById(R.id.btnAdd);
+        deleteBtn = v.findViewById(R.id.btnDelete);
+        cryptosRecView = v.findViewById(R.id.cryptoRecView);
     }
 
 }

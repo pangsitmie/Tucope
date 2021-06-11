@@ -22,7 +22,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     private static final String TAG = "StocksRecViewAdapter";
     private Context mContext;
 
-    private ArrayList<CryptoList> cryptos = new ArrayList<>();
+    private ArrayList<CryptoItem> cryptos = new ArrayList<>();
 
 
     //dialog
@@ -46,7 +46,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
         holder.cryptoCode.setText(cryptos.get(position).getCryptoCode());
         holder.cryptoAmount.setText(String.valueOf(cryptos.get(position).getAmount()));
-        holder.cryptoValue.setText(String.valueOf(cryptos.get(position).getCurrentValue()));
+        holder.cryptoValue.setText(String.valueOf(cryptos.get(position).getCryptoSubTotalCurrentValue()));
 
         holder.addTransactionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     public int getItemCount() {return cryptos.size();}
 
     //set arraylist setter
-    public void setCryptos(ArrayList<CryptoList> cryptos) {
+    public void setCryptos(ArrayList<CryptoItem> cryptos) {
         this.cryptos = cryptos;
         notifyDataSetChanged();
     }
@@ -107,7 +107,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             cryptoColRelLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CryptoList crypto = cryptos.get((getAdapterPosition()));
+                    CryptoItem crypto = cryptos.get((getAdapterPosition()));
                     crypto.setExpanded(!crypto.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }
