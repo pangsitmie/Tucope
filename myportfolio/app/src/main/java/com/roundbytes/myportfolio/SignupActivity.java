@@ -46,15 +46,16 @@ public class SignupActivity extends AppCompatActivity {
                 //INITIALIZE THE USER CLASS
                 User user = new User(tempName,tempEmail,tempPassword);
                 //CREATE NEW USER CLASS IN DATABASE (NAME)------------------
-                DatabaseReference myRef = database.getReference(tempName);
+                DatabaseReference myRef = database.getReference("Users");
+                DatabaseReference usersRef = myRef.child(tempName);
                 //PUSH USER A_VALUE(PERSONAL INFO) TO DATABASE--------------
-                myRef.child("A_Info").setValue(user);
+                usersRef.child("A_Info").setValue(user);
                 //INITIALIZE CRYPTOTOTAL AND STOCKTOTAL
                 CryptoTotal cryptoTotal = new CryptoTotal();
                 StockTotal stockTotal = new StockTotal();
                 //PUSH CRYPTOTOTAL AND STOCKTOTAL TO DATABASE---------------
-                myRef.child("CryptoTotal").setValue(cryptoTotal);
-                myRef.child("StockTotal").setValue(stockTotal);
+                usersRef.child("CryptoTotal").setValue(cryptoTotal);
+                usersRef.child("StockTotal").setValue(stockTotal);
 
                 //----------INTENT----------------
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

@@ -1,31 +1,31 @@
 package com.roundbytes.myportfolio;
 
 public class StockTotal {
-    double totalBuyValue, totalCurrentValue;
+    double totalStockBuyValue, totalStockCurrentValue;
 
     public StockTotal(){
-        this.totalBuyValue =0.0;
-        this.totalCurrentValue =0.0;
+        this.totalStockBuyValue =0.0;
+        this.totalStockCurrentValue =0.0;
     }
 
     public void addTransaction(double d)
     {
-        totalBuyValue+=d;
+        totalStockBuyValue +=d;
     }
 
-    public double getTotalBuyValue() {
-        return totalBuyValue;
+    public double getTotalStockBuyValue() {
+        return totalStockBuyValue;
     }
 
-    public void setTotalBuyValue(double totalBuyValue) {
-        this.totalBuyValue = totalBuyValue;
+    public void setTotalStockBuyValue(double totalStockBuyValue) {
+        this.totalStockBuyValue = totalStockBuyValue;
     }
 
-    public double getTotalCurrentValue() {
-        return totalCurrentValue;
+    public double getTotalStockCurrentValue() {
+        return totalStockCurrentValue;
     }
 
-    public void setTotalCurrentValue(double totalCurrentValue) {
-        this.totalCurrentValue = totalCurrentValue;
+    public void setTotalStockCurrentValue(double totalStockCurrentValue) {
+        this.totalStockCurrentValue = totalStockCurrentValue;
     }
 }

@@ -39,7 +39,7 @@ public class CryptoFragment extends Fragment {
     private CardView cryptoDetails;
     private TextView editTotalBuyValue,  editTotalCurrentValue;
     private Button addBtn, deleteBtn;
-    private String username;
+
 
     //popup
     private AlertDialog.Builder dialogBuilder;
@@ -51,6 +51,7 @@ public class CryptoFragment extends Fragment {
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
+    private String username;
 
 
     public ArrayList<CryptoItem> cryptoArray = new ArrayList<>();
@@ -58,42 +59,19 @@ public class CryptoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crypto, container , false);
+
+        //VIEW INITIALIZATION
         viewInitialization(v);
+        //TOTAL BUY VALUE INITIALIZATION
+        totalBuyValueInitialization();
+        
+        //TOTAL CURRENT VALUE INITIALIZATION
+        // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
 
         //SET RECYCLERVIEW ADAPTER
         adapter = new CryptoRecViewAdapter(getActivity());
         cryptosRecView.setAdapter(adapter);
         cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        //FIREBASE REALTIME DATABASE INITIALIZATION
-        username = MainActivity.username;
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference(username);
-
-
-        //CryptoTotal Initialization
-        //CryptoTotal cryptoTotal = new CryptoTotal();
-
-        DatabaseReference jerielRef = FirebaseDatabase.getInstance().getReference("Jeriel");
-        DatabaseReference cryptoTotalRef = jerielRef.child("CryptoTotal");
-        DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalBuyValue");
-
-        totalBuyValueRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                String val = snapshot.getValue().toString();
-                Log.d(TAG,val);
-                editTotalBuyValue.setText(val);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
 
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +86,7 @@ public class CryptoFragment extends Fragment {
         return v;
     }
 
+    //VOID METHODS -----------------------------------------------------------
     private void createNewCryptoItemDialog()
     {
         dialogBuilder = new AlertDialog.Builder(getActivity());
@@ -150,6 +129,35 @@ public class CryptoFragment extends Fragment {
         addBtn = v.findViewById(R.id.btnAdd);
         deleteBtn = v.findViewById(R.id.btnDelete);
         cryptosRecView = v.findViewById(R.id.cryptoRecView);
+    }
+    private void totalBuyValueInitialization()
+    {
+        //FIREBASE REALTIME DATABASE INITIALIZATION
+        username = MainActivity.username;
+        Log.d("Username: ",username);
+
+        database = FirebaseDatabase.getInstance();//ROOT NODE
+        myRef = database.getReference("Users");//USERS NODE
+
+        DatabaseReference nameRef = myRef.child(username);//JERIEL NODE
+        DatabaseReference cryptoTotalRef = nameRef.child("CryptoTotal");//CryptoTotal Node
+        DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
+
+        //UPDATE TOTAL BUYVALUE FROM FIREBASE
+        totalBuyValueRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String val = snapshot.getValue().toString();
+                Log.d(TAG,val);
+                editTotalBuyValue.setText(val);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "onCancelled: firebase fail");
+            }
+        });
     }
 
 }
