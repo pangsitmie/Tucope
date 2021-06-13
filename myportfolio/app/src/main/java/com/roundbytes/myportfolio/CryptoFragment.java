@@ -103,7 +103,6 @@ public class CryptoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 createNewCryptoItemDialog();
-
             }
         });
         adapter.setCryptos(cryptoArray);
