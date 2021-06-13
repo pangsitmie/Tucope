@@ -6,17 +6,18 @@ public class CryptoItem {
 
     String cryptoCode;
     private double amount, CryptoSubTotalBuyValue, CryptoSubTotalCurrentValue;
-    private boolean isExpanded;
+    private boolean expanded;
 
     private ArrayList<CryptosTransactions> transactions;
 
+    public CryptoItem() {}
 
     public CryptoItem(String cryptoCode) {
         this.cryptoCode = cryptoCode;
         this.amount = 0;
         CryptoSubTotalBuyValue = 0;
         CryptoSubTotalCurrentValue = 0;
-        this.isExpanded = false;
+        this.expanded = false;
     }
 
     public void addTransaction(double price, double amount, String date, String type)
@@ -59,11 +60,11 @@ public class CryptoItem {
     }
 
     public boolean isExpanded() {
-        return isExpanded;
+        return expanded;
     }
 
     public void setExpanded(boolean expanded) {
-        isExpanded = expanded;
+        this.expanded = expanded;
     }
 
     public ArrayList<CryptosTransactions> getTransactions() {
