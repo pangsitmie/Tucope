@@ -91,12 +91,8 @@ public class CryptoFragment extends Fragment {
 
             }
         });
-        //cryptoArray.add(new CryptoItem(addItemName));
 
-        //SET RECYCLERVIEW ADAPTER
-        adapter = new CryptoRecViewAdapter(getActivity());
-        cryptosRecView.setAdapter(adapter);
-        cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
 
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +101,10 @@ public class CryptoFragment extends Fragment {
                 createNewCryptoItemDialog();
             }
         });
+        //SET RECYCLERVIEW ADAPTER
+        adapter = new CryptoRecViewAdapter(getActivity());
+        cryptosRecView.setAdapter(adapter);
+        cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.setCryptos(cryptoArray);
 
         return v;
@@ -132,8 +132,7 @@ public class CryptoFragment extends Fragment {
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
                 myRef.child(itemName.getText().toString()).setValue(cryptoItem);
-                //Toast.makeText(getContext(), itemName.getText().toString()+" aded", Toast.LENGTH_SHORT).show();
-
+                cryptoArray.clear();
             }
         });
     }

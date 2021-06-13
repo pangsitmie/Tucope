@@ -44,7 +44,7 @@ public class StocksFragment extends Fragment {
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
-    private String username;
+    private String username = MainActivity.username;
     //ARRAYLIST FOR RECYCLER VIEW
     public ArrayList<StockItem> stocksArray = new ArrayList<>();
 
@@ -65,6 +65,7 @@ public class StocksFragment extends Fragment {
         DatabaseReference stockListRef = myRef.child("StockList");
 
         stockListRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -124,7 +125,7 @@ public class StocksFragment extends Fragment {
                 myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList");
                 myRef.child(itemName.getText().toString()).setValue(stockItem);
                 //Toast.makeText(getContext(), itemName.getText().toString()+" aded", Toast.LENGTH_SHORT).show();
-
+                stocksArray.clear();
             }
         });
     }
@@ -132,7 +133,6 @@ public class StocksFragment extends Fragment {
     private void totalBuyValueInitialization()
     {
         //FIREBASE REALTIME DATABASE INITIALIZATION
-        username = MainActivity.username;
         Log.d("Username: ",username);
 
         database = FirebaseDatabase.getInstance();//ROOT NODE
