@@ -40,24 +40,25 @@
                 android:id="@+id/stockValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/addTransactionBtn"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Rp 1.000.000"
+                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:text="Rp 0.0"
+                android:textColor="@color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/lot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/addTransactionBtn"
-                android:layout_marginRight="10dp"
-                android:text="2000"
-                android:textSize="14sp"
-                android:textColor="@color/white"
                 android:layout_below="@+id/stockValue"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:text="0 Lot"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/addTransactionBtn"

@@ -132,20 +132,12 @@ public class CryptoFragment extends Fragment {
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
                 myRef.child(itemName.getText().toString()).setValue(cryptoItem);
-                Toast.makeText(getContext(), itemName.getText().toString()+" aded", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), itemName.getText().toString()+" aded", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
-/*    private void setItemName(String str)
-    {
-        addItemName = str;
 
-        //cryptoArray.add(new CryptoItem(addItemName));
-
-        Toast.makeText(getContext(), "Add btn clicked", Toast.LENGTH_SHORT).show();
-        adapter.setCryptos(cryptoArray);
-    }*/
     private void viewInitialization(View v)
     {
         cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);

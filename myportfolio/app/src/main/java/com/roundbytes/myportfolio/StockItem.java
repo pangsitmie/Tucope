@@ -2,22 +2,20 @@ package com.roundbytes.myportfolio;
 
 import java.util.ArrayList;
 
-public class StocksList {
-    private String name;
-    private int lot, share;
+public class StockItem {
+    private String stockCode;
+    private int lot;
     private double avgBuyPrice, avgBuyValue;
     private boolean isExpanded;
 
     private ArrayList<StocksTransactions> transactions;
 
-    public StocksList() {
-        transactions = new ArrayList<StocksTransactions>();
+    public StockItem(){
     }
 
-    public StocksList(String name, int lot, double avgBuyPrice, double avgBuyValue) {
-        this.name = name;
+    public StockItem(String name) {
+        this.stockCode = name;
         this.lot = lot;
-        this.share = lot*100;
         this.avgBuyPrice = avgBuyPrice;
         this.avgBuyValue = avgBuyValue;
     }
@@ -36,12 +34,12 @@ public class StocksList {
         transactions.add(newTransaction);
     }
 
-    public String getName() {
-        return name;
+    public String getStockCode() {
+        return stockCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStockCode(String stockCode) {
+        this.stockCode = stockCode;
     }
 
     public int getLot() {
@@ -50,14 +48,6 @@ public class StocksList {
 
     public void setLot(int lot) {
         this.lot = lot;
-    }
-
-    public int getShare() {
-        return share;
-    }
-
-    public void setShare(int share) {
-        this.share = share;
     }
 
     public double getAvgBuyPrice() {

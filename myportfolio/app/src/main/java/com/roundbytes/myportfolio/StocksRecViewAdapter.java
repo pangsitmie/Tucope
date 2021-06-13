@@ -25,7 +25,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
 
     //Array List
-    private ArrayList<StocksList> stocks = new ArrayList<>();
+    private ArrayList<StockItem> stocks = new ArrayList<>();
 
     //constructor
     public StocksRecViewAdapter(Context mContext) {
@@ -43,7 +43,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: Called");
 
-        holder.stockCode.setText(stocks.get(position).getName());
+        holder.stockCode.setText(stocks.get(position).getStockCode());
         holder.stockAmount.setText(String.valueOf(stocks.get(position).getLot()));
 
         if(stocks.get(position).isExpanded()){
@@ -58,7 +58,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
     public int getItemCount() {return stocks.size();}
 
     //set arraylist setter
-    public void setStocks(ArrayList<StocksList> stocks) {
+    public void setStocks(ArrayList<StockItem> stocks) {
         this.stocks = stocks;
         notifyDataSetChanged();
     }
@@ -92,7 +92,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
             stocksColRelLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    StocksList stock = stocks.get((getAdapterPosition()));
+                    StockItem stock = stocks.get((getAdapterPosition()));
                     stock.setExpanded(!stock.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }
