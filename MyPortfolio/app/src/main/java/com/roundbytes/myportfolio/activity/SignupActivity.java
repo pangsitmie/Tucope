@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.crypto.CryptoTotal;
+import com.roundbytes.myportfolio.DAOUser;
+import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.stock.StockTotal;
+import com.roundbytes.myportfolio.User;
 
 public class SignupActivity extends AppCompatActivity {
 

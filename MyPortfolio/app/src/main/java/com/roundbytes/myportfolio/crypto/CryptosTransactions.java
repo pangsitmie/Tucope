@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.crypto;
 
 public class CryptosTransactions {
     private String date, type;

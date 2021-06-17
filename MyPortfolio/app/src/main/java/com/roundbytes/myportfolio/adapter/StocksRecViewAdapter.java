@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.stock.StockItem;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stocks_card,parent,false);
-        return new com.roundbytes.myportfolio.StocksRecViewAdapter.ViewHolder(view);
+        return new StocksRecViewAdapter.ViewHolder(view);
     }
 
     @Override

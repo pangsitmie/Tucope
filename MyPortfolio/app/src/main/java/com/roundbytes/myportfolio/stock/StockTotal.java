@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.stock;
 
 public class StockTotal {
     double totalStockBuyValue, totalStockCurrentValue;

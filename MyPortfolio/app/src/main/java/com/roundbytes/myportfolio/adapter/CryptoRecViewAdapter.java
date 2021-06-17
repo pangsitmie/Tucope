@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.roundbytes.myportfolio.crypto.CryptoItem;
+import com.roundbytes.myportfolio.R;
 
 import java.util.ArrayList;
 
@@ -37,7 +40,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.crypto_card,parent,false);
-        return new com.roundbytes.myportfolio.CryptoRecViewAdapter.ViewHolder(view);
+        return new CryptoRecViewAdapter.ViewHolder(view);
     }
 
     @Override

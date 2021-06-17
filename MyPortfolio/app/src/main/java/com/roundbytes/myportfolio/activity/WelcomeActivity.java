@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 //---------------------
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.R;
 //-----------------------
 
 

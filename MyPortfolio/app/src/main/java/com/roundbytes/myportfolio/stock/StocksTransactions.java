@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.stock;
 
 public class StocksTransactions {
     private String date, type;

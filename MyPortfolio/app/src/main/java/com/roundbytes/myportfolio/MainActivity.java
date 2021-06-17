@@ -9,8 +9,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.roundbytes.myportfolio.fragment.CryptoFragment;
+import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.fragment.StocksFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Myportfolio"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".activity.SignupActivity" />
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

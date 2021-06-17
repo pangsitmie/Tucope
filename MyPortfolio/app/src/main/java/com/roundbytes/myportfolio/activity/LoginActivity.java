@@ -1,7 +1,6 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,12 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.R;
 
 public class LoginActivity extends AppCompatActivity {
     EditText editEmail, editPassword;
@@ -40,6 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: 6/17/2021 ini function check email with database ini ada bug yang menyebabkan kalau add new item refersh dan masuk login lagi 
+/*                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("username","jeriel");
+                startActivity(intent);*/
+
                 String tempEmail = editEmail.getText().toString();
                 String tempPassword = editPassword.getText().toString();
                 checkEmailWithDatabase(tempEmail,tempPassword);//MOVE TO FUNCTION TO CHECK EMAIL AND PASSWORD FROM DATABASE
