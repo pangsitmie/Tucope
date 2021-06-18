@@ -44,6 +44,7 @@
         android:background="@drawable/round_square_button"
         android:minHeight="50dp"
         android:textColor="#FFFFFF"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:layout_toLeftOf="@+id/btnAddTransaction"
                 android:text="Rp 0.0"
                 android:textColor="@color/white"
                 android:textSize="22sp"
@@ -55,13 +55,13 @@
                 android:layout_below="@+id/stockValue"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:layout_toLeftOf="@+id/btnAddTransaction"
                 android:text="0 Lot"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/addTransactionBtn"
+                android:id="@+id/btnAddTransaction"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"

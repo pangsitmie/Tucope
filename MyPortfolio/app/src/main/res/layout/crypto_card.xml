@@ -30,17 +30,29 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="3dp"
-                android:text="Crypto Code"
+                android:text="CODE"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/txtEditPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@id/cryptoCode"
+                android:layout_alignBottom="@+id/cryptoCode"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/green"/>
 
 
             <TextView
                 android:id="@+id/cryptoValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:layout_toLeftOf="@+id/btnAddTransaction"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:text="Rp 100.000.000"
@@ -51,7 +63,7 @@
                 android:id="@+id/cryptoAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/addTransactionBtn"
+                android:layout_toLeftOf="@+id/btnAddTransaction"
                 android:layout_marginRight="10dp"
                 android:text="100"
                 android:textColor="@color/white"
@@ -60,7 +72,7 @@
                 android:layout_marginBottom="10dp"/>
 
             <Button
-                android:id="@+id/addTransactionBtn"
+                android:id="@+id/btnAddTransaction"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
@@ -100,7 +112,7 @@
                 android:id="@+id/txtEditAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100.50"
+                android:text="0.0"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_marginRight="20dp"
@@ -194,24 +206,14 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/white"/>
+                android:textColor="@color/green"/>
 
-            <TextView
-                android:id="@+id/txtEditPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="250%"
-                android:textSize="18sp"
-                android:layout_toLeftOf="@id/txtEditAmount"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white"/>
+
             <Button
                 android:id="@+id/btnMoreDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="More Details"
+                android:text="History"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="20dp"
                 android:textSize="12sp"
@@ -221,7 +223,7 @@
                 android:textColor="@color/black"/>
 
             <Button
-                android:id="@+id/btnDelete"
+                android:id="@+id/btnDeleteList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtUnrealized"
