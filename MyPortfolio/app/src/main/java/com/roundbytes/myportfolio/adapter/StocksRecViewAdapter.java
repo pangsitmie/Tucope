@@ -66,7 +66,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
         String txtLot = stocks.get(position).getLot()+" Lot";
         String txtStockTotalBuyValue = "$ " + stocks.get(position).getTotalBuyValue();
         String txtEditAvgBuyPrice = "$ " + stocks.get(position).getAvgBuyPrice();
-        String txtEditCurrentValue = "$ " + "Data no found";
+        String txtEditCurrentValue = "$ " + "NO DATA";
 
         double unrealized = stocks.get(position).getTotalBuyValue()*2 - stocks.get(position).getTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
@@ -74,11 +74,13 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";
 
         //SET TEXT TO CRYPTOCARD
+        holder.stockValue.setText(txtEditCurrentValue);
         holder.stockCode.setText(stocks.get(position).getStockCode());
         holder.stockAmount.setText(txtLot);
         // TODO: 6/18/2021 avg buy price blm diurus
         holder.txtEditAmount.setText(txtLot);
-        holder.txtEditAvgBuyValue.setText(txtStockTotalBuyValue);
+        holder.txtEditAvgBuyPrice.setText(txtEditAvgBuyPrice);
+        holder.txtEditTotalBuyValue.setText(txtStockTotalBuyValue);
         holder.txtEditCurrentValue.setText(txtEditCurrentValue);
         //CHANGE COLOR TO RED IF LOSS
         if(percentage<=0.0){
@@ -131,10 +133,10 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView parent;
-        TextView stockCode, stockAmount;
+        TextView stockCode, stockAmount, stockValue;
         Button btnAddTransaction, btnDeleteList, btnMoreDetails;
         RelativeLayout stocksColRelLayout, stocksExpandRelLayout;
-        TextView txtEditAmount, txtEditAvgBuyPrice, txtEditAvgBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage;
+        TextView txtEditAmount, txtEditAvgBuyPrice, txtEditTotalBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -142,6 +144,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
             parent = itemView.findViewById(R.id.parent);
             stockCode = itemView.findViewById(R.id.stockCode);
             stockAmount = itemView.findViewById(R.id.lot);
+            stockValue = itemView.findViewById(R.id.stockValue);
             btnAddTransaction = itemView.findViewById(R.id.btnAddTransaction);
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);
             btnMoreDetails = itemView.findViewById(R.id.btnMoreDetails);
@@ -151,7 +154,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
             txtEditAmount = itemView.findViewById(R.id.txtEditAmount);
             txtEditAvgBuyPrice = itemView.findViewById(R.id.txtEditAvgBuyPrice);
-            txtEditAvgBuyValue = itemView.findViewById(R.id.txtEditAvgBuyValue);
+            txtEditTotalBuyValue = itemView.findViewById(R.id.txtEditAvgBuyValue);
             txtEditCurrentValue = itemView.findViewById(R.id.txtEditCurrentValue);
             txtEditUnrealized = itemView.findViewById(R.id.txtEditUnrealized);
             txtEditPercentage = itemView.findViewById(R.id.txtEditPercentage);

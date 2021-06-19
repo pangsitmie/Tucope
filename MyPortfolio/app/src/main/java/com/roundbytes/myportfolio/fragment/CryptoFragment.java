@@ -63,7 +63,7 @@ public class CryptoFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
-        totalBuyValueInitialization();
+        CryptoTopCardInitialization();
         
         //TOTAL CURRENT VALUE INITIALIZATION
         // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
@@ -72,7 +72,6 @@ public class CryptoFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users").child(username).child("CryptoTotal");
         DatabaseReference cryptoListRef = myRef.child("CryptoList");
-        //cryptosRecView.setHasFixedSize(true);
         cryptoListRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -145,7 +144,7 @@ public class CryptoFragment extends Fragment {
         addBtn = v.findViewById(R.id.btnAdd);
         cryptosRecView = v.findViewById(R.id.cryptoRecView);
     }
-    private void totalBuyValueInitialization()
+    private void CryptoTopCardInitialization()
     {
         //FIREBASE REALTIME DATABASE INITIALIZATION
         username = MainActivity.username;
@@ -157,6 +156,7 @@ public class CryptoFragment extends Fragment {
         DatabaseReference nameRef = myRef.child(username);//JERIEL NODE
         DatabaseReference cryptoTotalRef = nameRef.child("CryptoTotal");//CryptoTotal Node
         DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
+        DatabaseReference totalCurrentValueRef = cryptoTotalRef.child("totalCryptoCurrentValue");
 
         //UPDATE TOTAL BUYVALUE FROM FIREBASE
         totalBuyValueRef.addValueEventListener(new ValueEventListener() {
@@ -167,7 +167,21 @@ public class CryptoFragment extends Fragment {
                 Log.d(TAG,val);
                 editTotalBuyValue.setText(val);
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "onCancelled: firebase fail");
+            }
+        });
 
+        //UPDATE TOTAL CURRENT VALUE FROM FIREBASE
+        totalCurrentValueRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String val = snapshot.getValue().toString();
+                Log.d(TAG,val);
+                editTotalCurrentValue.setText(val);
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d(TAG, "onCancelled: firebase fail");

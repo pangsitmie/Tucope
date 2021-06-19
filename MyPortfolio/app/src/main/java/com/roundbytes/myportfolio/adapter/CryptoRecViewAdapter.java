@@ -59,11 +59,11 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
         //TEMPORARY STRING FOR SET TEXT
         String cryptoAmount = cryptos.get(position).getAmount()+" "+cryptos.get(position).getCryptoCode();
-        String cryptoValue = "$ " + cryptos.get(position).getCryptoSubTotalCurrentValue();
+        String txtEditAvgBuyPrice = "$ " + cryptos.get(position).getCryptoAvgBuyPrice();
         String txtEditAvgBuyValue = "$ " + cryptos.get(position).getCryptoSubTotalBuyValue();
-        String txtEditCurrentValue = "$ " + cryptos.get(position).getCryptoSubTotalCurrentValue();
+        String txtEditCurrentValue = "$ " + "NO DATA";
 
-        double unrealized = cryptos.get(position).getCryptoSubTotalCurrentValue() - cryptos.get(position).getCryptoSubTotalBuyValue();
+        double unrealized = cryptos.get(position).getCryptoSubTotalBuyValue()*2 - cryptos.get(position).getCryptoSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
         double percentage = (unrealized/cryptos.get(position).getCryptoSubTotalBuyValue()*100);
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";
@@ -71,9 +71,9 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         //SET TEXT TO CRYPTOCARD
         holder.cryptoCode.setText(cryptos.get(position).getCryptoCode());
         holder.cryptoAmount.setText(cryptoAmount);
-        holder.cryptoValue.setText(cryptoValue);
-        // TODO: 6/18/2021 avg buy price blm diurus
+        holder.cryptoValue.setText(txtEditCurrentValue);
         holder.txtEditAmount.setText(cryptoAmount);
+        holder.txtEditAvgBuyPrice.setText(txtEditAvgBuyPrice);
         holder.txtEditAvgBuyValue.setText(txtEditAvgBuyValue);
         holder.txtEditCurrentValue.setText(txtEditCurrentValue);
         //CHANGE COLOR TO RED IF LOSS

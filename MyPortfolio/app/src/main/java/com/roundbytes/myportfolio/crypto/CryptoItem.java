@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CryptoItem {
 
     String cryptoCode;
-    private double amount, CryptoSubTotalBuyValue, CryptoSubTotalCurrentValue;
+    private double amount, cryptoAvgBuyPrice , cryptoSubTotalBuyValue;
     private boolean expanded;
 
     private ArrayList<CryptosTransactions> transactions;
@@ -15,8 +15,8 @@ public class CryptoItem {
     public CryptoItem(String cryptoCode) {
         this.cryptoCode = cryptoCode;
         this.amount = 0;
-        CryptoSubTotalBuyValue = 0;
-        CryptoSubTotalCurrentValue = 0;
+        this.cryptoAvgBuyPrice=0;
+        cryptoSubTotalBuyValue = 0;
         this.expanded = false;
     }
 
@@ -26,6 +26,15 @@ public class CryptoItem {
         transactions.add(newTransaction);
         // TODO: 5/29/2021  begitu addTransaction haruse avgbuyprice totalbuyvalue dll iku berubah buat code e dibawah ini
     }
+    public double getCryptoAvgBuyPrice() {
+        return cryptoAvgBuyPrice;
+    }
+
+    public void setCryptoAvgBuyPrice(double cryptoAvgBuyPrice) {
+        this.cryptoAvgBuyPrice = cryptoAvgBuyPrice;
+    }
+
+
 
     public String getCryptoCode() {
         return cryptoCode;
@@ -44,19 +53,11 @@ public class CryptoItem {
     }
 
     public double getCryptoSubTotalBuyValue() {
-        return CryptoSubTotalBuyValue;
+        return cryptoSubTotalBuyValue;
     }
 
     public void setCryptoSubTotalBuyValue(double cryptoSubTotalBuyValue) {
-        CryptoSubTotalBuyValue = cryptoSubTotalBuyValue;
-    }
-
-    public double getCryptoSubTotalCurrentValue() {
-        return CryptoSubTotalCurrentValue;
-    }
-
-    public void setCryptoSubTotalCurrentValue(double cryptoSubTotalCurrentValue) {
-        CryptoSubTotalCurrentValue = cryptoSubTotalCurrentValue;
+        this.cryptoSubTotalBuyValue = cryptoSubTotalBuyValue;
     }
 
     public boolean isExpanded() {

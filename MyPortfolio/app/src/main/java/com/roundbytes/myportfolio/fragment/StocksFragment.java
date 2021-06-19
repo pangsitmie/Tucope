@@ -56,7 +56,7 @@ public class StocksFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
-        totalBuyValueInitialization();
+        stockTopCardInitialization();
 
         //CURRENT VALUE INITIALIZATION
         // TODO: 6/13/2021 ambil api trs cocokkan dengan total buy valu
@@ -132,7 +132,7 @@ public class StocksFragment extends Fragment {
         });
     }
 
-    private void totalBuyValueInitialization()
+    private void stockTopCardInitialization()
     {
         //FIREBASE REALTIME DATABASE INITIALIZATION
         Log.d("Username: ",username);
@@ -143,6 +143,7 @@ public class StocksFragment extends Fragment {
 
         DatabaseReference cryptoTotalRef = nameRef.child("StockTotal");//CryptoTotal Node
         DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalStockBuyValue");//totalCryptoBuyValue
+        DatabaseReference totalCurrentValueRef = cryptoTotalRef.child("totalStockCurrentValue");//totalCryptoBuyValue
 
         //UPDATE TOTAL BUYVALUE FROM FIREBASE
         totalBuyValueRef.addValueEventListener(new ValueEventListener() {
@@ -152,6 +153,22 @@ public class StocksFragment extends Fragment {
                 String val = snapshot.getValue().toString();
                 Log.d(TAG,val);
                 editTotalBuyValue.setText(val);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "onCancelled: firebase fail");
+            }
+        });
+
+        //UPDATE TOTAL CURRENT VALUE FROM FIREBASE
+        totalCurrentValueRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String val = snapshot.getValue().toString();
+                Log.d(TAG,val);
+                editTotalCurrentValue.setText(val);
             }
 
             @Override
