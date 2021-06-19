@@ -38,7 +38,7 @@ public class CryptoFragment extends Fragment {
     private CryptoRecViewAdapter adapter;
     private CardView cryptoDetails;
     private TextView editTotalBuyValue,  editTotalCurrentValue;
-    private Button addBtn, deleteBtn;
+    private Button addBtn;
 
 
     //popup
@@ -143,7 +143,6 @@ public class CryptoFragment extends Fragment {
         editTotalBuyValue = v.findViewById(R.id.editTotalBuyValue);
         editTotalCurrentValue = v.findViewById(R.id.editTotalCurrentValue);
         addBtn = v.findViewById(R.id.btnAdd);
-        deleteBtn = v.findViewById(R.id.btnDelete);
         cryptosRecView = v.findViewById(R.id.cryptoRecView);
     }
     private void totalBuyValueInitialization()

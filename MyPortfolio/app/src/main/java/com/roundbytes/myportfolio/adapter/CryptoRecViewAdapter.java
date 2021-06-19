@@ -2,7 +2,9 @@ package com.roundbytes.myportfolio.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.roundbytes.myportfolio.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.R;
@@ -86,9 +89,13 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         holder.btnAddTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDialog = new Dialog(mContext);
-                myDialog.setContentView(R.layout.crypto_add_transaction_popup);
-                myDialog.show();
+
+                Intent intent = new Intent(mContext, AddTransaction.class);
+                Bundle extras = new Bundle();
+                extras.putString("TYPE","crypto");
+                extras.putString("CODE",cryptos.get(position).getCryptoCode());
+                intent.putExtras(extras);
+                mContext.startActivity(intent);
             }
 
         });

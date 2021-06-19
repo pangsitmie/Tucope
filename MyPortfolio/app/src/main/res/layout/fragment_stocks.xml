@@ -116,23 +116,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/white"
-                    android:text="ADD"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:id="@+id/btnDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginRight="60dp"
-                    android:backgroundTint="@color/white"
-                    android:text="Delete"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:text="ADD new stock"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>

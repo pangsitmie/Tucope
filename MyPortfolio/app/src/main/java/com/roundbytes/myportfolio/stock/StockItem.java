@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StockItem {
     private String stockCode;
     private int lot;
-    private double avgBuyPrice, avgBuyValue;
+    private double avgBuyPrice, totalBuyValue;
     private boolean isExpanded;
 
     private ArrayList<StocksTransactions> transactions;
@@ -17,7 +17,7 @@ public class StockItem {
         this.stockCode = name;
         this.lot = lot;
         this.avgBuyPrice = avgBuyPrice;
-        this.avgBuyValue = avgBuyValue;
+        this.totalBuyValue = totalBuyValue;
     }
 
     public boolean isExpanded() {
@@ -58,12 +58,12 @@ public class StockItem {
         this.avgBuyPrice = avgBuyPrice;
     }
 
-    public double getAvgBuyValue() {
-        return avgBuyValue;
+    public double getTotalBuyValue() {
+        return totalBuyValue;
     }
 
-    public void setAvgBuyValue(double avgBuyValue) {
-        this.avgBuyValue = avgBuyValue;
+    public void setTotalBuyValue(double totalBuyValue) {
+        this.totalBuyValue = totalBuyValue;
     }
 
     public ArrayList<StocksTransactions> getTransactions() {

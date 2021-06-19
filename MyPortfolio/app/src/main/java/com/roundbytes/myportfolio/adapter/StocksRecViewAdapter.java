@@ -2,6 +2,9 @@ package com.roundbytes.myportfolio.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.roundbytes.myportfolio.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.stock.StockItem;
@@ -58,12 +62,41 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
         holder.stockCode.setText(stocks.get(position).getStockCode());
         holder.stockAmount.setText(String.valueOf(stocks.get(position).getLot()));
 
+        //TEMPORARY STRING FOR SET TEXT
+        String txtLot = stocks.get(position).getLot()+" Lot";
+        String txtStockTotalBuyValue = "$ " + stocks.get(position).getTotalBuyValue();
+        String txtEditAvgBuyPrice = "$ " + stocks.get(position).getAvgBuyPrice();
+        String txtEditCurrentValue = "$ " + "Data no found";
+
+        double unrealized = stocks.get(position).getTotalBuyValue()*2 - stocks.get(position).getTotalBuyValue();
+        String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
+        double percentage = (unrealized/stocks.get(position).getTotalBuyValue()*100);
+        String txtEditPercentage =  String.format("%.2f", percentage) + "%";
+
+        //SET TEXT TO CRYPTOCARD
+        holder.stockCode.setText(stocks.get(position).getStockCode());
+        holder.stockAmount.setText(txtLot);
+        // TODO: 6/18/2021 avg buy price blm diurus
+        holder.txtEditAmount.setText(txtLot);
+        holder.txtEditAvgBuyValue.setText(txtStockTotalBuyValue);
+        holder.txtEditCurrentValue.setText(txtEditCurrentValue);
+        //CHANGE COLOR TO RED IF LOSS
+        if(percentage<=0.0){
+            holder.txtEditPercentage.setTextColor(Color.RED);
+            holder.txtEditUnrealized.setTextColor(Color.RED);
+        }
+        holder.txtEditUnrealized.setText(txtEditUnrealized);
+        holder.txtEditPercentage.setText(txtEditPercentage);
+
         holder.btnAddTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDialog = new Dialog(mContext);
-                myDialog.setContentView(R.layout.crypto_add_transaction_popup);
-                myDialog.show();
+                Intent intent = new Intent(mContext, AddTransaction.class);
+                Bundle extras = new Bundle();
+                extras.putString("TYPE","stock");
+                extras.putString("CODE",stocks.get(position).getStockCode());
+                intent.putExtras(extras);
+                mContext.startActivity(intent);
             }
 
         });
