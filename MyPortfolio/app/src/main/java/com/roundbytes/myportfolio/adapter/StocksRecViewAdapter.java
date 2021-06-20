@@ -73,11 +73,10 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
         double percentage = (unrealized/stocks.get(position).getTotalBuyValue()*100);
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";
 
-        //SET TEXT TO CRYPTOCARD
+        //SET TEXT TO STOCK CARD
         holder.stockValue.setText(txtEditCurrentValue);
         holder.stockCode.setText(stocks.get(position).getStockCode());
         holder.stockAmount.setText(txtLot);
-        // TODO: 6/18/2021 avg buy price blm diurus
         holder.txtEditAmount.setText(txtLot);
         holder.txtEditAvgBuyPrice.setText(txtEditAvgBuyPrice);
         holder.txtEditTotalBuyValue.setText(txtStockTotalBuyValue);

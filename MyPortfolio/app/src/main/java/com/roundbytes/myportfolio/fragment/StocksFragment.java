@@ -26,7 +26,9 @@ import com.roundbytes.myportfolio.stock.StockItem;
 import com.roundbytes.myportfolio.adapter.StocksRecViewAdapter;
 import com.roundbytes.myportfolio.MainActivity;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class StocksFragment extends Fragment {
     @Nullable
@@ -150,9 +152,12 @@ public class StocksFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String val = snapshot.getValue().toString();
-                Log.d(TAG,val);
-                editTotalBuyValue.setText(val);
+                double val = snapshot.getValue(Double.class);
+
+                NumberFormat nf = NumberFormat.getInstance(Locale.US);
+                nf.setMinimumFractionDigits(2); // <- the trick is here
+                String formatVal = nf.format(val); // <- 1,000.00
+                editTotalBuyValue.setText(formatVal);
             }
 
             @Override
@@ -166,9 +171,13 @@ public class StocksFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String val = snapshot.getValue().toString();
-                Log.d(TAG,val);
-                editTotalCurrentValue.setText(val);
+                double val = snapshot.getValue(Double.class);
+
+                NumberFormat nf = NumberFormat.getInstance(Locale.US);
+                nf.setMinimumFractionDigits(2); // <- the trick is here
+                String formatVal = nf.format(val); // <- 1,000.00
+
+                editTotalCurrentValue.setText(formatVal);
             }
 
             @Override

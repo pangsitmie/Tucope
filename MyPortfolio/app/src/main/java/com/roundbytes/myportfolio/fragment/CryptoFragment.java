@@ -27,7 +27,9 @@ import com.roundbytes.myportfolio.adapter.CryptoRecViewAdapter;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.MainActivity;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CryptoFragment extends Fragment {
     @Nullable
@@ -163,8 +165,11 @@ public class CryptoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String val = snapshot.getValue().toString();
-                String formatVal = String.format("%,d", val);
+                double val = snapshot.getValue(Double.class);
+
+                NumberFormat nf = NumberFormat.getInstance(Locale.US);
+                nf.setMinimumFractionDigits(2); // <- the trick is here
+                String formatVal = nf.format(val); // <- 1,000.00
                 editTotalBuyValue.setText(formatVal);
             }
             @Override
@@ -176,8 +181,12 @@ public class CryptoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String val = snapshot.getValue().toString();
-                String formatVal = String.format("%,d", val);
+                double val = snapshot.getValue(Double.class);
+
+                NumberFormat nf = NumberFormat.getInstance(Locale.US);
+                nf.setMinimumFractionDigits(2); // <- the trick is here
+                String formatVal = nf.format(val); // <- 1,000.00
+
                 editTotalCurrentValue.setText(formatVal);
             }
             @Override
