@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.roundbytes.myportfolio.AddTransaction;
+import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.stock.StockItem;

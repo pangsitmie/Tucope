@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTransaction">
+    tools:context=".activity.AddTransaction">
 
     <TextView
         android:id="@+id/textView2"
@@ -42,9 +42,9 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
-        android:textSize="14sp"
-        android:inputType="number"
         android:hint="Enter your buy price"
+        android:inputType="number"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/priceTxt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/priceTxt"
@@ -73,8 +73,8 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
-        android:inputType="number"
         android:hint="Enter your buy price"
+        android:inputType="number"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/amountTxt"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,13 +102,43 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/edittext_background"
         android:text="Select the date"
         android:textSize="14sp"
-        android:background="@drawable/edittext_background"
         app:layout_constraintEnd_toEndOf="@+id/dateTxt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/dateTxt"
         app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
+
+
+    <TextView
+        android:id="@+id/feeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Fee"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/dateTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dateTxt"
+        app:layout_constraintTop_toBottomOf="@+id/editDate" />
+    <EditText
+        android:id="@+id/editFee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Fee amount"
+        android:inputType="number"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/feeTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/feeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/feeTxt" />
 
     <TextView
         android:id="@+id/typeTxt"
@@ -119,10 +149,10 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/dateTxt"
-        app:layout_constraintStart_toStartOf="@+id/dateTxt"
-        app:layout_constraintTop_toBottomOf="@+id/editDate" />
-
+        app:layout_constraintEnd_toEndOf="@+id/feeTxt"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/feeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/editFee" />
 
     <RadioButton
         android:id="@+id/radioButton"

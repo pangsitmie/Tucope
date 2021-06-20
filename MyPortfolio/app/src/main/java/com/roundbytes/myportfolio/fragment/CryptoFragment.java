@@ -164,13 +164,11 @@ public class CryptoFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String val = snapshot.getValue().toString();
-                Log.d(TAG,val);
-                editTotalBuyValue.setText(val);
+                String formatVal = String.format("%,d", val);
+                editTotalBuyValue.setText(formatVal);
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "onCancelled: firebase fail");
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
 
         //UPDATE TOTAL CURRENT VALUE FROM FIREBASE
@@ -179,13 +177,11 @@ public class CryptoFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String val = snapshot.getValue().toString();
-                Log.d(TAG,val);
-                editTotalCurrentValue.setText(val);
+                String formatVal = String.format("%,d", val);
+                editTotalCurrentValue.setText(formatVal);
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "onCancelled: firebase fail");
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
 
