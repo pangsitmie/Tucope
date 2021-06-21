@@ -22,8 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
-import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
+import com.roundbytes.myportfolio.fragment.CryptoFragment;
 
 import java.util.Calendar;
 
@@ -38,7 +38,22 @@ public class AddTransaction extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private String username = MainActivity.username;
+
+
+    //DB VARIABLES
     public double totalBuyVal;
+    public long maxid=0;
+    public double amountDB;
+    public double subTotalBuyValue;
+
+    //DATABASE REFERENCE
+    DatabaseReference cryptoStockTotalRef;
+    DatabaseReference listRef;
+    DatabaseReference transactionRef;
+    DatabaseReference codeRef;
+    DatabaseReference amountRef;
+    DatabaseReference totalBuyValRef;
+    DatabaseReference subTotalBuyValueRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,23 +76,82 @@ public class AddTransaction extends AppCompatActivity {
         editDate = findViewById(R.id.editDate);
         editFee = findViewById(R.id.editFee);
 
-        //TOTAL BUY VALUE INITIALIZTION
-
+        //TOTAL CRYPTO BUY VALUE INITIALIZTION
         database = FirebaseDatabase.getInstance();
-        DatabaseReference cryptoTotalRef = database.getReference("Users").child(username).child("CryptoTotal");
-        DatabaseReference totalCryptoBuyValueRef = cryptoTotalRef.child("totalCryptoBuyValue");
-        totalCryptoBuyValueRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                totalBuyVal = snapshot.getValue(Double.class);
-                Log.d("TAG", "TOTAL BUY VALUE INIT: " +totalBuyVal);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        DatabaseReference root = database.getReference("Users").child(username);
 
-            }
-        });
 
+
+
+        //DATABASE VARIABLE REFERENCING AND VARIBALE INITIALIZATION
+        if(TYPE.equals("stock")){//kalau stocks
+            //database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList").child(CODE);
+        }
+        else
+        {//kalau crypto
+            cryptoStockTotalRef = root.child("CryptoTotal");//CryptoTotal
+            //INITIALIZE CRYPTO TOTAL BUY VALUE
+            totalBuyValRef = cryptoStockTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
+            totalBuyValRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    totalBuyVal = snapshot.getValue(Double.class);
+                    Log.d("FIREBASECALL", "TOTAL BUY VALUE INIT: " +totalBuyVal);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            //INITIALIZE TRANSACTION MAX ID
+            listRef = cryptoStockTotalRef.child("CryptoList");
+            codeRef = listRef.child(CODE);
+
+            //----------SUB TOTAL BUY VALUE INIT---------------
+            subTotalBuyValueRef = codeRef.child("cryptoSubTotalBuyValue");
+            subTotalBuyValueRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    subTotalBuyValue = snapshot.getValue(Double.class);
+                    Log.d("FIREBASECALL", "SUBTOTAL BUY VALUE INIT: " +totalBuyVal);
+
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            //----------TRANSACTION MAX ID INIT---------------
+            transactionRef = codeRef.child("Transactions");
+            transactionRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists())
+                    {
+                        maxid = (snapshot.getChildrenCount());
+                        Log.d("MAXID", "MAXID: "+maxid);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
+            //----------TOTAL AMOUNT INIT---------------
+            amountRef = codeRef.child("amount");
+            amountRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    amountDB = snapshot.getValue(Double.class);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
+            Log.d("INITIALIZATION", totalBuyVal + " " + maxid+ " " + amountDB + " " +subTotalBuyValue);
+        }
 
 
 
@@ -113,26 +187,24 @@ public class AddTransaction extends AppCompatActivity {
                 Log.d("TAG", "onClick: "+all);
 
 
+
                 if(TYPE.equals("stock")){//kalau stocks
-                    database = FirebaseDatabase.getInstance();
-                    myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList").child(CODE);
-                    myRef.child("lot").setValue(amount);
-                    myRef.child("Transactions").setValue(price);
+
                 }else{//kalau crypto
+                    //NEW TRANSACTION CLASS
                     CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
-                    database = FirebaseDatabase.getInstance();
-                    DatabaseReference cryptoTotalRef = database.getReference("Users").child(username).child("CryptoTotal");
-                    //SET NEW CRYPTO TOTAL BUY VALUE
+
+                    //NEW TOTAL BUY VALUE
                     double newTotalBuyValue = totalBuyVal+(price*amount);
-                    Log.d("TAG", "newTotalBuyValue before insert: "+newTotalBuyValue);
-                    cryptoTotalRef.child("totalCryptoBuyValue").setValue(newTotalBuyValue);
-                    Log.d("TAG", "newTotalBuyValue after insert: "+newTotalBuyValue);
-                    myRef = cryptoTotalRef.child("CryptoList").child(CODE);
-                    myRef.child("amount").setValue(amount);
-                    myRef.child("Transactions").child("1").setValue(cryptosTransactions);
+                    totalBuyValRef.setValue(newTotalBuyValue);
+
+                    //INSERT NEW TRANSACTION
+                    transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
+                    //--------------------ADD AMOUNT--------------------
+                    amountRef.setValue(amount+amountDB);
+                    //--------------------ADD SUB TOTAL BUY VALUE--------------------
+                    subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount));
                 }
-
-
             }
         });
 
@@ -147,4 +219,5 @@ public class AddTransaction extends AppCompatActivity {
             }
         };
     }
+
 }

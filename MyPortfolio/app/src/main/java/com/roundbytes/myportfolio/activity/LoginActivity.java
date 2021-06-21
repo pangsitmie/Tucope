@@ -41,16 +41,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: 6/17/2021 ini function check email with database ini ada bug yang menyebabkan kalau add new item refersh dan masuk login lagi 
-/*                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("username","jeriel");
-                startActivity(intent);*/
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("username","Jeriel");
+                startActivity(intent);
 
-                String tempEmail = editEmail.getText().toString();
+                /*String tempEmail = editEmail.getText().toString();
                 String tempPassword = editPassword.getText().toString();
-                checkEmailWithDatabase(tempEmail,tempPassword);//MOVE TO FUNCTION TO CHECK EMAIL AND PASSWORD FROM DATABASE
+                checkEmailWithDatabase(tempEmail,tempPassword);//MOVE TO FUNCTION TO CHECK EMAIL AND PASSWORD FROM DATABASE*/
             }
         });
-
     }
     private void checkEmailWithDatabase(String email, String password)
     {

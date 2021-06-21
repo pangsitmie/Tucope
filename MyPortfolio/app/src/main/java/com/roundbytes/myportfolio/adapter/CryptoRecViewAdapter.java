@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdapter.ViewHolder> {
 
-    private static final String TAG = "StocksRecViewAdapter";
+    private static final String TAG = "CryptoRecViewAdapter";
     private Context mContext;
 
     private ArrayList<CryptoItem> cryptos = new ArrayList<>();

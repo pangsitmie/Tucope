@@ -20,12 +20,7 @@ public class CryptoItem {
         this.expanded = false;
     }
 
-/*    public void addTransaction(double price, double amount, String date, String type)
-    {
-        CryptosTransactions newTransaction = new CryptosTransactions(price, amount, date, type);
-        transactions.add(newTransaction);
-        // TODO: 5/29/2021  begitu addTransaction haruse avgbuyprice totalbuyvalue dll iku berubah buat code e dibawah ini
-    }*/
+
     public double getCryptoAvgBuyPrice() {
         return cryptoAvgBuyPrice;
     }

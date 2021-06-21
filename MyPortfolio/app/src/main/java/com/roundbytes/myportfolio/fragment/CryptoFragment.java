@@ -61,7 +61,6 @@ public class CryptoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crypto, container , false);
-
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
@@ -78,10 +77,7 @@ public class CryptoFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Log.d("RECYCLER VIEW CALL", dataSnapshot.getValue().toString());
-                    //CryptoItem cryptoItem = new CryptoItem(dataSnapshot.getValue().toString());
                     CryptoItem cryptoItem = dataSnapshot.getValue(CryptoItem.class);
-                    //Log.d("CRYPTO CODE", cryptoItem.cryptoCode);
                     cryptoArray.add(cryptoItem);
                 }
                 adapter.notifyDataSetChanged();
