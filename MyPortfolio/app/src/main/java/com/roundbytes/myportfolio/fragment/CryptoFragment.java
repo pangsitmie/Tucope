@@ -70,24 +70,7 @@ public class CryptoFragment extends Fragment {
         // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
 
         //RECYCLER VIEW FIREBASE
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Users").child(username).child("CryptoTotal");
-        DatabaseReference cryptoListRef = myRef.child("CryptoList");
-        cryptoListRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    CryptoItem cryptoItem = dataSnapshot.getValue(CryptoItem.class);
-                    cryptoArray.add(cryptoItem);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        refreshCryptoRecView();
 
 
 
@@ -118,6 +101,7 @@ public class CryptoFragment extends Fragment {
         dialogBuilder.setView(itemPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
 
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,5 +173,28 @@ public class CryptoFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
+    public void refreshCryptoRecView()
+    {
+        //RECYCLER VIEW FIREBASE
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users").child(username).child("CryptoTotal");
+        DatabaseReference cryptoListRef = myRef.child("CryptoList");
+        cryptoListRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    CryptoItem cryptoItem = dataSnapshot.getValue(CryptoItem.class);
+                    cryptoArray.add(cryptoItem);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
 }

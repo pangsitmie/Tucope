@@ -218,6 +218,7 @@ public class AddTransaction extends AppCompatActivity {
                         subTotalBuyValueRef.setValue(subTotalBuyValue-(price*amount));//SUBTOTAL BUY VALUE
                     }
                 }
+                Toast.makeText(getApplicationContext(), "Transaction Added", Toast.LENGTH_SHORT).show();
             }
         });
 

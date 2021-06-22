@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.stock.StockItem;
 
 import java.util.ArrayList;

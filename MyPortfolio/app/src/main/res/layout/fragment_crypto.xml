@@ -41,14 +41,15 @@
         app:layout_constraintGuide_begin="50dp" />
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        android:backgroundTint="@color/black"
         android:id="@+id/cryptoDetailsCard"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:background="@drawable/stocks_gradient_color"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,8 +117,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="3dp"
                     android:text="Rp"
+                    android:layout_marginTop="3dp"
                     android:textColor="@color/white"
-                    android:textSize="33sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -129,7 +131,7 @@
                     android:layout_marginBottom="3dp"
                     android:text="0.00"
                     android:textColor="@color/white"
-                    android:textSize="33sp"
+                    android:textSize="35sp"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/currency2"/>
 
@@ -140,9 +142,13 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:backgroundTint="@color/white_grey"
                     android:text="ADD NEW CRYPTO"
+                    android:background="@drawable/round_button"
                     android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:minHeight="40dp"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
                     android:textColor="@color/grey_primary" />
 
 
@@ -242,7 +248,7 @@
             </RelativeLayout>
 
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -256,7 +262,7 @@
         android:id="@+id/cryptoRecView"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"

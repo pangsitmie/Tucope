@@ -6,15 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent"
     app:cardElevation="5dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="12dp"
     android:layout_marginBottom="10dp"
-    android:layout_marginLeft="3dp"
-    android:layout_marginRight="3dp">
+    android:backgroundTint="@color/gray">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -73,7 +71,6 @@
 
             <Button
                 android:id="@+id/btnAddTransaction"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -81,11 +78,10 @@
                 android:layout_centerVertical="true"
                 android:text="+"
                 android:textColor="@color/white"
-                android:textSize="22sp"
-                android:paddingTop="0dp"
-                android:paddingRight="0dp"
-                android:paddingLeft="0dp"
+                android:textSize="20sp"
+                android:paddingBottom="3dp"
                 android:textStyle="bold"
+                android:background="@drawable/round_square_button"
                 android:backgroundTint="@color/grey_light" />
 
 
@@ -217,10 +213,11 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="20dp"
                 android:textSize="12sp"
-                android:minHeight="20dp"
+                android:minHeight="30dp"
                 android:layout_below="@+id/txtUnrealized"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:background="@drawable/round_button"/>
 
             <Button
                 android:id="@+id/btnDeleteList"
@@ -230,11 +227,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/white"
-                android:minHeight="20dp"
+                android:minHeight="30dp"
                 android:layout_marginRight="20dp"
                 android:text="Delete"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:background="@drawable/round_button"/>
 
 
         </RelativeLayout>

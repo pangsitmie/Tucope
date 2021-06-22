@@ -119,6 +119,7 @@ public class StocksFragment extends Fragment {
         dialogBuilder.setView(itemPopupView);
         dialog = dialogBuilder.create();
         dialog.show();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
