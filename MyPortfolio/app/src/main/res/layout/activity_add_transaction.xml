@@ -154,26 +154,31 @@
         app:layout_constraintStart_toStartOf="@+id/feeTxt"
         app:layout_constraintTop_toBottomOf="@+id/editFee" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Buy"
-        app:layout_constraintEnd_toEndOf="@+id/typeTxt"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/typeTxt"
-        app:layout_constraintTop_toBottomOf="@+id/typeTxt" />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="Sell"
-        app:layout_constraintBottom_toBottomOf="@+id/radioButton"
-        app:layout_constraintStart_toEndOf="@+id/radioButton"
-        app:layout_constraintTop_toTopOf="@+id/radioButton" />
+        app:layout_constraintStart_toStartOf="@+id/typeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/typeTxt"
+        android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buy"
+                android:onClick="checkButton"/>
+
+            <RadioButton
+                android:id="@+id/rSell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Sell"
+                android:layout_toRightOf="@+id/rbBuy"
+                android:onClick="checkButton"/>
+    </RadioGroup>
 
     <Button
         android:id="@+id/btnConfirm"

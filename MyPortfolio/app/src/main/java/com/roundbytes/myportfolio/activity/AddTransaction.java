@@ -13,7 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +33,8 @@ import java.util.Calendar;
 public class AddTransaction extends AppCompatActivity {
     TextView editDate;
     EditText editPrice, editAmount, editFee;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
     Button confirmBtn;
     String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -75,6 +80,7 @@ public class AddTransaction extends AppCompatActivity {
         confirmBtn = findViewById(R.id.btnConfirm);
         editDate = findViewById(R.id.editDate);
         editFee = findViewById(R.id.editFee);
+        radioGroup = findViewById(R.id.radioGroup);
 
         //TOTAL CRYPTO BUY VALUE INITIALIZTION
         database = FirebaseDatabase.getInstance();
@@ -179,7 +185,12 @@ public class AddTransaction extends AppCompatActivity {
                 double price =  Double.parseDouble(editPrice.getText().toString());
                 double amount =  Double.parseDouble(editAmount.getText().toString());
                 double fee = Double.parseDouble(editFee.getText().toString())/100;//dalam percent
-                String type ="Buy";
+
+                //radio button
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(radioId);
+                String type = radioButton.getText().toString();
+
                 double valueBeforeFee = price*amount;
                 double valueAfterFee = (1-fee)*valueBeforeFee;
 
@@ -193,17 +204,19 @@ public class AddTransaction extends AppCompatActivity {
                 }else{//kalau crypto
                     //NEW TRANSACTION CLASS
                     CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
-
-                    //NEW TOTAL BUY VALUE
-                    double newTotalBuyValue = totalBuyVal+(price*amount);
-                    totalBuyValRef.setValue(newTotalBuyValue);
-
                     //INSERT NEW TRANSACTION
                     transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
-                    //--------------------ADD AMOUNT--------------------
-                    amountRef.setValue(amount+amountDB);
-                    //--------------------ADD SUB TOTAL BUY VALUE--------------------
-                    subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount));
+
+                    //BUY OR SELL TYPE
+                    if(type.equals("Buy")){
+                        totalBuyValRef.setValue(totalBuyVal+(price*amount));
+                        amountRef.setValue(amountDB+amount);//ADD AMOUNT
+                        subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount));
+                    }else{
+                        totalBuyValRef.setValue(totalBuyVal-(price*amount));
+                        amountRef.setValue(amountDB-amount);//ADD AMOUNT
+                        subTotalBuyValueRef.setValue(subTotalBuyValue-(price*amount));//SUBTOTAL BUY VALUE
+                    }
                 }
             }
         });
@@ -218,6 +231,12 @@ public class AddTransaction extends AppCompatActivity {
                 editDate.setText(date);
             }
         };
+    }
+    
+    //FUNCTIONS
+    public void checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
     }
 
 }
