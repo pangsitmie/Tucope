@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -22,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
-import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.stock.StockItem;
 
 import java.util.ArrayList;
@@ -65,13 +65,13 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
         //TEMPORARY STRING FOR SET TEXT
         String txtLot = stocks.get(position).getLot()+" Lot";
-        String txtStockTotalBuyValue = "$ " + stocks.get(position).getTotalBuyValue();
-        String txtEditAvgBuyPrice = "$ " + stocks.get(position).getAvgBuyPrice();
+        String txtStockTotalBuyValue = "$ " + stocks.get(position).getStockSubTotalBuyValue();
+        String txtEditAvgBuyPrice = "$ " + stocks.get(position).getStockAvgBuyPrice();
         String txtEditCurrentValue = "$ " + "NO DATA";
 
-        double unrealized = stocks.get(position).getTotalBuyValue()*2 - stocks.get(position).getTotalBuyValue();
+        double unrealized = stocks.get(position).getStockSubTotalBuyValue()*2 - stocks.get(position).getStockSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
-        double percentage = (unrealized/stocks.get(position).getTotalBuyValue()*100);
+        double percentage = (unrealized/stocks.get(position).getStockSubTotalBuyValue()*100);
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";
 
         //SET TEXT TO STOCK CARD
@@ -110,6 +110,16 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList");
                 myRef.child(stocks.get(position).getStockCode()).removeValue();
+
+                //TOAST AND RETURN TO MAIN ACTIVITY ACCORDING TO FRAGMENT
+                Toast.makeText(mContext, stocks.get(position).getStockCode()+" removed", Toast.LENGTH_SHORT).show();
+                //INTENT
+                Intent intent1 = new Intent(mContext, MainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("username",username);
+                extras.putString("refresh","stock");
+                intent1.putExtras(extras);
+                mContext.startActivity(intent1);
             }
         });
 

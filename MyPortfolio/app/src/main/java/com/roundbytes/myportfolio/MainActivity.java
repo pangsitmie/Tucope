@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
@@ -16,18 +17,35 @@ import com.roundbytes.myportfolio.fragment.StocksFragment;
 public class MainActivity extends AppCompatActivity {
 
     public static String username;
+    public String refresh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Intent intent = getIntent();
+        username = intent.getStringExtra("username");*/
+
         Intent intent = getIntent();
-        username = intent.getStringExtra("username");
+        Bundle extras = intent.getExtras();
+        username = extras.getString("username");
+        refresh = extras.getString("refresh");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StocksFragment()).commit();
+        if(refresh.equals("stock"))
+        {
+            View view = bottomNav.findViewById(R.id.nav_stocks);
+            view.performClick();
+        }
+        else
+        {
+            View view = bottomNav.findViewById(R.id.nav_crypto);
+            view.performClick();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StocksFragment()).commit();
+        }
+
     }
     //bottom nav listener
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

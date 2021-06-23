@@ -72,9 +72,7 @@ public class CryptoFragment extends Fragment {
         //RECYCLER VIEW FIREBASE
         refreshCryptoRecView();
 
-
-
-
+        //ADD NEW CRYPTO BUTTON
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,10 +112,10 @@ public class CryptoFragment extends Fragment {
                 myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
                 myRef.child(itemName.getText().toString()).setValue(cryptoItem);
                 cryptoArray.clear();
+                dialog.cancel();
             }
         });
     }
-
     private void viewInitialization(View v)
     {
         cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);
@@ -173,7 +171,7 @@ public class CryptoFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
-    public void refreshCryptoRecView()
+    private void refreshCryptoRecView()
     {
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();

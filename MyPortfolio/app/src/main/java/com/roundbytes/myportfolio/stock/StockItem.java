@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StockItem {
     private String stockCode;
     private int lot;
-    private double avgBuyPrice, totalBuyValue;
+    private double stockAvgBuyPrice, stockSubTotalBuyValue;
     private boolean isExpanded;
 
     private ArrayList<StocksTransactions> transactions;
@@ -16,8 +16,8 @@ public class StockItem {
     public StockItem(String name) {
         this.stockCode = name;
         this.lot = lot;
-        this.avgBuyPrice = avgBuyPrice;
-        this.totalBuyValue = totalBuyValue;
+        this.stockAvgBuyPrice = stockAvgBuyPrice;
+        this.stockSubTotalBuyValue = stockSubTotalBuyValue;
     }
 
     public boolean isExpanded() {
@@ -26,12 +26,6 @@ public class StockItem {
 
     public void setExpanded(boolean expanded) {
         isExpanded = expanded;
-    }
-
-    public void addTransaction(String date, int lot, double price, String type)
-    {
-        StocksTransactions newTransaction = new StocksTransactions(date, lot, price, type);
-        transactions.add(newTransaction);
     }
 
     public String getStockCode() {
@@ -50,20 +44,20 @@ public class StockItem {
         this.lot = lot;
     }
 
-    public double getAvgBuyPrice() {
-        return avgBuyPrice;
+    public double getStockAvgBuyPrice() {
+        return stockAvgBuyPrice;
     }
 
-    public void setAvgBuyPrice(double avgBuyPrice) {
-        this.avgBuyPrice = avgBuyPrice;
+    public void setStockAvgBuyPrice(double stockAvgBuyPrice) {
+        this.stockAvgBuyPrice = stockAvgBuyPrice;
     }
 
-    public double getTotalBuyValue() {
-        return totalBuyValue;
+    public double getStockSubTotalBuyValue() {
+        return stockSubTotalBuyValue;
     }
 
-    public void setTotalBuyValue(double totalBuyValue) {
-        this.totalBuyValue = totalBuyValue;
+    public void setStockSubTotalBuyValue(double stockSubTotalBuyValue) {
+        this.stockSubTotalBuyValue = stockSubTotalBuyValue;
     }
 
     public ArrayList<StocksTransactions> getTransactions() {

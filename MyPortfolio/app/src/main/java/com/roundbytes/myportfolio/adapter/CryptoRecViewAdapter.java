@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -107,6 +108,16 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
                 myRef.child(cryptos.get(position).getCryptoCode()).removeValue();
+
+                //TOAST AND RETURN TO MAIN ACTIVITY ACCORDING TO FRAGMENT
+                Toast.makeText(mContext, cryptos.get(position).getCryptoCode()+" removed", Toast.LENGTH_SHORT).show();
+                //INTENT
+                Intent intent1 = new Intent(mContext, MainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("username",username);
+                extras.putString("refresh","crypto");
+                intent1.putExtras(extras);
+                mContext.startActivity(intent1);
             }
         });
 

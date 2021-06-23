@@ -41,9 +41,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: 6/17/2021 ini function check email with database ini ada bug yang menyebabkan kalau add new item refersh dan masuk login lagi 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("username","Jeriel");
-                startActivity(intent);
+                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("username","Jeriel");
+                extras.putString("refresh","stock");
+                intent1.putExtras(extras);
+                startActivity(intent1);
 
                 /*String tempEmail = editEmail.getText().toString();
                 String tempPassword = editPassword.getText().toString();

@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +30,8 @@ import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
+import com.roundbytes.myportfolio.fragment.StocksFragment;
+import com.roundbytes.myportfolio.stock.StocksTransactions;
 
 import java.util.Calendar;
 
@@ -82,6 +87,8 @@ public class AddTransaction extends AppCompatActivity {
         editFee = findViewById(R.id.editFee);
         radioGroup = findViewById(R.id.radioGroup);
 
+
+
         //TOTAL CRYPTO BUY VALUE INITIALIZTION
         database = FirebaseDatabase.getInstance();
         DatabaseReference root = database.getReference("Users").child(username);
@@ -91,14 +98,9 @@ public class AddTransaction extends AppCompatActivity {
 
         //DATABASE VARIABLE REFERENCING AND VARIBALE INITIALIZATION
         if(TYPE.equals("stock")){//kalau stocks
-            //database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList").child(CODE);
-        }
-        else
-        {//kalau crypto
-            cryptoStockTotalRef = root.child("CryptoTotal");//CryptoTotal
+            cryptoStockTotalRef = root.child("StockTotal");//CryptoTotal
             //INITIALIZE CRYPTO TOTAL BUY VALUE
-            totalBuyValRef = cryptoStockTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
+            totalBuyValRef = cryptoStockTotalRef.child("totalStockBuyValue");//totalCryptoBuyValue
             totalBuyValRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -107,28 +109,12 @@ public class AddTransaction extends AppCompatActivity {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
 
             //INITIALIZE TRANSACTION MAX ID
-            listRef = cryptoStockTotalRef.child("CryptoList");
+            listRef = cryptoStockTotalRef.child("StockList");
             codeRef = listRef.child(CODE);
-
-            //----------SUB TOTAL BUY VALUE INIT---------------
-            subTotalBuyValueRef = codeRef.child("cryptoSubTotalBuyValue");
-            subTotalBuyValueRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    subTotalBuyValue = snapshot.getValue(Double.class);
-                    Log.d("FIREBASECALL", "SUBTOTAL BUY VALUE INIT: " +totalBuyVal);
-
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
 
             //----------TRANSACTION MAX ID INIT---------------
             transactionRef = codeRef.child("Transactions");
@@ -143,6 +129,85 @@ public class AddTransaction extends AppCompatActivity {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
+            //----------SUB TOTAL BUY VALUE INIT---------------
+            subTotalBuyValueRef = codeRef.child("stockSubTotalBuyValue");
+            subTotalBuyValueRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    subTotalBuyValue = snapshot.getValue(Double.class);
+                    Log.d("FIREBASECALL", "SUBTOTAL BUY VALUE INIT: " +subTotalBuyValue);
+
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            //----------TOTAL LOT INIT---------------
+            amountRef = codeRef.child("lot");
+            amountRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    amountDB = snapshot.getValue(Double.class);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
+            Log.d("INITIALIZATION", totalBuyVal + " " + maxid+ " " + amountDB + " " +subTotalBuyValue);
+
+        }
+        else
+        {//kalau crypto
+            cryptoStockTotalRef = root.child("CryptoTotal");//CryptoTotal
+            //INITIALIZE CRYPTO TOTAL BUY VALUE
+            totalBuyValRef = cryptoStockTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
+            totalBuyValRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    totalBuyVal = snapshot.getValue(Double.class);
+                    Log.d("FIREBASECALL", "TOTAL BUY VALUE INIT: " +totalBuyVal);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
+            //INITIALIZE TRANSACTION MAX ID
+            listRef = cryptoStockTotalRef.child("CryptoList");
+            codeRef = listRef.child(CODE);
+
+            //----------TRANSACTION MAX ID INIT---------------
+            transactionRef = codeRef.child("Transactions");
+            transactionRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists())
+                    {
+                        maxid = (snapshot.getChildrenCount());
+                        Log.d("MAXID", "MAXID: "+maxid);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
+            //----------SUB TOTAL BUY VALUE INIT---------------
+            subTotalBuyValueRef = codeRef.child("cryptoSubTotalBuyValue");
+            subTotalBuyValueRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    subTotalBuyValue = snapshot.getValue(Double.class);
+                    Log.d("FIREBASECALL", "SUBTOTAL BUY VALUE INIT: " +subTotalBuyValue);
+
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
             });
 
             //----------TOTAL AMOUNT INIT---------------
@@ -161,7 +226,8 @@ public class AddTransaction extends AppCompatActivity {
 
 
 
-        //BUTTON ON CLICK
+
+        //DATE BUTTON ON CLICK
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,46 +245,90 @@ public class AddTransaction extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double price =  Double.parseDouble(editPrice.getText().toString());
-                double amount =  Double.parseDouble(editAmount.getText().toString());
-                double fee = Double.parseDouble(editFee.getText().toString())/100;//dalam percent
+                //check editText
+                String checkPrice =editPrice.getText().toString().trim();
+/*                String checkAmount =editAmount.getText().toString().trim();
+                String checkDate =editDate.getText().toString().trim();*/
 
-                //radio button
-                int radioId = radioGroup.getCheckedRadioButtonId();
-                radioButton = findViewById(radioId);
-                String type = radioButton.getText().toString();
+                if (checkPrice.length()!=0)
+                {
+                    double price =  Double.parseDouble(editPrice.getText().toString());
+                    double amount =  Double.parseDouble(editAmount.getText().toString());
+                    double fee = Double.parseDouble(editFee.getText().toString())/100;//dalam percent
 
-                double valueBeforeFee = price*amount;
-                double valueAfterFee = (1-fee)*valueBeforeFee;
+                    //radio button
+                    int radioId = radioGroup.getCheckedRadioButtonId();
+                    radioButton = findViewById(radioId);
+                    String type = radioButton.getText().toString();
 
-                String all = price +" "+amount +" "+date +" "+fee;
-                Log.d("TAG", "onClick: "+all);
+                    double valueBeforeFee = price*amount;
+                    double valueAfterFee = (1-fee)*valueBeforeFee;
 
+                    String all = price +" "+amount +" "+date +" "+fee;
+                    Log.d("TAG", "onClick: "+all);
 
+                    //BRANCHING TO STOCK OR CRYPTO
+                    if(TYPE.equals("stock"))
+                    {
+                        //NEW TRANSACTION CLASS
+                        StocksTransactions stocksTransactions = new StocksTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
 
-                if(TYPE.equals("stock")){//kalau stocks
+                        //INSERT NEW TRANSACTION
+                        transactionRef.child(String.valueOf(maxid+1)).setValue(stocksTransactions);//add new transaction with maxid + 1 as autoincrement
 
-                }else{//kalau crypto
-                    //NEW TRANSACTION CLASS
-                    CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
-                    //INSERT NEW TRANSACTION
-                    transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
+                        //BUY OR SELL TYPE
+                        if(type.equals("Buy")){
+                            totalBuyValRef.setValue(totalBuyVal+(price*amount*100));
+                            amountRef.setValue(amountDB+amount);//ADD AMOUNT
+                            subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount*100));
+                        }else{
+                            totalBuyValRef.setValue(totalBuyVal-(price*amount*100));
+                            amountRef.setValue(amountDB-amount);//ADD AMOUNT
+                            subTotalBuyValueRef.setValue(subTotalBuyValue-(price*amount*100));//SUBTOTAL BUY VALUE
+                        }
 
-                    //BUY OR SELL TYPE
-                    if(type.equals("Buy")){
-                        totalBuyValRef.setValue(totalBuyVal+(price*amount));
-                        amountRef.setValue(amountDB+amount);//ADD AMOUNT
-                        subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount));
-                    }else{
-                        totalBuyValRef.setValue(totalBuyVal-(price*amount));
-                        amountRef.setValue(amountDB-amount);//ADD AMOUNT
-                        subTotalBuyValueRef.setValue(subTotalBuyValue-(price*amount));//SUBTOTAL BUY VALUE
                     }
+                    else
+                    {
+                        //NEW TRANSACTION CLASS
+                        CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
+                        //INSERT NEW TRANSACTION
+                        transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
+
+                        //BUY OR SELL TYPE
+                        if(type.equals("Buy")){
+                            totalBuyValRef.setValue(totalBuyVal+(price*amount));
+                            amountRef.setValue(amountDB+amount);//ADD AMOUNT
+                            subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount));
+                        }else{
+                            totalBuyValRef.setValue(totalBuyVal-(price*amount));
+                            amountRef.setValue(amountDB-amount);//ADD AMOUNT
+                            subTotalBuyValueRef.setValue(subTotalBuyValue-(price*amount));//SUBTOTAL BUY VALUE
+                        }
+                    }
+
+                    //TOAST AND RETURN TO MAIN ACTIVITY ACCORDING TO FRAGMENT
+                    Toast.makeText(getApplicationContext(), "Transaction Added", Toast.LENGTH_SHORT).show();
+                    //INTENT
+                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("username",username);
+                    extras.putString("refresh",TYPE);
+                    intent1.putExtras(extras);
+                    startActivity(intent1);
                 }
-                Toast.makeText(getApplicationContext(), "Transaction Added", Toast.LENGTH_SHORT).show();
+                else {
+                    editPrice.requestFocus();
+                    editPrice.setError("Enter The Price");
+                    Toast.makeText(getApplicationContext(),"Enter The Price",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
@@ -239,5 +349,6 @@ public class AddTransaction extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
     }
+
 
 }

@@ -64,33 +64,9 @@ public class StocksFragment extends Fragment {
         // TODO: 6/13/2021 ambil api trs cocokkan dengan total buy valu
 
         //RECYCLER VIEW FIREBASE
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Users").child(username).child("StockTotal");
-        DatabaseReference stockListRef = myRef.child("StockList");
+        refreshStockRecView();
 
-        stockListRef.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Log.d("RECYCLERVIEW CALL", dataSnapshot.getValue().toString());
-                    StockItem stockItem = dataSnapshot.getValue(StockItem.class);
-                    stocksArray.add(stockItem);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //SET RECYCLERVIEW ADAPTER
-        adapter = new StocksRecViewAdapter(getActivity());
-        stocksRecView.setAdapter(adapter);
-        stocksRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        //ADD NEW STOCK BUTTON
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +78,8 @@ public class StocksFragment extends Fragment {
 
         return v;
     }
+
+    //VOID METHODS -----------------------------------------------------------
     private void viewInitialization(View v)
     {
         addBtn = v.findViewById(R.id.btnAdd);
@@ -129,12 +107,11 @@ public class StocksFragment extends Fragment {
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList");
                 myRef.child(itemName.getText().toString()).setValue(stockItem);
-                //Toast.makeText(getContext(), itemName.getText().toString()+" aded", Toast.LENGTH_SHORT).show();
                 stocksArray.clear();
+                dialog.cancel();
             }
         });
     }
-
     private void stockTopCardInitialization()
     {
         //FIREBASE REALTIME DATABASE INITIALIZATION
@@ -186,6 +163,36 @@ public class StocksFragment extends Fragment {
                 Log.d(TAG, "onCancelled: firebase fail");
             }
         });
+    }
+    private void refreshStockRecView()
+    {
+        //RECYCLER VIEW FIREBASE
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users").child(username).child("StockTotal");
+        DatabaseReference stockListRef = myRef.child("StockList");
+
+        stockListRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Log.d("RECYCLERVIEW CALL", dataSnapshot.getValue().toString());
+                    StockItem stockItem = dataSnapshot.getValue(StockItem.class);
+                    stocksArray.add(stockItem);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //SET RECYCLERVIEW ADAPTER
+        adapter = new StocksRecViewAdapter(getActivity());
+        stocksRecView.setAdapter(adapter);
+        stocksRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 }

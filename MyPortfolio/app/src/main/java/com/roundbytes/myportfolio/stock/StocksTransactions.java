@@ -2,14 +2,17 @@ package com.roundbytes.myportfolio.stock;
 
 public class StocksTransactions {
     private String date, type;
-    private int lot;
-    private double price;
+    private double price, lot, pnl, fee, valueBeforeFee, valueAfterFee;
 
-    public StocksTransactions(String date, int lot, double price, String type) {
-        this.date = date;
-        this.lot = lot;
+    public StocksTransactions(double price, double amount, String date, String type,  double fee, double valueBeforeFee, double valueAfterFee, double pnl) {
         this.price = price;
+        this.lot = amount;
+        this.date = date;
         this.type = type;
+        this.fee = fee;
+        this.valueBeforeFee = valueBeforeFee;
+        this.valueAfterFee = valueAfterFee;
+        this.pnl = pnl;
     }
 
     public String getDate() {
@@ -28,19 +31,51 @@ public class StocksTransactions {
         this.type = type;
     }
 
-    public int getLot() {
-        return lot;
-    }
-
-    public void setLot(int lot) {
-        this.lot = lot;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getLot() {
+        return lot;
+    }
+
+    public void setLot(double lot) {
+        this.lot = lot;
+    }
+
+    public double getPnl() {
+        return pnl;
+    }
+
+    public void setPnl(double pnl) {
+        this.pnl = pnl;
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+    public double getValueBeforeFee() {
+        return valueBeforeFee;
+    }
+
+    public void setValueBeforeFee(double valueBeforeFee) {
+        this.valueBeforeFee = valueBeforeFee;
+    }
+
+    public double getValueAfterFee() {
+        return valueAfterFee;
+    }
+
+    public void setValueAfterFee(double valueAfterFee) {
+        this.valueAfterFee = valueAfterFee;
     }
 }
