@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Myportfolio"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AddTransaction"></activity>
+        <activity android:name=".CryptoHistoryActivity"></activity>
+        <activity android:name=".activity.AddTransaction" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.SignupActivity" />

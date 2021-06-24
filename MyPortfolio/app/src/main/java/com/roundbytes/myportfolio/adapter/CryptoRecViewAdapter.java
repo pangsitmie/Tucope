@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.roundbytes.myportfolio.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.R;
-import com.roundbytes.myportfolio.fragment.CryptoFragment;
 
 import java.util.ArrayList;
 
@@ -58,7 +56,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: Called");
+        //Log.d(TAG, "onBindViewHolder: Called");
 
         //TEMPORARY STRING FOR SET TEXT
         String cryptoAmount = cryptos.get(position).getAmount()+" "+cryptos.get(position).getCryptoCode();
@@ -102,6 +100,13 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             }
 
         });
+        holder.btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CryptoHistoryActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
         holder.btnDeleteList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +147,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView parent;
         TextView cryptoCode, cryptoAmount, cryptoValue;
-        Button btnAddTransaction, btnDeleteList, btnMoreDetails;
+        Button btnAddTransaction, btnDeleteList, btnHistory;
         RelativeLayout cryptoColRelLayout, cryptoExpandRelLayout;
         TextView txtEditAmount, txtEditAvgBuyPrice, txtEditAvgBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage;
 
@@ -155,10 +160,10 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             //crypto card layout
             btnAddTransaction = itemView.findViewById(R.id.btnAddTransaction);
             cryptoCode = itemView.findViewById(R.id.cryptoCode);
-            cryptoAmount = itemView.findViewById(R.id.cryptoAmount);
-            cryptoValue = itemView.findViewById(R.id.cryptoValue);
+            cryptoAmount = itemView.findViewById(R.id.amount);
+            cryptoValue = itemView.findViewById(R.id.valueAfterFee);
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);
-            btnMoreDetails = itemView.findViewById(R.id.btnMoreDetails);
+            btnHistory = itemView.findViewById(R.id.btnMoreDetails);
 
 
 
@@ -166,8 +171,8 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             cryptoExpandRelLayout = itemView.findViewById(R.id.cryptoExpandRelLayout);
 
             txtEditAmount = itemView.findViewById(R.id.txtEditAmount);
-            txtEditAvgBuyPrice = itemView.findViewById(R.id.txtEditAvgBuyPrice);
-            txtEditAvgBuyValue = itemView.findViewById(R.id.txtEditAvgBuyValue);
+            txtEditAvgBuyPrice = itemView.findViewById(R.id.editValueBeforeFee);
+            txtEditAvgBuyValue = itemView.findViewById(R.id.EditValueAfterFee);
             txtEditCurrentValue = itemView.findViewById(R.id.txtEditCurrentValue);
             txtEditUnrealized = itemView.findViewById(R.id.txtEditUnrealized);
             txtEditPercentage = itemView.findViewById(R.id.txtEditPercentage);

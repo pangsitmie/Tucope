@@ -163,8 +163,8 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
             stocksExpandRelLayout = itemView.findViewById(R.id.stocksExpandRelLayout);
 
             txtEditAmount = itemView.findViewById(R.id.txtEditAmount);
-            txtEditAvgBuyPrice = itemView.findViewById(R.id.txtEditAvgBuyPrice);
-            txtEditTotalBuyValue = itemView.findViewById(R.id.txtEditAvgBuyValue);
+            txtEditAvgBuyPrice = itemView.findViewById(R.id.editValueBeforeFee);
+            txtEditTotalBuyValue = itemView.findViewById(R.id.EditValueAfterFee);
             txtEditCurrentValue = itemView.findViewById(R.id.txtEditCurrentValue);
             txtEditUnrealized = itemView.findViewById(R.id.txtEditUnrealized);
             txtEditPercentage = itemView.findViewById(R.id.txtEditPercentage);

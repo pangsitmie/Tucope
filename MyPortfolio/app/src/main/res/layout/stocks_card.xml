@@ -118,7 +118,7 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:id="@+id/txtAvgBuyPrice"
+                android:id="@+id/txtValueBeforeFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Avg Buy Price"
@@ -128,7 +128,7 @@
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"/>
             <TextView
-                android:id="@+id/txtEditAvgBuyPrice"
+                android:id="@+id/editValueBeforeFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp 6.500"
@@ -140,34 +140,34 @@
                 android:textColor="@color/white"/>
 
             <TextView
-                android:id="@+id/txtAvgBuyValue"
+                android:id="@+id/txtValueAfterrFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Avg Buy Value"
                 android:textSize="18sp"
-                android:layout_below="@id/txtAvgBuyPrice"
+                android:layout_below="@id/txtValueBeforeFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"/>
             <TextView
-                android:id="@+id/txtEditAvgBuyValue"
+                android:id="@+id/EditValueAfterFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp 10.000.000"
                 android:textSize="18sp"
-                android:layout_below="@id/txtAvgBuyPrice"
+                android:layout_below="@id/txtValueBeforeFee"
                 android:layout_marginRight="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"/>
 
             <TextView
-                android:id="@+id/txtCurrentValue"
+                android:id="@+id/txtFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Current Value"
                 android:textSize="18sp"
-                android:layout_below="@id/txtAvgBuyValue"
+                android:layout_below="@id/txtValueAfterrFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"/>
@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:text="Rp 25.000.000"
                 android:textSize="18sp"
-                android:layout_below="@id/txtAvgBuyValue"
+                android:layout_below="@id/txtValueAfterrFee"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text="Unrealized"
                 android:textSize="18sp"
-                android:layout_below="@id/txtCurrentValue"
+                android:layout_below="@id/txtFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
@@ -217,7 +217,7 @@
                 android:textSize="12sp"
                 android:minHeight="30dp"
                 android:layout_below="@+id/txtUnrealized"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
                 android:background="@drawable/round_button"/>
@@ -232,7 +232,7 @@
                 android:textSize="12sp"
                 android:minHeight="30dp"
                 android:layout_below="@+id/txtUnrealized"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
                 android:background="@drawable/round_button"/>
