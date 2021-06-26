@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.roundbytes.myportfolio.CryptoHistoryActivity;
+import com.roundbytes.myportfolio.StockHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
@@ -103,6 +105,15 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
         });
 
+        holder.btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, StockHistoryActivity.class);
+                intent.putExtra("CODE", stocks.get(position).getStockCode());
+                mContext.startActivity(intent);
+            }
+        });
+
         //DELETE BUTTON WHEN PRESSED -> DELETE THAT ITEM FROM DATABASE
         holder.btnDeleteList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +155,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView parent;
         TextView stockCode, stockAmount, stockValue;
-        Button btnAddTransaction, btnDeleteList, btnMoreDetails;
+        Button btnAddTransaction, btnDeleteList, btnHistory;
         RelativeLayout stocksColRelLayout, stocksExpandRelLayout;
         TextView txtEditAmount, txtEditAvgBuyPrice, txtEditTotalBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage;
 
@@ -157,7 +168,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
             stockValue = itemView.findViewById(R.id.stockValue);
             btnAddTransaction = itemView.findViewById(R.id.btnAddTransaction);
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);
-            btnMoreDetails = itemView.findViewById(R.id.btnMoreDetails);
+            btnHistory = itemView.findViewById(R.id.btnHistory);
 
             stocksColRelLayout = itemView.findViewById(R.id.stocksColRelLayout);
             stocksExpandRelLayout = itemView.findViewById(R.id.stocksExpandRelLayout);

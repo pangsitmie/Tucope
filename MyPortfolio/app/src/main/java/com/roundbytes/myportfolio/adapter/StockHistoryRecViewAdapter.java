@@ -1,10 +1,7 @@
 package com.roundbytes.myportfolio.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,31 +9,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
-import com.roundbytes.myportfolio.activity.AddTransaction;
-import com.roundbytes.myportfolio.crypto.CryptoItem;
-import com.roundbytes.myportfolio.crypto.CryptoTotal;
-import com.roundbytes.myportfolio.crypto.CryptosTransactions;
+import com.roundbytes.myportfolio.stock.StocksTransactions;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHistoryRecViewAdapter.ViewHolder> {
+public class StockHistoryRecViewAdapter extends RecyclerView.Adapter<StockHistoryRecViewAdapter.ViewHolder> {
 
-    private static final String TAG = "CryptoHistoryAdapter";
+    private static final String TAG = "StockHistoryAdapter";
     private Context mContext;
 
-    private ArrayList<CryptosTransactions> transactionsArray = new ArrayList<>();
+    private ArrayList<StocksTransactions> transactionsArray = new ArrayList<>();
 
     //FIREBASE VARIABLES
     private String username = MainActivity.username;
@@ -44,22 +36,22 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
 
 
     //constructor
-    public CryptoHistoryRecViewAdapter(Context mContext) {
+    public StockHistoryRecViewAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.crypto_history_card,parent,false);
-        return new CryptoHistoryRecViewAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_history_card,parent,false);
+        return new StockHistoryRecViewAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //TEMPORARY STRING FOR SET TEXT
         String txtTransactionType = transactionsArray.get(position).getType();
-        String txtTransactionAmount = String.valueOf(transactionsArray.get(position).getAmount())+" "+transactionsArray.get(position).getCryptoCode();
+        String txtTransactionAmount = String.valueOf(transactionsArray.get(position).getLot())+" "+transactionsArray.get(position).getStockCode();
         String txtTransactionDate = String.valueOf(transactionsArray.get(position).getDate());
         String txtTransactionPrice =  String.valueOf(transactionsArray.get(position).getPrice());
 
@@ -70,6 +62,8 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         //
         double valueAfterFee = transactionsArray.get(position).getValueAfterFee();
         String txtValueAfterFee = formatCurrency(valueAfterFee);
+
+
         String txtFee = String.valueOf(transactionsArray.get(position).getFee());
         String txtPNL = String.valueOf(transactionsArray.get(position).getPnl());
 
@@ -77,14 +71,19 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
         double percentage = (unrealized/cryptos.get(position).getCryptoSubTotalBuyValue()*100);
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";*/
+        Log.d("STOCK HIS REC VIEW", "onBindViewHolder: "+txtTransactionType
+        +" "+txtTransactionAmount
+        +" "+txtTransactionDate);
 
 
-        //SET TEXT TO CRYPTOCARD
+        //SET TEXT TO STOCKCARD
         holder.transactionType.setText(txtTransactionType);
         holder.editDateTop.setText(txtTransactionDate);
 
-
-        holder.editValueAfterFeeTop.setText(txtValueAfterFee);
+        NumberFormat nf = NumberFormat.getInstance(Locale.US);
+        nf.setMinimumFractionDigits(2); // <- the trick is here
+        String formatTxtValueAfterFee = nf.format(txtValueAfterFee); // <- 1,000.00
+        holder.editValueAfterFeeTop.setText(formatTxtValueAfterFee);
         holder.editAmount.setText(txtTransactionAmount);
 
         holder.txtEditAmount.setText(txtTransactionAmount);
@@ -120,9 +119,9 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         });*/
 
         if(transactionsArray.get(position).isExpanded()){
-            holder.cryptoExpandRelLayout.setVisibility(View.VISIBLE);
+            holder.stockExpandRelLayout.setVisibility(View.VISIBLE);
         }else{
-            holder.cryptoExpandRelLayout.setVisibility(View.GONE);
+            holder.stockExpandRelLayout.setVisibility(View.GONE);
         }
 
     }
@@ -131,7 +130,7 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
     public int getItemCount() {return transactionsArray.size();}
 
     //set arraylist setter
-    public void setCryptoHistory(ArrayList<CryptosTransactions> transactionsArray) {
+    public void setStockHistory(ArrayList<StocksTransactions> transactionsArray) {
         this.transactionsArray = transactionsArray;
         notifyDataSetChanged();
     }
@@ -142,14 +141,14 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         TextView transactionType, editValueAfterFeeTop, editAmount, txtEditAmount, editPrice;
         TextView editValueBeforeFee, editValueAfterFee,editFee, editPNL, editDateTop;
         Button  btnDeleteList;
-        RelativeLayout cryptoColRelLayout, cryptoExpandRelLayout;
+        RelativeLayout stockColRelLayout, stockExpandRelLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             parent = itemView.findViewById(R.id.parent);
 
-            //crypto card layout
+            //Stock card layout
             transactionType = itemView.findViewById(R.id.transactionType);
             editValueAfterFeeTop = itemView.findViewById(R.id.editValueAfterFeeTop);
             editAmount = itemView.findViewById(R.id.editAmount);
@@ -163,19 +162,21 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
 
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);
 
-            cryptoColRelLayout = itemView.findViewById(R.id.cryptoColRelLayout);
-            cryptoExpandRelLayout = itemView.findViewById(R.id.cryptoExpandRelLayout);
+            stockColRelLayout = itemView.findViewById(R.id.stockColRelLayout);
+            stockExpandRelLayout = itemView.findViewById(R.id.stockExpandRelLayout);
 
 
 
-            cryptoColRelLayout.setOnClickListener(new View.OnClickListener() {
+            stockColRelLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CryptosTransactions crypto = transactionsArray.get((getAdapterPosition()));
-                    crypto.setExpanded(!crypto.isExpanded());
+                    StocksTransactions stock = transactionsArray.get(getAdapterPosition());
+                    stock.setExpanded(!stock.isExpanded());
                     notifyItemChanged(getAdapterPosition());
                 }
             });
+
+
 
         }
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CryptoHistoryActivity"
+    tools:context=".StockHistoryActivity"
     android:background="@color/black">
     <RelativeLayout
         android:id="@+id/relTop"
@@ -14,7 +14,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BTC"
+            android:text="ADRO"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
@@ -49,7 +49,7 @@
         android:layout_below="@+id/relTop">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cryptoHistoryRecView"
+            android:id="@+id/stockHistoryRecView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"

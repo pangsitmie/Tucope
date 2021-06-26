@@ -104,6 +104,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CryptoHistoryActivity.class);
+                intent.putExtra("CODE", cryptos.get(position).getCryptoCode());
                 mContext.startActivity(intent);
             }
         });
@@ -149,7 +150,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         TextView cryptoCode, cryptoAmount, cryptoValue;
         Button btnAddTransaction, btnDeleteList, btnHistory;
         RelativeLayout cryptoColRelLayout, cryptoExpandRelLayout;
-        TextView txtEditAmount, txtEditAvgBuyPrice, txtEditAvgBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage;
+        TextView txtEditAmount, txtEditAvgBuyPrice, txtEditAvgBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage ;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -163,7 +164,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             cryptoAmount = itemView.findViewById(R.id.amount);
             cryptoValue = itemView.findViewById(R.id.valueAfterFee);
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);
-            btnHistory = itemView.findViewById(R.id.btnMoreDetails);
+            btnHistory = itemView.findViewById(R.id.btnHistory);
 
 
 

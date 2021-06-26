@@ -33,10 +33,12 @@ import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.fragment.StocksFragment;
 import com.roundbytes.myportfolio.stock.StocksTransactions;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AddTransaction extends AppCompatActivity {
-    TextView editDate;
+    TextView editDate, editSubTotal;
     EditText editPrice, editAmount, editFee;
     RadioGroup radioGroup;
     RadioButton radioButton;
@@ -69,7 +71,6 @@ public class AddTransaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
-        username = MainActivity.username;
 
         double total;
 
@@ -82,6 +83,7 @@ public class AddTransaction extends AppCompatActivity {
         //INIT VIEW
         editPrice = findViewById(R.id.editPrice);
         editAmount = findViewById(R.id.editAmount);
+        editSubTotal = findViewById(R.id.editSubTotal);
         confirmBtn = findViewById(R.id.btnConfirm);
         editDate = findViewById(R.id.editDate);
         editFee = findViewById(R.id.editFee);
@@ -231,6 +233,19 @@ public class AddTransaction extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //edit subtotal
+                double price =  Double.parseDouble(editPrice.getText().toString());
+                double amount =  Double.parseDouble(editAmount.getText().toString());
+                NumberFormat nf = NumberFormat.getInstance(Locale.US);
+                nf.setMinimumFractionDigits(2); // <- the trick is here
+                String formatVal;
+                if(TYPE.equals("stock"))
+                    formatVal = nf.format(price*amount*100); // <- 1,000.00
+                else
+                    formatVal = nf.format(price*amount); // <- 1,000.00
+                editSubTotal.setText(formatVal);
+
+
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
@@ -276,7 +291,7 @@ public class AddTransaction extends AppCompatActivity {
                     if(TYPE.equals("stock"))
                     {
                         //NEW TRANSACTION CLASS
-                        StocksTransactions stocksTransactions = new StocksTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
+                        StocksTransactions stocksTransactions = new StocksTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0,CODE);
 
                         //INSERT NEW TRANSACTION
                         transactionRef.child(String.valueOf(maxid+1)).setValue(stocksTransactions);//add new transaction with maxid + 1 as autoincrement
@@ -296,7 +311,7 @@ public class AddTransaction extends AppCompatActivity {
                     else
                     {
                         //NEW TRANSACTION CLASS
-                        CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0);
+                        CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0,CODE);
                         //INSERT NEW TRANSACTION
                         transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
 

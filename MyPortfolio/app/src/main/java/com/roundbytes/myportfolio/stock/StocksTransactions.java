@@ -1,10 +1,14 @@
 package com.roundbytes.myportfolio.stock;
 
 public class StocksTransactions {
-    private String date, type;
+    private String date, type, stockCode;
     private double price, lot, pnl, fee, valueBeforeFee, valueAfterFee;
+    private boolean expanded;
 
-    public StocksTransactions(double price, double amount, String date, String type,  double fee, double valueBeforeFee, double valueAfterFee, double pnl) {
+    public StocksTransactions() {
+    }
+
+    public StocksTransactions(double price, double amount, String date, String type, double fee, double valueBeforeFee, double valueAfterFee, double pnl, String stockCode) {
         this.price = price;
         this.lot = amount;
         this.date = date;
@@ -13,6 +17,8 @@ public class StocksTransactions {
         this.valueBeforeFee = valueBeforeFee;
         this.valueAfterFee = valueAfterFee;
         this.pnl = pnl;
+        this.stockCode = stockCode;
+        this.expanded = false;
     }
 
     public String getDate() {
@@ -77,5 +83,21 @@ public class StocksTransactions {
 
     public void setValueAfterFee(double valueAfterFee) {
         this.valueAfterFee = valueAfterFee;
+    }
+
+    public String getStockCode() {
+        return stockCode;
+    }
+
+    public void setStockCode(String stockCode) {
+        this.stockCode = stockCode;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 }
