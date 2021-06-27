@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        if(refresh.equals("stock"))
+        if(refresh.equalsIgnoreCase("stock"))
         {
             View view = bottomNav.findViewById(R.id.nav_stocks);
             view.performClick();

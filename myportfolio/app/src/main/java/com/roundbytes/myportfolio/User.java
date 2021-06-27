@@ -6,7 +6,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class User {
     public String name;
     public String email;
-    public String password;
+    public String telNumber;
+    public String dateOfBirth;
 
 
     public User() {
@@ -14,10 +15,11 @@ public class User {
     }
 
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String telNumber, String dateOfBirth) {
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.telNumber = telNumber;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getName() {
@@ -36,11 +38,19 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTelNumber() {
+        return telNumber;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

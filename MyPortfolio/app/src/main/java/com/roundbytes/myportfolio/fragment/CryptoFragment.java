@@ -130,7 +130,7 @@ public class CryptoFragment extends Fragment {
         database = FirebaseDatabase.getInstance();//ROOT NODE
         myRef = database.getReference("Users");//USERS NODE
 
-        DatabaseReference nameRef = myRef.child(UID);//JERIEL NODE
+        DatabaseReference nameRef = myRef.child(String.valueOf(MainActivity.UID));//JERIEL NODE
         DatabaseReference cryptoTotalRef = nameRef.child("CryptoTotal");//CryptoTotal Node
         DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
         DatabaseReference totalCurrentValueRef = cryptoTotalRef.child("totalCryptoCurrentValue");

@@ -71,7 +71,7 @@ public class StockHistoryActivity extends AppCompatActivity {
     }
     private void InitializeTransactions()
     {
-        /*//RECYCLER VIEW FIREBASE
+        //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users").child(MainActivity.UID).child("StockTotal");
         DatabaseReference stockListRef = myRef.child("StockList");
@@ -93,9 +93,8 @@ public class StockHistoryActivity extends AppCompatActivity {
 
             }
         });
-        */
 
-        //
+        /*//
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users").child(MainActivity.UID).child("StockTotal");
@@ -117,6 +116,6 @@ public class StockHistoryActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
     }
 }

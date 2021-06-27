@@ -98,7 +98,7 @@ public class SignupActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
 
                                     //INITIALIZE THE USER CLASS
-                                    User user = new User(tempName,tempEmail,tempPassword);
+                                    User user = new User(tempName,tempEmail,"asdf","asdf");
 
                                     UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     

@@ -123,10 +123,7 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
                 Toast.makeText(mContext, stocks.get(position).getStockCode()+" removed", Toast.LENGTH_SHORT).show();
                 //INTENT
                 Intent intent1 = new Intent(mContext, MainActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("username",username);
-                extras.putString("refresh","stock");
-                intent1.putExtras(extras);
+                intent1.putExtra("refresh","stock");
                 mContext.startActivity(intent1);
             }
         });
