@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.roundbytes.myportfolio.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.StockHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
@@ -32,19 +31,19 @@ import java.util.ArrayList;
 public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdapter.ViewHolder> {
 
     private static final String TAG = "StocksRecViewAdapter";
-
     private Context mContext;
+
+    private ArrayList<StockItem> stocks = new ArrayList<>();
 
     //FIREBASE VARIABLES
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private String username = MainActivity.username;
+    private String username = MainActivity.UID;
 
     //dialog
     Dialog myDialog;
 
-    //Array List
-    private ArrayList<StockItem> stocks = new ArrayList<>();
+
 
     //constructor
     public StocksRecViewAdapter(Context mContext) {
@@ -60,8 +59,6 @@ public class StocksRecViewAdapter extends RecyclerView.Adapter<StocksRecViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: Called");
-
         holder.stockCode.setText(stocks.get(position).getStockCode());
         holder.stockAmount.setText(String.valueOf(stocks.get(position).getLot()));
 

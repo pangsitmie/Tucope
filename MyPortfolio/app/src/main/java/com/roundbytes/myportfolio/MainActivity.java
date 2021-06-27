@@ -11,25 +11,21 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
-import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.fragment.StocksFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String username;
-    public String refresh;
+    public static String UID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Intent intent = getIntent();
-        username = intent.getStringExtra("username");*/
+
 
         Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        username = extras.getString("username");
-        refresh = extras.getString("refresh");
+        String refresh = intent.getStringExtra("refresh");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);

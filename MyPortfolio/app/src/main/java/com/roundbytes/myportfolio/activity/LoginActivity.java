@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,12 +30,16 @@ public class LoginActivity extends AppCompatActivity {
     //FIREBASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
-    private String username;
+
+    private FirebaseAuth mAuth;
+    private String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
 
         editEmail = findViewById(R.id.txtEditEmail);
         editPassword = findViewById(R.id.txtEditPassword);
@@ -40,17 +48,24 @@ public class LoginActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 6/17/2021 ini function check email with database ini ada bug yang menyebabkan kalau add new item refersh dan masuk login lagi 
-                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("username","Jeriel");
-                extras.putString("refresh","stock");
-                intent1.putExtras(extras);
-                startActivity(intent1);
 
-                /*String tempEmail = editEmail.getText().toString();
+                // TODO: 6/17/2021 ini function check email with database ini ada bug yang menyebabkan kalau add new item refersh dan masuk login lagi
+                String tempEmail = editEmail.getText().toString();
                 String tempPassword = editPassword.getText().toString();
-                checkEmailWithDatabase(tempEmail,tempPassword);//MOVE TO FUNCTION TO CHECK EMAIL AND PASSWORD FROM DATABASE*/
+
+                mAuth.signInWithEmailAndPassword(tempEmail,tempPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            //intent
+                            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                            MainActivity.UID = UID;
+                            intent1.putExtra("refresh","stock");
+                            startActivity(intent1);
+                        }
+                    }
+                });
             }
         });
     }
@@ -72,10 +87,10 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("TAG Data", databaseEmail+" "+databaseKey+" "+databasePassword);
 
                     if(email.equalsIgnoreCase(databaseEmail) && password.equals(databasePassword)){
-                        username = databaseKey;
+                        UID = databaseKey;
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("username",username);
+                        intent.putExtra("username", UID);
                         startActivity(intent);
                         break;
                     }

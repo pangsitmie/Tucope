@@ -53,7 +53,7 @@ public class CryptoFragment extends Fragment {
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
-    private String username;
+    private String UID = MainActivity.UID;
 
 
     public ArrayList<CryptoItem> cryptoArray = new ArrayList<>();
@@ -69,6 +69,7 @@ public class CryptoFragment extends Fragment {
         //TOTAL CURRENT VALUE INITIALIZATION
         // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
 
+        Log.d("UID: ", UID);
         //RECYCLER VIEW FIREBASE
         refreshCryptoRecView();
 
@@ -109,7 +110,7 @@ public class CryptoFragment extends Fragment {
                 //add the crypto code to database
                 CryptoItem cryptoItem = new CryptoItem(itemName.getText().toString());
                 database = FirebaseDatabase.getInstance();
-                myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
+                myRef = database.getReference("Users").child(UID).child("CryptoTotal").child("CryptoList");
                 myRef.child(itemName.getText().toString()).setValue(cryptoItem);
                 cryptoArray.clear();
                 dialog.cancel();
@@ -126,14 +127,10 @@ public class CryptoFragment extends Fragment {
     }
     private void CryptoTopCardInitialization()
     {
-        //FIREBASE REALTIME DATABASE INITIALIZATION
-        username = MainActivity.username;
-        Log.d("Username: ",username);
-
         database = FirebaseDatabase.getInstance();//ROOT NODE
         myRef = database.getReference("Users");//USERS NODE
 
-        DatabaseReference nameRef = myRef.child(username);//JERIEL NODE
+        DatabaseReference nameRef = myRef.child(UID);//JERIEL NODE
         DatabaseReference cryptoTotalRef = nameRef.child("CryptoTotal");//CryptoTotal Node
         DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
         DatabaseReference totalCurrentValueRef = cryptoTotalRef.child("totalCryptoCurrentValue");
@@ -175,7 +172,7 @@ public class CryptoFragment extends Fragment {
     {
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Users").child(username).child("CryptoTotal");
+        myRef = database.getReference("Users").child(UID).child("CryptoTotal");
         DatabaseReference cryptoListRef = myRef.child("CryptoList");
         cryptoListRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -7,20 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.roundbytes.myportfolio.adapter.CryptoHistoryRecViewAdapter;
-import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
 
 import java.util.ArrayList;
@@ -35,7 +31,7 @@ public class CryptoHistoryActivity extends AppCompatActivity {
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
-    private String username = MainActivity.username;
+
 
     private String CODE;
 
@@ -59,10 +55,7 @@ public class CryptoHistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("username",username);
-                extras.putString("refresh","Crypto");
-                intent1.putExtras(extras);
+                intent1.putExtra("refresh","Crypto");
                 startActivity(intent1);
             }
         });
@@ -86,7 +79,7 @@ public class CryptoHistoryActivity extends AppCompatActivity {
     {
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Users").child(username).child("CryptoTotal");
+        myRef = database.getReference("Users").child(MainActivity.UID).child("CryptoTotal");
         DatabaseReference cryptoListRef = myRef.child("CryptoList");
         DatabaseReference cryptoCodeRef = cryptoListRef.child(CODE);
         DatabaseReference cryptoTransactionRef = cryptoCodeRef.child("Transactions");

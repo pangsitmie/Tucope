@@ -48,7 +48,7 @@ public class StocksFragment extends Fragment {
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
-    private String username = MainActivity.username;
+    private String UID = MainActivity.UID;
     //ARRAYLIST FOR RECYCLER VIEW
     public ArrayList<StockItem> stocksArray = new ArrayList<>();
 
@@ -62,6 +62,8 @@ public class StocksFragment extends Fragment {
 
         //CURRENT VALUE INITIALIZATION
         // TODO: 6/13/2021 ambil api trs cocokkan dengan total buy valu
+
+        Log.d("STOCKFRAGMENT: ", UID);
 
         //RECYCLER VIEW FIREBASE
         refreshStockRecView();
@@ -105,7 +107,7 @@ public class StocksFragment extends Fragment {
                 //add the STOCK code to database
                 StockItem stockItem = new StockItem(itemName.getText().toString());
                 database = FirebaseDatabase.getInstance();
-                myRef = database.getReference("Users").child(username).child("StockTotal").child("StockList");
+                myRef = database.getReference("Users").child(UID).child("StockTotal").child("StockList");
                 myRef.child(itemName.getText().toString()).setValue(stockItem);
                 stocksArray.clear();
                 dialog.cancel();
@@ -115,11 +117,11 @@ public class StocksFragment extends Fragment {
     private void stockTopCardInitialization()
     {
         //FIREBASE REALTIME DATABASE INITIALIZATION
-        Log.d("Username: ",username);
+
 
         database = FirebaseDatabase.getInstance();//ROOT NODE
         myRef = database.getReference("Users");
-        DatabaseReference nameRef = myRef.child(username);//JERIEL NODE
+        DatabaseReference nameRef = myRef.child(UID);//JERIEL NODE
 
         DatabaseReference cryptoTotalRef = nameRef.child("StockTotal");//CryptoTotal Node
         DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalStockBuyValue");//totalCryptoBuyValue
@@ -168,7 +170,7 @@ public class StocksFragment extends Fragment {
     {
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Users").child(username).child("StockTotal");
+        myRef = database.getReference("Users").child(UID).child("StockTotal");
         DatabaseReference stockListRef = myRef.child("StockList");
 
         stockListRef.addValueEventListener(new ValueEventListener() {
@@ -176,7 +178,6 @@ public class StocksFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Log.d("RECYCLERVIEW CALL", dataSnapshot.getValue().toString());
                     StockItem stockItem = dataSnapshot.getValue(StockItem.class);
                     stocksArray.add(stockItem);
                 }

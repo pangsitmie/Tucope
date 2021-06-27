@@ -43,7 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
     //
 
 
-   @Override
+/*   @Override
     protected void onStart() {
         super.onStart();
 
@@ -52,7 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

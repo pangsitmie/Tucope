@@ -8,9 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,8 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
-import com.roundbytes.myportfolio.fragment.CryptoFragment;
-import com.roundbytes.myportfolio.fragment.StocksFragment;
 import com.roundbytes.myportfolio.stock.StocksTransactions;
 
 import java.text.NumberFormat;
@@ -49,7 +44,6 @@ public class AddTransaction extends AppCompatActivity {
     //FIREBASE VARIABLES
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private String username = MainActivity.username;
 
 
     //DB VARIABLES
@@ -93,13 +87,13 @@ public class AddTransaction extends AppCompatActivity {
 
         //TOTAL CRYPTO BUY VALUE INITIALIZTION
         database = FirebaseDatabase.getInstance();
-        DatabaseReference root = database.getReference("Users").child(username);
+        DatabaseReference root = database.getReference("Users").child(MainActivity.UID);
 
 
 
 
         //DATABASE VARIABLE REFERENCING AND VARIBALE INITIALIZATION
-        if(TYPE.equals("stock")){//kalau stocks
+        if(TYPE.equalsIgnoreCase("stock")){//kalau stocks
             cryptoStockTotalRef = root.child("StockTotal");//CryptoTotal
             //INITIALIZE CRYPTO TOTAL BUY VALUE
             totalBuyValRef = cryptoStockTotalRef.child("totalStockBuyValue");//totalCryptoBuyValue
@@ -331,10 +325,7 @@ public class AddTransaction extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Transaction Added", Toast.LENGTH_SHORT).show();
                     //INTENT
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                    Bundle extras = new Bundle();
-                    extras.putString("username",username);
-                    extras.putString("refresh",TYPE);
-                    intent1.putExtras(extras);
+                    intent1.putExtra("refresh",TYPE);
                     startActivity(intent1);
                 }
                 else {
@@ -364,6 +355,8 @@ public class AddTransaction extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
     }
+
+
 
 
 }

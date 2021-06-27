@@ -37,7 +37,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     //FIREBASE VARIABLES
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private String username = MainActivity.username;
+    private String username = MainActivity.UID;
 
     //dialog
     Dialog myDialog;
@@ -97,6 +97,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
                 extras.putString("CODE",cryptos.get(position).getCryptoCode());
                 intent.putExtras(extras);
                 mContext.startActivity(intent);
+
             }
 
         });

@@ -1,30 +1,20 @@
 package com.roundbytes.myportfolio.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
-import com.roundbytes.myportfolio.activity.AddTransaction;
-import com.roundbytes.myportfolio.crypto.CryptoItem;
-import com.roundbytes.myportfolio.crypto.CryptoTotal;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
 
 import java.text.NumberFormat;
@@ -39,7 +29,7 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
     private ArrayList<CryptosTransactions> transactionsArray = new ArrayList<>();
 
     //FIREBASE VARIABLES
-    private String username = MainActivity.username;
+    private String username = MainActivity.UID;
 
 
 

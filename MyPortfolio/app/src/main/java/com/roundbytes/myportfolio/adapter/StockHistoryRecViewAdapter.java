@@ -31,7 +31,7 @@ public class StockHistoryRecViewAdapter extends RecyclerView.Adapter<StockHistor
     private ArrayList<StocksTransactions> transactionsArray = new ArrayList<>();
 
     //FIREBASE VARIABLES
-    private String username = MainActivity.username;
+    private String username = MainActivity.UID;
 
 
 
@@ -80,16 +80,13 @@ public class StockHistoryRecViewAdapter extends RecyclerView.Adapter<StockHistor
         holder.transactionType.setText(txtTransactionType);
         holder.editDateTop.setText(txtTransactionDate);
 
-        NumberFormat nf = NumberFormat.getInstance(Locale.US);
-        nf.setMinimumFractionDigits(2); // <- the trick is here
-        String formatTxtValueAfterFee = nf.format(txtValueAfterFee); // <- 1,000.00
-        holder.editValueAfterFeeTop.setText(formatTxtValueAfterFee);
+
+        holder.editValueAfterFeeTop.setText(txtValueAfterFee);
         holder.editAmount.setText(txtTransactionAmount);
 
         holder.txtEditAmount.setText(txtTransactionAmount);
         holder.editPrice.setText(txtTransactionPrice);
         holder.editValueBeforeFee.setText(txtValueBeforeFee);
-        holder.editValueAfterFee.setText(txtValueAfterFee);
         holder.editValueAfterFee.setText(txtValueAfterFee);
         holder.editFee.setText(txtFee);
         holder.editPNL.setText(txtPNL);
