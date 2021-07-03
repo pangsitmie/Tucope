@@ -64,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                             intent1.putExtra("refresh","stock");
                             startActivity(intent1);
                         }
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

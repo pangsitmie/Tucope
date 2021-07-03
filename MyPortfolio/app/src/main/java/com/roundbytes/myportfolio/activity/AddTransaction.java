@@ -66,7 +66,6 @@ public class AddTransaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
 
-        double total;
 
         //INTENT EXTRAS
         Intent intent = getIntent();
@@ -74,6 +73,7 @@ public class AddTransaction extends AppCompatActivity {
         String TYPE = extras.getString("TYPE");
         String CODE = extras.getString("CODE");
         Log.d("TYPE", TYPE + " " + CODE);
+
         //INIT VIEW
         editPrice = findViewById(R.id.editPrice);
         editAmount = findViewById(R.id.editAmount);
@@ -88,6 +88,8 @@ public class AddTransaction extends AppCompatActivity {
         //TOTAL CRYPTO BUY VALUE INITIALIZTION
         database = FirebaseDatabase.getInstance();
         DatabaseReference root = database.getReference("Users").child(MainActivity.UID);
+
+        Log.d("ADD TRANSACTION UID", "The uid is"+MainActivity.UID);
 
 
 
@@ -164,8 +166,11 @@ public class AddTransaction extends AppCompatActivity {
             totalBuyValRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    totalBuyVal = snapshot.getValue(Double.class);
-                    Log.d("FIREBASECALL", "TOTAL BUY VALUE INIT: " +totalBuyVal);
+                    if(snapshot.exists()){
+                        totalBuyVal = snapshot.getValue(Double.class);
+                        Log.d("FIREBASECALL", "TOTAL BUY VALUE INIT: " +totalBuyVal);
+                    }
+
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
@@ -196,8 +201,12 @@ public class AddTransaction extends AppCompatActivity {
             subTotalBuyValueRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    subTotalBuyValue = snapshot.getValue(Double.class);
-                    Log.d("FIREBASECALL", "SUBTOTAL BUY VALUE INIT: " +subTotalBuyValue);
+                    if(snapshot.exists())
+                    {
+                        subTotalBuyValue = snapshot.getValue(Double.class);
+                        Log.d("FIREBASECALL", "SUBTOTAL BUY VALUE INIT: " +subTotalBuyValue);
+                    }
+
 
                 }
                 @Override
@@ -217,7 +226,6 @@ public class AddTransaction extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError error) {}
             });
 
-            Log.d("INITIALIZATION", totalBuyVal + " " + maxid+ " " + amountDB + " " +subTotalBuyValue);
         }
 
 
@@ -327,6 +335,7 @@ public class AddTransaction extends AppCompatActivity {
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     intent1.putExtra("refresh",TYPE);
                     startActivity(intent1);
+                    finish();
                 }
                 else {
                     editPrice.requestFocus();

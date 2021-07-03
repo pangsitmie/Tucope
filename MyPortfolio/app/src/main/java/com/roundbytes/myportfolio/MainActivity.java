@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         Intent intent = getIntent();
         String refresh = intent.getStringExtra("refresh");
 

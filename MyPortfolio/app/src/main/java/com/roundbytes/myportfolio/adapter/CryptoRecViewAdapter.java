@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.activity.LoginActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.R;
 
@@ -37,7 +39,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     //FIREBASE VARIABLES
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private String username = MainActivity.UID;
+    private String UID = MainActivity.UID;
 
     //dialog
     Dialog myDialog;
@@ -113,18 +115,19 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             @Override
             public void onClick(View v) {
                 database = FirebaseDatabase.getInstance();
-                myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
+                myRef = database.getReference("Users").child(UID).child("CryptoTotal").child("CryptoList");
                 myRef.child(cryptos.get(position).getCryptoCode()).removeValue();
 
                 //TOAST AND RETURN TO MAIN ACTIVITY ACCORDING TO FRAGMENT
-                Toast.makeText(mContext, cryptos.get(position).getCryptoCode()+" removed", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "CRYPTO REC VIEW UID DELETE"+MainActivity.UID);
+
+                //Toast.makeText(mContext, cryptos.get(position).getCryptoCode()+" removed", Toast.LENGTH_SHORT).show();
                 //INTENT
+                MainActivity.UID= UID;
                 Intent intent1 = new Intent(mContext, MainActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("username",username);
-                extras.putString("refresh","crypto");
-                intent1.putExtras(extras);
+                intent1.putExtra("refresh","crypto");
                 mContext.startActivity(intent1);
+
             }
         });
 

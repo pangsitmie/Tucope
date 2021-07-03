@@ -64,12 +64,12 @@ public class CryptoFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
-        CryptoTopCardInitialization();
+        //CryptoTopCardInitialization();
         
         //TOTAL CURRENT VALUE INITIALIZATION
         // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
 
-        Log.d("UID: ", UID);
+        Log.d("UID: ", "The uid is: "+MainActivity.UID);
         //RECYCLER VIEW FIREBASE
         refreshCryptoRecView();
 
@@ -173,15 +173,20 @@ public class CryptoFragment extends Fragment {
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users").child(UID).child("CryptoTotal");
+        //myRef = database.getReference("Users").child("X0Ij0PseJXSIKu0uRfRroBLSWgg1").child("CryptoTotal");
         DatabaseReference cryptoListRef = myRef.child("CryptoList");
         cryptoListRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    CryptoItem cryptoItem = dataSnapshot.getValue(CryptoItem.class);
-                    cryptoArray.add(cryptoItem);
+                if(snapshot.exists())
+                {
+                    for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                        CryptoItem cryptoItem = dataSnapshot.getValue(CryptoItem.class);
+                        cryptoArray.add(cryptoItem);
+                    }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
+
             }
 
             @Override
