@@ -45,7 +45,7 @@
             android:id="@+id/cryptoPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/btnAddTransaction"
+            android:layout_toLeftOf="@+id/addNewCryptoBtn"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:text="Rp 100.000.000"
@@ -54,7 +54,7 @@
             android:textColor="@color/white"/>
 
         <Button
-            android:id="@+id/btnAddTransaction"
+            android:id="@+id/addNewCryptoBtn"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

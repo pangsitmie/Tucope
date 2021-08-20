@@ -52,6 +52,7 @@ public class CryptoFragment extends Fragment {
     private Button saveBtn;
 
     public String addItemName;
+
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
@@ -100,6 +101,7 @@ public class CryptoFragment extends Fragment {
     }
 
     //VOID METHODS -----------------------------------------------------------
+    /*
     private void createNewCryptoItemDialog()
     {
         dialogBuilder = new AlertDialog.Builder(getActivity());
@@ -127,6 +129,8 @@ public class CryptoFragment extends Fragment {
             }
         });
     }
+    */
+
     private void viewInitialization(View v)
     {
         cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);
