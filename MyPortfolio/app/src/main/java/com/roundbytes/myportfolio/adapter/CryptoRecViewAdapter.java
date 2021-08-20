@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -23,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
-import com.roundbytes.myportfolio.activity.LoginActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.R;
 
@@ -64,7 +62,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         String cryptoAmount = cryptos.get(position).getAmount()+" "+cryptos.get(position).getCryptoCode();
         String txtEditAvgBuyPrice = "$ " + cryptos.get(position).getCryptoAvgBuyPrice();
         String txtEditAvgBuyValue = "$ " + cryptos.get(position).getCryptoSubTotalBuyValue();
-        String txtEditCurrentValue = "$ " + "NO DATA";
+        String txtEditCurrentValue = "$ " + "100.000";
 
         double unrealized = cryptos.get(position).getCryptoSubTotalBuyValue()*2 - cryptos.get(position).getCryptoSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
@@ -164,7 +162,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
             //crypto card layout
             btnAddTransaction = itemView.findViewById(R.id.btnAddTransaction);
-            cryptoCode = itemView.findViewById(R.id.cryptoCode);
+            cryptoCode = itemView.findViewById(R.id.cryptoSymbol);
             cryptoAmount = itemView.findViewById(R.id.amount);
             cryptoValue = itemView.findViewById(R.id.valueAfterFee);
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);

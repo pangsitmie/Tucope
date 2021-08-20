@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/grey_primary">
+
+
+
+    <EditText
+        android:id="@+id/idEditSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapCharacters"
+        android:layout_margin="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="Search..."
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:backgroundTint="@color/gray"
+        android:background="@drawable/round_square_button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idEditSearch"
+        android:id="@+id/idRVCurrencies"
+        android:layout_margin="15dp"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/idPBLoading"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+
+
+</RelativeLayout>
+
+

@@ -1,6 +1,7 @@
 package com.roundbytes.myportfolio.fragment;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.roundbytes.myportfolio.crypto.AddNewCryptoActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.adapter.CryptoRecViewAdapter;
 import com.roundbytes.myportfolio.R;
@@ -64,7 +66,7 @@ public class CryptoFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
-        //CryptoTopCardInitialization();
+        CryptoTopCardInitialization();
         
         //TOTAL CURRENT VALUE INITIALIZATION
         // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
@@ -74,10 +76,18 @@ public class CryptoFragment extends Fragment {
         refreshCryptoRecView();
 
         //ADD NEW CRYPTO BUTTON
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        /*addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createNewCryptoItemDialog();
+            }
+        });*/
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddNewCryptoActivity.class);
+                startActivity(intent);
             }
         });
         //SET RECYCLERVIEW ADAPTER
