@@ -3,6 +3,7 @@ package com.roundbytes.myportfolio.fragment;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +20,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,10 +37,17 @@ import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.adapter.CryptoRecViewAdapter;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.crypto.CryptoModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class CryptoFragment extends Fragment {
     @Nullable
@@ -60,10 +76,26 @@ public class CryptoFragment extends Fragment {
 
 
     public ArrayList<CryptoItem> cryptoArray = new ArrayList<>();
+    public static ArrayList<CryptoModel> cryptoModelsArrayList = new ArrayList<>();;
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crypto, container , false);
+
+        //get currency data
+        getCurrencyData();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                Log.d(TAG, "size: "+cryptoModelsArrayList.size());
+                Log.d(TAG, "btc price: "+cryptoModelsArrayList.get(0).getPrice());
+            }
+        }, 5000);
+
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
@@ -76,14 +108,7 @@ public class CryptoFragment extends Fragment {
         //RECYCLER VIEW FIREBASE
         refreshCryptoRecView();
 
-        //ADD NEW CRYPTO BUTTON
-        /*addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createNewCryptoItemDialog();
-            }
-        });*/
-
+        //----------------ADD NEW CRYPTO BUTTON---------------
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,13 +116,16 @@ public class CryptoFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         //SET RECYCLERVIEW ADAPTER
         adapter = new CryptoRecViewAdapter(getActivity());
         cryptosRecView.setAdapter(adapter);
         cryptosRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.setCryptos(cryptoArray);
 
+
         return v;
+
     }
 
     //VOID METHODS -----------------------------------------------------------
@@ -209,6 +237,52 @@ public class CryptoFragment extends Fragment {
             }
         });
     }
+    private void getCurrencyData(){
+        //loadingPB.setVisibility(View.VISIBLE);
+        String url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        //json object
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //loadingPB.setVisibility(View.GONE);
+                try {
+                    JSONArray dataArray = response.getJSONArray("data");
+                    for (int i=0;i<dataArray.length(); i++){
+                        JSONObject dataObj = dataArray.getJSONObject(i);
+                        String name = dataObj.getString("name");
+                        String symbol = dataObj.getString("symbol");
+
+                        JSONObject quote = dataObj.getJSONObject("quote");
+                        JSONObject USD = quote.getJSONObject("USD");
+                        double price = USD.getDouble("price");
+
+                        cryptoModelsArrayList.add(new CryptoModel(name, symbol, price));
+                    }
+                    adapter.notifyDataSetChanged();
+                }catch (JSONException e){
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Failed to extract json data", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //loadingPB.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Failed to get data", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("X-CMC_PRO_API_KEY","af47668c-30ad-42e4-9461-7cf302924267");
+                return headers;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+    }
+
 
 
 }

@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -19,8 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.adapter.AddNewCryptoRecViewAdapter;
+import com.roundbytes.myportfolio.fragment.CryptoFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +41,8 @@ public class AddNewCryptoActivity extends AppCompatActivity {
 
     private ArrayList<CryptoModel> cryptoModelsArrayList;
     private AddNewCryptoRecViewAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

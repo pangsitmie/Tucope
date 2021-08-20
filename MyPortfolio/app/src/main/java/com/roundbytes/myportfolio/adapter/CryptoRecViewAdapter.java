@@ -22,8 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.crypto.AddNewCryptoActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.crypto.CryptoModel;
+import com.roundbytes.myportfolio.fragment.CryptoFragment;
 
 import java.util.ArrayList;
 
@@ -62,7 +65,16 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         String cryptoAmount = cryptos.get(position).getAmount()+" "+cryptos.get(position).getCryptoCode();
         String txtEditAvgBuyPrice = "$ " + cryptos.get(position).getCryptoAvgBuyPrice();
         String txtEditAvgBuyValue = "$ " + cryptos.get(position).getCryptoSubTotalBuyValue();
-        String txtEditCurrentValue = "$ " + "100.000";
+
+        double cryptoItemCurrentPrice = 0.0;
+        for(CryptoModel model: CryptoFragment.cryptoModelsArrayList){
+            System.out.println(model.getName());
+            if(model.getSymbol().equalsIgnoreCase(cryptos.get(position).getCryptoCode())){
+                cryptoItemCurrentPrice = model.getPrice();
+            }
+        }
+        double currentValue = cryptoItemCurrentPrice* cryptos.get(position).getAmount();
+        String txtEditCurrentValue = "$ " + String.format("%.2f", currentValue);
 
         double unrealized = cryptos.get(position).getCryptoSubTotalBuyValue()*2 - cryptos.get(position).getCryptoSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
