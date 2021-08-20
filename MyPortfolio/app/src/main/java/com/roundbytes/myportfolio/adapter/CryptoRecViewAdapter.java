@@ -76,7 +76,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         double currentValue = cryptoItemCurrentPrice* cryptos.get(position).getAmount();
         String txtEditCurrentValue = "$ " + String.format("%.2f", currentValue);
 
-        double unrealized = cryptos.get(position).getCryptoSubTotalBuyValue()*2 - cryptos.get(position).getCryptoSubTotalBuyValue();
+        double unrealized = currentValue - cryptos.get(position).getCryptoSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
         double percentage = (unrealized/cryptos.get(position).getCryptoSubTotalBuyValue()*100);
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";

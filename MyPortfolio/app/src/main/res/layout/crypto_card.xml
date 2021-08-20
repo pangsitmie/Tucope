@@ -142,7 +142,7 @@
                 android:id="@+id/txtValueAfterrFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Avg Buy Value"
+                android:text="Total Buy Value"
                 android:textSize="18sp"
                 android:layout_below="@id/txtValueBeforeFee"
                 android:layout_marginLeft="20dp"
