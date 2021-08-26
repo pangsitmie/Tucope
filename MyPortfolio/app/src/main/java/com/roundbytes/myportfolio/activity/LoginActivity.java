@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         editPassword = findViewById(R.id.txtEditPassword);
         btnConfirm = findViewById(R.id.btnConfirm);
 
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    /*
     private void checkEmailWithDatabase(String email, String password)
     {
         database = FirebaseDatabase.getInstance();
@@ -110,4 +112,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    */
+
 }

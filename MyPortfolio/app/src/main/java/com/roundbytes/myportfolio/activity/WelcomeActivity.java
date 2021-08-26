@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,54 +28,41 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
-//-----------------------
-
 
 public class WelcomeActivity extends AppCompatActivity {
 
 
     Button btnSignup, btnGoogle,btnLogin;
 
-    //
+    //SIGN IN WITH GOOGLE VARIABLE
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 100;
     private FirebaseAuth firebaseAuth;
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
-    //
+
+    //CHECK USER LOGIN STATE (FIREBASE)
+    private FirebaseAuth mAuth;
 
 
-/*   @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user!=null){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-
-        createRequest();//create signin with google request
-
-
+        //VIEW INITIALIZE
         btnSignup = findViewById(R.id.btnSignup);
         btnGoogle = findViewById(R.id.btnGoogle);
         btnLogin = findViewById(R.id.btnLogin);
+
+        //BUTTON CLICK LISTENER
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(intent);
             }
         });
-
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +79,15 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //CHECK LOGIN STATE
+        checkUserLoginState();
+
+        //REQUEST LOGIN WITH GOOGLE
+        createRequest();//create signin with google request
     }
+
+    //SIGN IN WITH GOOGLE VOIDS
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -108,7 +104,6 @@ public class WelcomeActivity extends AppCompatActivity {
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -127,7 +122,6 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         }
     }
-
     private void firebaseAuthWithGoogleAccount(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         firebaseAuth.signInWithCredential(credential)
@@ -148,5 +142,21 @@ public class WelcomeActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    //KEEP USER LOG IN WITH FIREBASE DATABASE
+    private void checkUserLoginState(){
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null) {
+            // User is signed in (getCurrentUser() will be null if not signed in)
+            String UID = mAuth.getUid();
+            //intent
+            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+            MainActivity.UID = UID;
+            intent1.putExtra("refresh","stock");
+            startActivity(intent1);
+            finish();
+            // or do some other stuff that you want to do
+        }
     }
 }

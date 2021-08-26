@@ -84,8 +84,22 @@ public class CryptoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crypto, container , false);
 
-        //get currency data
+        //VIEW INITIALIZATION
+        viewInitialization(v);
+
+        //ADD NEW CRYPTO BUTTON LISTENER
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddNewCryptoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //REQUEST CURRENCY DATA API
         getCurrencyData();
+
+        /*
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -95,27 +109,15 @@ public class CryptoFragment extends Fragment {
                 Log.d(TAG, "btc price: "+cryptoModelsArrayList.get(0).getPrice());
             }
         }, 5000);
+        */
 
-        //VIEW INITIALIZATION
-        viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
         CryptoTopCardInitialization();
-        
-        //TOTAL CURRENT VALUE INITIALIZATION
-        // TODO: 6/12/2021 ambil api trs cocokno dengan total buy value
 
-        Log.d("UID: ", "The uid is: "+MainActivity.UID);
         //RECYCLER VIEW FIREBASE
         refreshCryptoRecView();
 
-        //----------------ADD NEW CRYPTO BUTTON---------------
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AddNewCryptoActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         //SET RECYCLERVIEW ADAPTER
         adapter = new CryptoRecViewAdapter(getActivity());
@@ -125,7 +127,6 @@ public class CryptoFragment extends Fragment {
 
 
         return v;
-
     }
 
     //VOID METHODS -----------------------------------------------------------

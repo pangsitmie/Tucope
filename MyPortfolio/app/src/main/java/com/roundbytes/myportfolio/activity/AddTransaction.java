@@ -49,6 +49,7 @@ public class AddTransaction extends AppCompatActivity {
     //DB VARIABLES
     public double totalBuyVal;
     public long maxid=0;
+    public double avgBuyPrice=0;
     public double amountDB;
     public double subTotalBuyValue;
 
@@ -56,6 +57,7 @@ public class AddTransaction extends AppCompatActivity {
     DatabaseReference cryptoStockTotalRef;
     DatabaseReference listRef;
     DatabaseReference transactionRef;
+    DatabaseReference avgBuyPriceRef;
     DatabaseReference codeRef;
     DatabaseReference amountRef;
     DatabaseReference totalBuyValRef;
@@ -196,6 +198,21 @@ public class AddTransaction extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError error) {}
             });
 
+            //----------AVG BUY PRICE INIT---------------
+            avgBuyPriceRef = codeRef.child("cryptoAvgBuyPrice");
+            avgBuyPriceRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists())
+                    {
+                        avgBuyPrice = (snapshot.getValue(Double.class));
+                        Log.d("AVG BUY PRICE", "AVG PRICE: "+avgBuyPrice);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
             //----------SUB TOTAL BUY VALUE INIT---------------
             subTotalBuyValueRef = codeRef.child("cryptoSubTotalBuyValue");
             subTotalBuyValueRef.addValueEventListener(new ValueEventListener() {
@@ -277,6 +294,11 @@ public class AddTransaction extends AppCompatActivity {
                     double price =  Double.parseDouble(editPrice.getText().toString());
                     double amount =  Double.parseDouble(editAmount.getText().toString());
                     double fee = Double.parseDouble(editFee.getText().toString())/100;//dalam percent
+
+                    //UPDATE AVG BUY PRICE
+                    double newAvgBuyPrice = ((avgBuyPrice*amountDB) + (price*amount)) / (amountDB+amount);
+                    Log.d("NEW AVG PRICE:", ""+newAvgBuyPrice);
+                    avgBuyPriceRef.setValue(newAvgBuyPrice);
 
                     //radio button
                     int radioId = radioGroup.getCheckedRadioButtonId();

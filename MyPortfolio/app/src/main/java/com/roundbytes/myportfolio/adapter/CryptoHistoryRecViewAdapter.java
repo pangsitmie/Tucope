@@ -51,17 +51,17 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         String txtTransactionType = transactionsArray.get(position).getType();
         String txtTransactionAmount = String.valueOf(transactionsArray.get(position).getAmount())+" "+transactionsArray.get(position).getCryptoCode();
         String txtTransactionDate = String.valueOf(transactionsArray.get(position).getDate());
-        String txtTransactionPrice =  String.valueOf(transactionsArray.get(position).getPrice());
+        String txtTransactionPrice = "$ " + String.valueOf(transactionsArray.get(position).getPrice());
 
         //
         double valueBeforeFee = transactionsArray.get(position).getValueBeforeFee();
-        String txtValueBeforeFee = formatCurrency(valueBeforeFee);
+        String txtValueBeforeFee = "$ " + formatCurrency(valueBeforeFee);
 
         //
         double valueAfterFee = transactionsArray.get(position).getValueAfterFee();
-        String txtValueAfterFee = formatCurrency(valueAfterFee);
-        String txtFee = String.valueOf(transactionsArray.get(position).getFee());
-        String txtPNL = String.valueOf(transactionsArray.get(position).getPnl());
+        String txtValueAfterFee = "$ " + formatCurrency(valueAfterFee);
+        String txtFee = "$ " + String.valueOf(transactionsArray.get(position).getFee());
+        String txtPNL = "$ " + String.valueOf(transactionsArray.get(position).getPnl());
 
         /*double unrealized = cryptos.get(position).getCryptoSubTotalBuyValue()*2 - cryptos.get(position).getCryptoSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
@@ -72,6 +72,7 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         //SET TEXT TO CRYPTOCARD
         holder.transactionType.setText(txtTransactionType);
         holder.editDateTop.setText(txtTransactionDate);
+
 
 
         holder.editValueAfterFeeTop.setText(txtValueAfterFee);

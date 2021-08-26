@@ -68,7 +68,6 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
         double cryptoItemCurrentPrice = 0.0;
         for(CryptoModel model: CryptoFragment.cryptoModelsArrayList){
-            System.out.println(model.getName());
             if(model.getSymbol().equalsIgnoreCase(cryptos.get(position).getCryptoCode())){
                 cryptoItemCurrentPrice = model.getPrice();
             }
