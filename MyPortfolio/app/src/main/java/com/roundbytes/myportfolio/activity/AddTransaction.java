@@ -253,8 +253,9 @@ public class AddTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //edit subtotal
-                double price =  Double.parseDouble(editPrice.getText().toString());
-                double amount =  Double.parseDouble(editAmount.getText().toString());
+                /*double price=0, amount=0;
+                price =  Double.parseDouble(editPrice.getText().toString());
+                amount =  Double.parseDouble(editAmount.getText().toString());
                 NumberFormat nf = NumberFormat.getInstance(Locale.US);
                 nf.setMinimumFractionDigits(2); // <- the trick is here
                 String formatVal;
@@ -262,7 +263,7 @@ public class AddTransaction extends AppCompatActivity {
                     formatVal = nf.format(price*amount*100); // <- 1,000.00
                 else
                     formatVal = nf.format(price*amount); // <- 1,000.00
-                editSubTotal.setText(formatVal);
+                editSubTotal.setText(formatVal);*/
 
 
                 Calendar cal = Calendar.getInstance();
@@ -335,7 +336,7 @@ public class AddTransaction extends AppCompatActivity {
                     else
                     {
                         //NEW TRANSACTION CLASS
-                        CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,0,CODE);
+                        CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,CODE);
                         //INSERT NEW TRANSACTION
                         transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
 

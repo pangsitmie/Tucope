@@ -1,11 +1,17 @@
 package com.roundbytes.myportfolio.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,15 +25,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.crypto.CryptoTotal;
-import com.roundbytes.myportfolio.DAOUser;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.stock.StockTotal;
 import com.roundbytes.myportfolio.User;
 
+import java.util.Calendar;
+
 public class SignupActivity extends AppCompatActivity {
 
+    TextView dateOfBirthText;
     EditText editTextEmail, editTextName, editTextPassword, editTextConfirmPassword;
     Button btnConfirm;
+    String date, dateOfBirth;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private FirebaseAuth mAuth;
     private String UID;
@@ -46,7 +56,35 @@ public class SignupActivity extends AppCompatActivity {
         editTextName = findViewById(R.id.txtEditName);
         editTextPassword = findViewById(R.id.txtEditPassword);
         editTextConfirmPassword = findViewById(R.id.txtEditConfirmPassword);
+        dateOfBirthText = findViewById(R.id.txtEditDateOfBirth);
 
+        dateOfBirthText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        SignupActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        mDateSetListener = new DatePickerDialog.OnDateSetListener(){
+            @Override
+            //january is 0 december = 11
+            public void onDateSet(DatePicker datePicker, int year, int month , int day){
+                month = month+1;
+                date = day + "/" + month +"/" + year;
+                Log.d("DATE CALL", "onDateSet: mm/dd/yyyy" + date);
+                dateOfBirthText.setText(date);
+            }
+        };
 
         btnConfirm = findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +93,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 String tempName = editTextName.getText().toString().trim();
                 String tempEmail = editTextEmail.getText().toString().trim();
+                dateOfBirth= dateOfBirthText.getText().toString();
                 String tempPassword = editTextPassword.getText().toString().trim();
                 String tempConfirmPassword = editTextConfirmPassword.getText().toString().trim();
 
@@ -89,7 +128,9 @@ public class SignupActivity extends AppCompatActivity {
                     editTextConfirmPassword.requestFocus();
                     return;
                 }
-
+                if(dateOfBirthText.getText().equals("")){
+                    dateOfBirth = "None";
+                }
 
                 mAuth.createUserWithEmailAndPassword(tempEmail,tempPassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -98,7 +139,7 @@ public class SignupActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
 
                                     //INITIALIZE THE USER CLASS
-                                    User user = new User(tempName,tempEmail,"asdf","asdf");
+                                    User user = new User(tempName,tempEmail,dateOfBirth);
 
                                     UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     
@@ -130,4 +171,5 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
 }

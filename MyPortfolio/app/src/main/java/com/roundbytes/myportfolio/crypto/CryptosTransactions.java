@@ -2,13 +2,13 @@ package com.roundbytes.myportfolio.crypto;
 
 public class CryptosTransactions {
     private String date, type, cryptoCode;
-    private double price, amount, pnl, fee, valueBeforeFee, valueAfterFee;
+    private double price, amount, fee, valueBeforeFee, valueAfterFee;
     private boolean expanded;
 
     public CryptosTransactions() {
     }
 
-    public CryptosTransactions(double price, double amount, String date, String type, double fee, double valueBeforeFee, double valueAfterFee, double pnl, String cryptoCode) {
+    public CryptosTransactions(double price, double amount, String date, String type, double fee, double valueBeforeFee, double valueAfterFee, String cryptoCode) {
         this.price = price;
         this.amount = amount;
         this.date = date;
@@ -16,7 +16,6 @@ public class CryptosTransactions {
         this.fee = fee;
         this.valueBeforeFee = valueBeforeFee;
         this.valueAfterFee = valueAfterFee;
-        this.pnl = pnl;
         this.expanded = false;
         this.cryptoCode = cryptoCode;
     }
@@ -51,14 +50,6 @@ public class CryptosTransactions {
 
     public void setAmount(double amount) {
         this.amount = amount;
-    }
-
-    public double getPnl() {
-        return pnl;
-    }
-
-    public void setPnl(double pnl) {
-        this.pnl = pnl;
     }
 
     public double getFee() {

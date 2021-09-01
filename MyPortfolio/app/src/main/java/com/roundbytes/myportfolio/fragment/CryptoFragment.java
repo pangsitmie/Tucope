@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,23 +61,14 @@ public class CryptoFragment extends Fragment {
     private TextView editTotalBuyValue,  editTotalCurrentValue;
     private Button addBtn;
 
-
-    //popup
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog dialog;
-    private EditText itemName;
-    private Button saveBtn;
-
-    public String addItemName;
-
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
     public DatabaseReference myRef;
     private String UID = MainActivity.UID;
 
-
+    //ARRAY LIST
     public ArrayList<CryptoItem> cryptoArray = new ArrayList<>();
-    public static ArrayList<CryptoModel> cryptoModelsArrayList = new ArrayList<>();;
+    //public static ArrayList<CryptoModel> cryptoModelsArrayList = new ArrayList<>();
 
 
 
@@ -87,6 +79,15 @@ public class CryptoFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
 
+        //REQUEST CURRENCY DATA API
+        //getCurrencyData();
+
+        //REFRESH RECYCLER VIEW
+        refreshCryptoRecView();
+
+        //CRYPTO TOP CARD INITIALIZATION
+        CryptoTopCardInitialization();
+
         //ADD NEW CRYPTO BUTTON LISTENER
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,29 +96,6 @@ public class CryptoFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        //REQUEST CURRENCY DATA API
-        getCurrencyData();
-
-        /*
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something after 5s = 5000ms
-                Log.d(TAG, "size: "+cryptoModelsArrayList.size());
-                Log.d(TAG, "btc price: "+cryptoModelsArrayList.get(0).getPrice());
-            }
-        }, 5000);
-        */
-
-        //TOTAL BUY VALUE INITIALIZATION
-        CryptoTopCardInitialization();
-
-        //RECYCLER VIEW FIREBASE
-        refreshCryptoRecView();
-
-
 
         //SET RECYCLERVIEW ADAPTER
         adapter = new CryptoRecViewAdapter(getActivity());
@@ -130,36 +108,6 @@ public class CryptoFragment extends Fragment {
     }
 
     //VOID METHODS -----------------------------------------------------------
-    /*
-    private void createNewCryptoItemDialog()
-    {
-        dialogBuilder = new AlertDialog.Builder(getActivity());
-        final View itemPopupView = getLayoutInflater().inflate(R.layout.popup,null);
-        itemName = (EditText) itemPopupView.findViewById(R.id.editItemName);
-        saveBtn = (Button) itemPopupView.findViewById(R.id.saveBtn);
-
-        dialogBuilder.setView(itemPopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.background_dark);
-
-
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //setItemName(itemName.getText().toString());
-                //add the crypto code to database
-                CryptoItem cryptoItem = new CryptoItem(itemName.getText().toString());
-                database = FirebaseDatabase.getInstance();
-                myRef = database.getReference("Users").child(UID).child("CryptoTotal").child("CryptoList");
-                myRef.child(itemName.getText().toString()).setValue(cryptoItem);
-                cryptoArray.clear();
-                dialog.cancel();
-            }
-        });
-    }
-    */
-
     private void viewInitialization(View v)
     {
         cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);
@@ -170,16 +118,18 @@ public class CryptoFragment extends Fragment {
     }
     private void CryptoTopCardInitialization()
     {
+        //FIREBASE REFERENCE
         database = FirebaseDatabase.getInstance();//ROOT NODE
         myRef = database.getReference("Users");//USERS NODE
 
         DatabaseReference nameRef = myRef.child(String.valueOf(MainActivity.UID));//JERIEL NODE
         DatabaseReference cryptoTotalRef = nameRef.child("CryptoTotal");//CryptoTotal Node
-        DatabaseReference totalBuyValueRef = cryptoTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
-        DatabaseReference totalCurrentValueRef = cryptoTotalRef.child("totalCryptoCurrentValue");
+        DatabaseReference totalCryptoBuyValue = cryptoTotalRef.child("totalCryptoBuyValue");//totalCryptoBuyValue
+        DatabaseReference totalCryptoCurrentValue = cryptoTotalRef.child("totalCryptoCurrentValue");//totalCryptoBuyValue
 
-        //UPDATE TOTAL BUYVALUE FROM FIREBASE
-        totalBuyValueRef.addValueEventListener(new ValueEventListener() {
+
+        //SET TEXT TOTAL BUY VALUE FROM FIREBASE
+        totalCryptoBuyValue.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -194,29 +144,67 @@ public class CryptoFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        //UPDATE TOTAL CURRENT VALUE FROM FIREBASE
-        totalCurrentValueRef.addValueEventListener(new ValueEventListener() {
+        //SET TEXT TOTAL CURRENT VALUE FROM FIREBASE (BEFORE UPDATED WITH NEW MARKET PRICE)
+        totalCryptoCurrentValue.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 double val = snapshot.getValue(Double.class);
 
                 NumberFormat nf = NumberFormat.getInstance(Locale.US);
                 nf.setMinimumFractionDigits(2); // <- the trick is here
                 String formatVal = nf.format(val); // <- 1,000.00
-
                 editTotalCurrentValue.setText(formatVal);
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
+
+        //WAIT FOR ... SEC TO UPDATE CURRENT VALUE
+        final Handler handler1 = new Handler(Looper.getMainLooper());
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //INITIATE CRYPTO TOP CARD
+                double updateNewCurrentValue = updateCryptoTotalValue();
+                totalCryptoCurrentValue.setValue(updateNewCurrentValue);
+
+                //TEXT FORMATTING AND SET TEXT AGAIN TO UPDATE
+                NumberFormat nf = NumberFormat.getInstance(Locale.US);
+                nf.setMinimumFractionDigits(2); // <- the trick is here
+                String formatVal = nf.format(updateNewCurrentValue); // <- 1,000.00
+                editTotalCurrentValue.setText(formatVal);
+
+            }
+        }, 3000);
+
+
+
     }
-    private void refreshCryptoRecView()
-    {
+    private double updateCryptoTotalValue(){
+        //UPDATE THE CURRENT VALUE BASED ON MARKET PRICE
+        double newCurrentValue = 0.0;
+        for (int i=0;i<cryptoArray.size();i++){
+
+            double amount = cryptoArray.get(i).getAmount();
+            Log.d(TAG, "AMOUNT: "+amount);
+
+            for(int j=0;j<MainActivity.cryptoModelsArrayList.size();j++)
+            {
+                if(cryptoArray.get(i).getCryptoCode().equalsIgnoreCase(MainActivity.cryptoModelsArrayList.get(j).getSymbol())){
+                    newCurrentValue += amount*MainActivity.cryptoModelsArrayList.get(j).getPrice();
+                    break;
+                }
+            }
+        }
+        return newCurrentValue;
+    }
+    private void refreshCryptoRecView(){
         //RECYCLER VIEW FIREBASE
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users").child(UID).child("CryptoTotal");
-        //myRef = database.getReference("Users").child("X0Ij0PseJXSIKu0uRfRroBLSWgg1").child("CryptoTotal");
         DatabaseReference cryptoListRef = myRef.child("CryptoList");
         cryptoListRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -238,51 +226,7 @@ public class CryptoFragment extends Fragment {
             }
         });
     }
-    private void getCurrencyData(){
-        //loadingPB.setVisibility(View.VISIBLE);
-        String url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-        //json object
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                //loadingPB.setVisibility(View.GONE);
-                try {
-                    JSONArray dataArray = response.getJSONArray("data");
-                    for (int i=0;i<dataArray.length(); i++){
-                        JSONObject dataObj = dataArray.getJSONObject(i);
-                        String name = dataObj.getString("name");
-                        String symbol = dataObj.getString("symbol");
-
-                        JSONObject quote = dataObj.getJSONObject("quote");
-                        JSONObject USD = quote.getJSONObject("USD");
-                        double price = USD.getDouble("price");
-
-                        cryptoModelsArrayList.add(new CryptoModel(name, symbol, price));
-                    }
-                    adapter.notifyDataSetChanged();
-                }catch (JSONException e){
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Failed to extract json data", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //loadingPB.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Failed to get data", Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("X-CMC_PRO_API_KEY","af47668c-30ad-42e4-9461-7cf302924267");
-                return headers;
-            }
-        };
-        requestQueue.add(jsonObjectRequest);
-    }
 
 
 

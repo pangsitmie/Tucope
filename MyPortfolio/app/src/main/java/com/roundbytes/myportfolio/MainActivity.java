@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static String UID;
 
+    public static ArrayList<CryptoModel> cryptoModelsArrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StocksFragment()).commit();
         }
 
+        getCurrencyData();
+
 
     }
     //bottom nav listener
@@ -78,5 +82,50 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+    private void getCurrencyData(){
+        //loadingPB.setVisibility(View.VISIBLE);
+        String url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        //json object
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //loadingPB.setVisibility(View.GONE);
+                try {
+                    JSONArray dataArray = response.getJSONArray("data");
+                    for (int i=0;i<dataArray.length(); i++){
+                        JSONObject dataObj = dataArray.getJSONObject(i);
+                        String name = dataObj.getString("name");
+                        String symbol = dataObj.getString("symbol");
+
+                        JSONObject quote = dataObj.getJSONObject("quote");
+                        JSONObject USD = quote.getJSONObject("USD");
+                        double price = USD.getDouble("price");
+
+                        cryptoModelsArrayList.add(new CryptoModel(name, symbol, price));
+                    }
+                }catch (JSONException e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Failed to extract json data", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //loadingPB.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Failed to get data", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("X-CMC_PRO_API_KEY","af47668c-30ad-42e4-9461-7cf302924267");
+                return headers;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+    }
 
 }

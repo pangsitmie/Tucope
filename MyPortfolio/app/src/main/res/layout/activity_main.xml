@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/grey_primary">
+    android:background="@color/primary_color">
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -22,7 +22,8 @@
         android:backgroundTint="@color/white"
         app:itemTextColor="@menu/icons_color"
         app:itemIconTint="@menu/icons_color"
-        android:background="@color/gray"/>
+        android:background="@color/secondary_color"/>
+    <!--icons color ada di folder menu -> icons_color    -->
 
 
 </RelativeLayout>

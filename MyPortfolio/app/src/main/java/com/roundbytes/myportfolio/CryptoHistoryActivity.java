@@ -25,7 +25,7 @@ public class CryptoHistoryActivity extends AppCompatActivity {
 
     private RecyclerView cryptoHistoryRecView;
     private CryptoHistoryRecViewAdapter adapter;
-    private TextView editTotalBuyValue,  editTotalCurrentValue;
+    private TextView editTotalBuyValue,  editTotalCurrentValue, title;
     private ImageView backBtn;
 
     //FIREBASE REALTIME DATABASE VARIABLE
@@ -50,7 +50,10 @@ public class CryptoHistoryActivity extends AppCompatActivity {
 
         //VIEW INITIALIZATION
         cryptoHistoryRecView = findViewById(R.id.cryptoHistoryRecView);
+        title = findViewById(R.id.title);
         backBtn = findViewById(R.id.btnBack);
+
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +62,8 @@ public class CryptoHistoryActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+        title.setText(CODE);
+
 
         InitializeTransactions();
 

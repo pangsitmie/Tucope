@@ -2,6 +2,9 @@ package com.roundbytes.myportfolio.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.crypto.CryptoModel;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
+import com.roundbytes.myportfolio.fragment.CryptoFragment;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -29,7 +36,11 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
     private ArrayList<CryptosTransactions> transactionsArray = new ArrayList<>();
 
     //FIREBASE VARIABLES
-    private String username = MainActivity.UID;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private String UID = MainActivity.UID;
+
+
 
 
 
@@ -60,13 +71,32 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         //
         double valueAfterFee = transactionsArray.get(position).getValueAfterFee();
         String txtValueAfterFee = "$ " + formatCurrency(valueAfterFee);
-        String txtFee = "$ " + String.valueOf(transactionsArray.get(position).getFee());
-        String txtPNL = "$ " + String.valueOf(transactionsArray.get(position).getPnl());
+        String txtFee = "$ " + transactionsArray.get(position).getFee();
+
 
         /*double unrealized = cryptos.get(position).getCryptoSubTotalBuyValue()*2 - cryptos.get(position).getCryptoSubTotalBuyValue();
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
         double percentage = (unrealized/cryptos.get(position).getCryptoSubTotalBuyValue()*100);
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";*/
+
+        final Handler handler1 = new Handler(Looper.getMainLooper());
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                double cryptoItemCurrentPrice = 0.0;
+                for(CryptoModel model: MainActivity.cryptoModelsArrayList){
+                    if(model.getSymbol().equalsIgnoreCase(transactionsArray.get(position).getCryptoCode())){
+                        cryptoItemCurrentPrice = model.getPrice();
+                        break;
+                    }
+                }
+
+                //CURRENT PNL
+                double pnl = (cryptoItemCurrentPrice*transactionsArray.get(position).getAmount()) - transactionsArray.get(position).getValueAfterFee();
+                String txtEditPnl = "$ " + String.format("%.2f", pnl);
+                holder.editPNL.setText(txtEditPnl);
+            }
+        }, 1000);
 
 
         //SET TEXT TO CRYPTOCARD
@@ -84,31 +114,13 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         holder.editValueAfterFee.setText(txtValueAfterFee);
         holder.editValueAfterFee.setText(txtValueAfterFee);
         holder.editFee.setText(txtFee);
-        holder.editPNL.setText(txtPNL);
+
 
         //CHANGE COLOR TO RED IF LOSS
         if(txtTransactionType.equals("Sell")){
             holder.transactionType.setTextColor(Color.RED);
         }
 
-        /*holder.btnDeleteList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database = FirebaseDatabase.getInstance();
-                myRef = database.getReference("Users").child(username).child("CryptoTotal").child("CryptoList");
-                myRef.child(cryptos.get(position).getCryptoCode()).removeValue();
-
-                //TOAST AND RETURN TO MAIN ACTIVITY ACCORDING TO FRAGMENT
-                Toast.makeText(mContext, cryptos.get(position).getCryptoCode()+" removed", Toast.LENGTH_SHORT).show();
-                //INTENT
-                Intent intent1 = new Intent(mContext, MainActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("username",username);
-                extras.putString("refresh","crypto");
-                intent1.putExtras(extras);
-                mContext.startActivity(intent1);
-            }
-        });*/
 
         if(transactionsArray.get(position).isExpanded()){
             holder.cryptoExpandRelLayout.setVisibility(View.VISIBLE);

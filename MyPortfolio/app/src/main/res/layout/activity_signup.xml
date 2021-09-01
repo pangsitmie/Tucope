@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_primary"
+    android:background="@color/primary_color"
     tools:context=".activity.SignupActivity">
 
 
@@ -20,6 +20,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--Name-->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+    <EditText
+        android:id="@+id/txtEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/round_square_button"
+        android:backgroundTint="@color/secondary_color"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+<!--Email-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -30,19 +62,17 @@
         android:layout_marginTop="10dp"
         android:textAlignment="textStart"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/txtEditName"
         app:layout_constraintStart_toStartOf="@+id/txtEditName"
         app:layout_constraintTop_toBottomOf="@+id/txtEditName" />
-
     <EditText
         android:id="@+id/txtEditEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@drawable/round_square_button"
-        android:minHeight="50dp"
+        android:backgroundTint="@color/secondary_color"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:padding="10dp"
@@ -52,51 +82,55 @@
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name: "
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+<!--Email-->
 
-    <EditText
-        android:id="@+id/txtEditName"
+    <TextView
+        android:id="@+id/textViewDateOfBirth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Date of Birth (optional)"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="4dp"
         android:layout_marginRight="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtEditEmail"
+        app:layout_constraintStart_toStartOf="@+id/txtEditEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditEmail" />
+
+
+    <TextView
+        android:id="@+id/txtEditDateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/round_square_button"
-        android:minHeight="50dp"
+        android:backgroundTint="@color/secondary_color"
         android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewDateOfBirth"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDateOfBirth" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Password: "
+        android:textColor="@color/white"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txtEditEmail"
-        app:layout_constraintStart_toStartOf="@+id/txtEditEmail"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/txtEditDateOfBirth"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtEditDateOfBirth"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditDateOfBirth" />
 
     <EditText
         android:id="@+id/txtEditPassword"
@@ -105,8 +139,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/round_square_button"
+        android:backgroundTint="@color/secondary_color"
         android:inputType="textPassword"
-        android:minHeight="50dp"
         android:padding="10dp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
@@ -122,7 +156,7 @@
         android:layout_marginRight="20dp"
         android:text="Confirm Password: "
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/txtEditPassword"
         app:layout_constraintStart_toStartOf="@+id/txtEditPassword"
@@ -135,8 +169,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/round_square_button"
+        android:backgroundTint="@color/secondary_color"
         android:inputType="textPassword"
-        android:minHeight="50dp"
         android:padding="10dp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView5"

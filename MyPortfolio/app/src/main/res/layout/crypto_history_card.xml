@@ -8,7 +8,7 @@
     app:cardElevation="5dp"
     app:cardCornerRadius="12dp"
     android:layout_marginBottom="10dp"
-    android:backgroundTint="@color/gray">
+    android:backgroundTint="@color/secondary_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:text="Rp 100.000.000"
+                android:text="$ 0.00"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"/>
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="20dp"
-                android:text="100"
+                android:text="0.00"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_below="@+id/editValueAfterFeeTop"
@@ -141,7 +141,7 @@
                 android:id="@+id/editValueBeforeFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp 0.00"
+                android:text="$ 0.00"
                 android:textSize="18sp"
                 android:layout_below="@+id/editPrice"
                 android:layout_marginRight="20dp"
@@ -185,7 +185,7 @@
                 android:id="@+id/editFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.18 %"
+                android:text="0.00 %"
                 android:textSize="18sp"
                 android:layout_below="@id/editValueAfterFee"
                 android:layout_marginRight="20dp"
@@ -207,7 +207,7 @@
                 android:id="@+id/editPNL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp350.000"
+                android:text="$ 0.00"
                 android:textSize="18sp"
                 android:layout_below="@id/editFee"
                 android:layout_marginRight="20dp"

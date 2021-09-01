@@ -58,7 +58,7 @@ public class StocksFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION
-        stockTopCardInitialization();
+        //stockTopCardInitialization();
 
         //CURRENT VALUE INITIALIZATION
         // TODO: 6/13/2021 ambil api trs cocokkan dengan total buy valu

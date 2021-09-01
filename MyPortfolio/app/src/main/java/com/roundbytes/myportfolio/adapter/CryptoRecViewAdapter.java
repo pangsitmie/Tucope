@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,11 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
     //dialog
     Dialog myDialog;
 
+    //VARIABLE
+    public double currentValue=0.0;
+    public double unrealized=0.0;
+    public double percentage=0.0;
+
     //constructor
     public CryptoRecViewAdapter(Context mContext) {
         this.mContext = mContext;
@@ -66,36 +73,80 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         String txtEditAvgBuyPrice = "$ " + cryptos.get(position).getCryptoAvgBuyPrice();
         String txtEditAvgBuyValue = "$ " + cryptos.get(position).getCryptoSubTotalBuyValue();
 
-        double cryptoItemCurrentPrice = 0.0;
-        for(CryptoModel model: CryptoFragment.cryptoModelsArrayList){
-            if(model.getSymbol().equalsIgnoreCase(cryptos.get(position).getCryptoCode())){
-                cryptoItemCurrentPrice = model.getPrice();
-            }
-        }
-        double currentValue = cryptoItemCurrentPrice* cryptos.get(position).getAmount();
-        String txtEditCurrentValue = "$ " + String.format("%.2f", currentValue);
 
-        double unrealized = currentValue - cryptos.get(position).getCryptoSubTotalBuyValue();
+
+
+        //UPDATE CURRENT VALUE, UNREALIZED AND PERCENTAGE AFTER API IS CALLED
+
+        final Handler handler1 = new Handler(Looper.getMainLooper());
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                double cryptoItemCurrentPrice = 0.0;
+                for(CryptoModel model: MainActivity.cryptoModelsArrayList){
+                    if(model.getSymbol().equalsIgnoreCase(cryptos.get(position).getCryptoCode())){
+                        cryptoItemCurrentPrice = model.getPrice();
+                        break;
+                    }
+                }
+
+                //CURRENT VALUE
+                currentValue = cryptoItemCurrentPrice* cryptos.get(position).getAmount();
+                String txtEditCurrentValue = "$ " + String.format("%.2f", currentValue);
+                holder.cryptoValue.setText(txtEditCurrentValue);
+                holder.txtEditCurrentValue.setText(txtEditCurrentValue);
+
+
+                unrealized = currentValue - cryptos.get(position).getCryptoSubTotalBuyValue();
+                String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
+
+
+                percentage = (unrealized/cryptos.get(position).getCryptoSubTotalBuyValue()*100);
+                String txtEditPercentage =  String.format("%.2f", percentage) + "%";
+
+                //CHANGE COLOR TO RED IF LOSS
+                if(percentage<0){
+                    holder.txtEditPercentage.setTextColor(Color.RED);
+                    Log.d(TAG, "onBindViewHolder Percent: "+"Loss");
+                    Log.d(TAG, "onBindViewHolder Percent: "+percentage);
+                    holder.txtEditUnrealized.setTextColor(Color.RED);
+                }
+                holder.txtEditUnrealized.setText(txtEditUnrealized);
+                holder.txtEditPercentage.setText(txtEditPercentage);
+            }
+        }, 1000);
+
+
+
+
+
+        //SET TEXT CURRENT VALUE
+        String txtEditCurrentValue = "$ " + String.format("%.2f", currentValue);
+        holder.cryptoValue.setText(txtEditCurrentValue);
+        holder.txtEditCurrentValue.setText(txtEditCurrentValue);
+
+        //SET TEXT UNREALIZED
         String txtEditUnrealized = "$ " + String.format("%.2f", unrealized);
-        double percentage = (unrealized/cryptos.get(position).getCryptoSubTotalBuyValue()*100);
+        holder.txtEditUnrealized.setText(txtEditUnrealized);
+
+        //SET TEXT PERCENTAGE
+        if(percentage<0){
+            holder.txtEditPercentage.setTextColor(Color.RED);
+            holder.txtEditUnrealized.setTextColor(Color.RED);
+        }
         String txtEditPercentage =  String.format("%.2f", percentage) + "%";
+        holder.txtEditPercentage.setText(txtEditPercentage);
+
+
+
 
         //SET TEXT TO CRYPTOCARD
         holder.cryptoCode.setText(cryptos.get(position).getCryptoCode());
         holder.cryptoAmount.setText(cryptoAmount);
-        holder.cryptoValue.setText(txtEditCurrentValue);
+
         holder.txtEditAmount.setText(cryptoAmount);
         holder.txtEditAvgBuyPrice.setText(txtEditAvgBuyPrice);
         holder.txtEditAvgBuyValue.setText(txtEditAvgBuyValue);
-        holder.txtEditCurrentValue.setText(txtEditCurrentValue);
-        //CHANGE COLOR TO RED IF LOSS
-        if(percentage<=0.0){
-            holder.txtEditPercentage.setTextColor(Color.RED);
-            holder.txtEditUnrealized.setTextColor(Color.RED);
-        }
-        holder.txtEditUnrealized.setText(txtEditUnrealized);
-        holder.txtEditPercentage.setText(txtEditPercentage);
-
 
 
         holder.btnAddTransaction.setOnClickListener(new View.OnClickListener() {
