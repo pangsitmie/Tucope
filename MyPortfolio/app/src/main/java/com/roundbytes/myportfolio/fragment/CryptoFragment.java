@@ -76,6 +76,7 @@ public class CryptoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crypto, container , false);
 
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Crypto");
         //VIEW INITIALIZATION
         viewInitialization(v);
 

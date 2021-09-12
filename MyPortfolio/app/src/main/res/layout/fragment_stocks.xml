@@ -6,40 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/primary_color">
 
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:src="@drawable/ic_person"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/profileImage"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:text="Stocks"
-        android:textColor="@color/white"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="50dp" />
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cryptoDetailsCard"
@@ -51,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -75,6 +41,7 @@
                     android:text="Total Buy Value ~ "
                     android:textColor="@color/white"
                     android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/currency"
                     android:layout_width="wrap_content"
@@ -108,17 +75,18 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/currency2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/totalCurrentValue"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:text="Rp"
                     android:textColor="@color/white"
                     android:textSize="30sp"
-                    android:layout_marginTop="3dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -128,11 +96,11 @@
                     android:layout_below="@+id/totalCurrentValue"
                     android:layout_marginLeft="3dp"
                     android:layout_marginBottom="3dp"
+                    android:layout_toRightOf="@+id/currency2"
                     android:text="0.00"
                     android:textColor="@color/white"
                     android:textSize="35sp"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/currency2"/>
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnAdd"
@@ -141,14 +109,14 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="ADD new stock"
                     android:background="@drawable/round_button"
-                    android:textStyle="bold"
-                    android:textSize="12sp"
                     android:minHeight="40dp"
-                    android:paddingRight="15dp"
                     android:paddingLeft="15dp"
-                    android:textColor="@color/primary_color" />
+                    android:paddingRight="15dp"
+                    android:text="ADD new stock"
+                    android:textColor="@color/primary_color"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
@@ -254,12 +222,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="280dp" />
+        app:layout_constraintGuide_begin="230dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stocksRecView"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="330dp"
         android:layout_margin="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

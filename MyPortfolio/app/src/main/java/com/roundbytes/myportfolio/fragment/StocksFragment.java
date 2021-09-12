@@ -55,6 +55,9 @@ public class StocksFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_stocks, container , false);
+
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Stocks");
+
         //VIEW INITIALIZATION
         viewInitialization(v);
         //TOTAL BUY VALUE INITIALIZATION

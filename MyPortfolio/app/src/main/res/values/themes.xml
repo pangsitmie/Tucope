@@ -11,11 +11,27 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
 
+        <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/sf_font</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+
     </style>
+
+    <!-- styles.xml -->
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/sf_bold</item>
+    </style>
+
+
+    <style name="Theme.Myportfolio.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+
+    <!--ANIMATIONS-->
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
         <item name ="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
         <item name ="android:activityOpenExitAnimation">@anim/slide_out_left</item>
