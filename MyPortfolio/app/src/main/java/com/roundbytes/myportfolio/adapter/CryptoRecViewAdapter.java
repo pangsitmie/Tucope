@@ -70,8 +70,10 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
         //TEMPORARY STRING FOR SET TEXT
         String cryptoAmount = cryptos.get(position).getAmount()+" "+cryptos.get(position).getCryptoCode();
-        String txtEditAvgBuyPrice = "$ " + cryptos.get(position).getCryptoAvgBuyPrice();
-        String txtEditAvgBuyValue = "$ " + cryptos.get(position).getCryptoSubTotalBuyValue();
+        String txtEditAvgBuyPrice = "$ " + String.format("%.2f", cryptos.get(position).getCryptoAvgBuyPrice());
+
+        String txtEditAvgBuyValue = "$ " + String.format("%.2f",cryptos.get(position).getCryptoSubTotalBuyValue());
+
 
 
 

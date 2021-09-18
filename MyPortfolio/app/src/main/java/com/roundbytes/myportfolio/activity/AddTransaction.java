@@ -296,10 +296,7 @@ public class AddTransaction extends AppCompatActivity {
                     double amount =  Double.parseDouble(editAmount.getText().toString());
                     double fee = Double.parseDouble(editFee.getText().toString())/100;//dalam percent
 
-                    //UPDATE AVG BUY PRICE
-                    double newAvgBuyPrice = ((avgBuyPrice*amountDB) + (price*amount)) / (amountDB+amount);
-                    Log.d("NEW AVG PRICE:", ""+newAvgBuyPrice);
-                    avgBuyPriceRef.setValue(newAvgBuyPrice);
+
 
                     //radio button
                     int radioId = radioGroup.getCheckedRadioButtonId();
@@ -323,6 +320,10 @@ public class AddTransaction extends AppCompatActivity {
 
                         //BUY OR SELL TYPE
                         if(type.equals("Buy")){
+                            //UPDATE AVG BUY PRICE
+                            double newAvgBuyPrice = ((avgBuyPrice*amountDB) + (price*amount)) / (amountDB+amount);
+                            Log.d("NEW AVG PRICE:", ""+newAvgBuyPrice);
+                            avgBuyPriceRef.setValue(newAvgBuyPrice);
                             totalBuyValRef.setValue(totalBuyVal+(price*amount*100));
                             amountRef.setValue(amountDB+amount);//ADD AMOUNT
                             subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount*100));
@@ -335,20 +336,30 @@ public class AddTransaction extends AppCompatActivity {
                     }
                     else
                     {
-                        //NEW TRANSACTION CLASS
-                        CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,CODE);
-                        //INSERT NEW TRANSACTION
-                        transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
-
                         //BUY OR SELL TYPE
                         if(type.equals("Buy")){
-                            totalBuyValRef.setValue(totalBuyVal+(price*amount));
+                            //UPDATE AVG BUY PRICE
+                            double newAvgBuyPrice = ((avgBuyPrice*amountDB) + (price*amount)) / (amountDB+amount);
+                            Log.d("NEW AVG PRICE:", ""+newAvgBuyPrice);
+                            avgBuyPriceRef.setValue(newAvgBuyPrice);
                             amountRef.setValue(amountDB+amount);//ADD AMOUNT
+                            totalBuyValRef.setValue(totalBuyVal+(price*amount));
                             subTotalBuyValueRef.setValue(subTotalBuyValue+(price*amount));
+
+                            //NEW TRANSACTION CLASS //pnl buy selalu 0
+                            CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,CODE,0);
+                            //INSERT NEW TRANSACTION
+                            transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
+
                         }else{
-                            totalBuyValRef.setValue(totalBuyVal-(price*amount));
-                            amountRef.setValue(amountDB-amount);//ADD AMOUNT
-                            subTotalBuyValueRef.setValue(subTotalBuyValue-(price*amount));//SUBTOTAL BUY VALUE
+                            amountRef.setValue(amountDB-amount);//MIN AMOUNT
+                            totalBuyValRef.setValue(totalBuyVal-(avgBuyPrice*amount));
+                            subTotalBuyValueRef.setValue(subTotalBuyValue-(avgBuyPrice*amount));//SUBTOTAL BUY VALUE
+                            //NEW TRANSACTION CLASS
+                            double sellTransactionPNL = (price*amount)-(avgBuyPrice*amount);
+                            CryptosTransactions cryptosTransactions = new CryptosTransactions(price,amount,date,type,fee,valueBeforeFee,valueAfterFee,CODE,sellTransactionPNL);
+                            //INSERT NEW TRANSACTION
+                            transactionRef.child(String.valueOf(maxid+1)).setValue(cryptosTransactions);//add new transaction with maxid + 1 as autoincrement
                         }
                     }
 

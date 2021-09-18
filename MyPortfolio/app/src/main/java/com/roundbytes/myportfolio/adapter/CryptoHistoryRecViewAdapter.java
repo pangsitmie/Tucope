@@ -92,7 +92,7 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
                 }
 
                 //CURRENT PNL
-                double pnl = (cryptoItemCurrentPrice*transactionsArray.get(position).getAmount()) - transactionsArray.get(position).getValueAfterFee();
+                double pnl = transactionsArray.get(position).getPnl();
                 String txtEditPnl = "$ " + String.format("%.2f", pnl);
                 holder.editPNL.setText(txtEditPnl);
             }
@@ -119,6 +119,9 @@ public class CryptoHistoryRecViewAdapter extends RecyclerView.Adapter<CryptoHist
         //CHANGE COLOR TO RED IF LOSS
         if(txtTransactionType.equals("Sell")){
             holder.transactionType.setTextColor(Color.RED);
+        }
+        if(txtTransactionType.equals("BUY")){
+            holder.transactionType.setTextColor(Color.GREEN);
         }
 
 

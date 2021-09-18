@@ -45,8 +45,8 @@
         android:backgroundTint="@color/secondary_color"
         android:padding="10dp"
         android:ems="10"
-        android:hint="Enter your buy price"
-        android:inputType="number"
+        android:hint="Enter buy price"
+        android:inputType="numberDecimal"
         android:textSize="14sp"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
@@ -212,7 +212,7 @@
                 android:text="Buy"
                 android:onClick="checkButton"
                 android:textColor="@color/white"
-                />
+                android:buttonTint="@color/white"/>
 
             <RadioButton
                 android:id="@+id/rSell"
@@ -222,7 +222,8 @@
                 android:text="Sell"
                 android:layout_toRightOf="@+id/rbBuy"
                 android:onClick="checkButton"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"/>
     </RadioGroup>
 
     <Button
