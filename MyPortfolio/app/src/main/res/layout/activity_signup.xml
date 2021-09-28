@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/tucope_logo_ImageView"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="25dp"
         android:src="@drawable/tucope_logo_black"
         app:layout_constraintBottom_toTopOf="@+id/guideline1"

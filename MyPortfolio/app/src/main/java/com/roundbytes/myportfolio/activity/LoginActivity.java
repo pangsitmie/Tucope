@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                             //intent
                             Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                             MainActivity.UID = UID;
-                            intent1.putExtra("refresh","stock");
+                            intent1.putExtra("refresh","crypto");
                             startActivity(intent1);
                         }
                         else
