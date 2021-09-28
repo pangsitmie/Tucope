@@ -10,10 +10,10 @@
 
     <ImageView
         android:id="@+id/fragment2_mascot_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="280dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/fragment_intro3_mascot" />
 
 
@@ -70,7 +70,7 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Track your portfolio\nanywhere and everywhere"
+        android:text="Goodbye ugly notes\nmaximize profits with tucope"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp" />
@@ -84,7 +84,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/black"
         android:text="Let's Go"

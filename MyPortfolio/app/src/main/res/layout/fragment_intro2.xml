@@ -8,11 +8,10 @@
     android:background="@color/card_color">
 
 
-
     <ImageView
         android:id="@+id/fragment2_mascot_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
         android:src="@drawable/fragment_intro2_mascot" />
