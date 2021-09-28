@@ -153,7 +153,7 @@ public class WelcomeActivity extends AppCompatActivity {
             //intent
             Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
             MainActivity.UID = UID;
-            intent1.putExtra("refresh","stock");
+            intent1.putExtra("refresh","crypto");
             startActivity(intent1);
             finish();
             // or do some other stuff that you want to do

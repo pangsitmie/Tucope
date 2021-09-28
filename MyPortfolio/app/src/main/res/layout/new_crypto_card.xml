@@ -8,7 +8,7 @@
     app:cardElevation="5dp"
     app:cardCornerRadius="12dp"
     android:layout_marginBottom="10dp"
-    android:backgroundTint="@color/secondary_color">
+    android:backgroundTint="@color/background_color">
 
 
     <RelativeLayout
@@ -25,7 +25,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="3dp"
             android:text="SYMBOL"
-            android:textColor="@color/white"
+            android:textColor="@color/secondary_color"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -34,39 +34,39 @@
             android:id="@+id/cryptoName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/cryptoSymbol"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="10dp"
             android:text="Name"
-            android:layout_below="@id/cryptoSymbol"
-            android:textColor="@color/white"
+            android:textColor="@color/secondary_color"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/cryptoPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/addNewCryptoBtn"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:text="Rp 100.000.000"
+            android:layout_toLeftOf="@+id/addNewCryptoBtn"
+            android:text="$ 0.00"
+            android:textColor="@color/secondary_color"
             android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/addNewCryptoBtn"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
-            android:text="+"
-            android:textColor="@color/primary_color"
-            android:textSize="20sp"
-            android:paddingBottom="3dp"
-            android:textStyle="bold"
+            android:layout_marginRight="20dp"
             android:background="@drawable/round_square_button"
-            android:backgroundTint="@color/white" />
+            android:backgroundTint="@color/secondary_color"
+            android:paddingBottom="3dp"
+            android:text="+"
+            android:textColor="@color/background_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

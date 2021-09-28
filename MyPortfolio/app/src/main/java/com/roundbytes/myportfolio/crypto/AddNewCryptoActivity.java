@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -42,6 +44,8 @@ public class AddNewCryptoActivity extends AppCompatActivity {
     private ArrayList<CryptoModel> cryptoModelsArrayList;
     private AddNewCryptoRecViewAdapter adapter;
 
+    private ImageView backBtn;
+
 
 
     @Override
@@ -53,6 +57,7 @@ public class AddNewCryptoActivity extends AppCompatActivity {
         searchEdit = findViewById(R.id.idEditSearch);
         currenciesRecView = findViewById(R.id.idRVCurrencies);
         loadingPB = findViewById(R.id.idPBLoading);
+        backBtn = findViewById(R.id.btnBack);
 
         cryptoModelsArrayList = new ArrayList<>();
         adapter = new AddNewCryptoRecViewAdapter(cryptoModelsArrayList,this);
@@ -60,6 +65,15 @@ public class AddNewCryptoActivity extends AppCompatActivity {
         currenciesRecView.setLayoutManager(new LinearLayoutManager(this));
         currenciesRecView.setAdapter(adapter);
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                intent1.putExtra("refresh","Crypto");
+                startActivity(intent1);*/
+                finish();
+            }
+        });
 
         //get currency data
         getCurrencyData();

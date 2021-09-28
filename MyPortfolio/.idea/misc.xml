@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable-v24/crypto_gradient_color.xml" value="0.39166666666666666" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable-v24/round_button.xml" value="0.39166666666666666" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable-v24/round_square_button.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable-v24/stocks_gradient_color.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/google_icon.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_arrow_back.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_google.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_launcher_background.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_security_24.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_add_new_crypto.xml" value="0.2421875" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_crypto_history.xml" value="0.181640625" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_intro1.xml" value="0.128" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_login.xml" value="0.2421875" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_signup.xml" value="0.264" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_welcome.xml" value="0.264" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/crypto_card.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/crypto_history_card.xml" value="0.181640625" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/fragment_crypto.xml" value="0.2" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/header.xml" value="0.2421875" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/new_crypto_card.xml" value="0.2421875" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/menu/bottom_navigation.xml" value="0.181640625" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/menu/icons_color.xml" value="0.2421875" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.13802083333333334" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.25833333333333336" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -33,7 +33,7 @@ import java.util.Calendar;
 
 public class SignupActivity extends AppCompatActivity {
 
-    TextView dateOfBirthText;
+    TextView dateOfBirthText,singInText;
     EditText editTextEmail, editTextName, editTextPassword, editTextConfirmPassword;
     Button btnConfirm;
     String date, dateOfBirth;
@@ -57,6 +57,7 @@ public class SignupActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.txtEditPassword);
         editTextConfirmPassword = findViewById(R.id.txtEditConfirmPassword);
         dateOfBirthText = findViewById(R.id.txtEditDateOfBirth);
+        singInText=findViewById(R.id.singInText);
 
         dateOfBirthText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +160,7 @@ public class SignupActivity extends AppCompatActivity {
 
                                     //intent
                                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                                    intent1.putExtra("refresh", "stock");
+                                    intent1.putExtra("refresh", "crypto");
                                     MainActivity.UID = UID;
                                     startActivity(intent1);
                                 }
@@ -168,6 +169,14 @@ public class SignupActivity extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+
+        singInText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

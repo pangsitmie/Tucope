@@ -7,6 +7,27 @@
     android:background="@color/primary_color"
     tools:context=".activity.WelcomeActivity">
 
+
+    <ImageView
+        android:id="@+id/tucope_text_ImageView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:src="@drawable/tucope_text"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/tucope_logo_ImageView"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="25dp"/>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -54,7 +75,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -69,16 +90,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/google_icon"
+        android:drawableLeft="@drawable/ic_google"
         android:minWidth="330dp"
         android:minHeight="50dp"
-        android:paddingLeft="10dp"
+        android:paddingLeft="20dp"
         android:paddingRight="50dp"
         android:text="Continue with Google"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -98,7 +119,7 @@
         android:text="Log in"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -111,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="120dp" />
+        app:layout_constraintGuide_begin="100dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -119,5 +140,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="350dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

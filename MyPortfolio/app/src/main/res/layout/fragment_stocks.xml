@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_color">
+    android:background="@color/background_color">
 
 
     <androidx.cardview.widget.CardView
@@ -114,7 +114,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:text="ADD new stock"
-                    android:textColor="@color/primary_color"
+                    android:textColor="@color/background_color"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 

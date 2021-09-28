@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_color">
+    android:background="@color/white">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cryptoDetailsCard"
+    <RelativeLayout
+        android:id="@+id/topcard"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/stocks_gradient_color"
-        android:backgroundTint="@color/black"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cryptoDetailsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/crypto_gradient_color">
+            android:backgroundTint="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
 
             <RelativeLayout
                 android:id="@+id/cryptoDetailsColRelLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:backgroundTint="@android:color/transparent">
 
                 <TextView
                     android:id="@+id/totalBuyValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="3dp"
                     android:text="Total Buy Value ~ "
-                    android:textColor="@color/white_grey"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_toRightOf="@+id/totalBuyValue"
                     android:text="$"
-                    android:textColor="@color/white_grey"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/editTotalBuyValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_toRightOf="@+id/currency"
                     android:text="0.00"
-                    android:textColor="@color/white_grey"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/totalCurrentValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/totalBuyValue"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
                     android:text="Current Value"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -81,162 +81,67 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/totalCurrentValue"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="3dp"
                     android:text="$"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/editTotalCurrentValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/totalCurrentValue"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_alignTop="@+id/currency2"
+                    android:layout_alignBottom="@+id/currency2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/currency2"
                     android:text="0.00"
                     android:textColor="@color/white"
-                    android:textSize="35sp"
+                    android:textSize="32sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/currency2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/round_button"
+                    android:backgroundTint="@color/dark_yellow"
                     android:minHeight="40dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:text="ADD NEW CRYPTO"
-                    android:textColor="@color/primary_color"
-                    android:textSize="12sp"
+                    android:textColor="@color/background_color"
+                    android:textSize="10sp"
                     android:textStyle="bold" />
 
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/cryptoExpandRelLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/txtAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Amount"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtEditAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Amount"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtValueBeforeFee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtAmount"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Avg Buy Price"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/editValueBeforeFee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtAmount"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Avg Buy Price"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtValueAfterrFee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtValueBeforeFee"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Avg Buy Value"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/EditValueAfterFee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtValueBeforeFee"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Avg Buy Value"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtValueAfterrFee"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="Current Value"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtEditCurrentValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtValueAfterrFee"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="Current Value"
-                    android:textSize="14sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
 
-            </RelativeLayout>
 
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="230dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cryptoRecView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topcard">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cryptoRecView"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:padding="10dp" />
+    </RelativeLayout>
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

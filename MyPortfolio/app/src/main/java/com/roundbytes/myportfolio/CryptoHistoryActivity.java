@@ -57,9 +57,7 @@ public class CryptoHistoryActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                intent1.putExtra("refresh","Crypto");
-                startActivity(intent1);
+                finish();
             }
         });
         title.setText(CODE);

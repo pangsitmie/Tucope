@@ -91,11 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()){
                 case R.id.nav_stocks:
-                    selectedFragment = new StocksFragment();
+                    /*selectedFragment = new StocksFragment();*/
+                    selectedFragment = new CryptoFragment();
+                    Toast.makeText(getApplicationContext(), "Stay tune for the next update", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.nav_crypto:
                     selectedFragment = new CryptoFragment();
                     break;
+
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
