@@ -5,29 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CryptoHistoryActivity"
-    android:background="@color/primary_color">
+    android:background="@color/white">
     <RelativeLayout
         android:id="@+id/relTop"
         android:layout_width="match_parent"
         android:layout_height="100dp">
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/btnBack"
             android:text="BTC"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_toRightOf="@id/title"
             android:text="TRANSACTION HSITORY"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/title"
-            android:layout_margin="3dp"/>
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/btnBack"
@@ -36,11 +40,12 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:minWidth="30dp"
             android:minHeight="30dp"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/blue" />
 
 
     </RelativeLayout>
@@ -54,7 +59,10 @@
             android:id="@+id/cryptoHistoryRecView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"

@@ -5,10 +5,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent"
-    app:cardElevation="5dp"
-    app:cardCornerRadius="12dp"
-    android:layout_marginBottom="10dp"
-    android:backgroundTint="@color/secondary_color">
+    app:cardElevation="0dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginBottom="12dp"
+    android:backgroundTint="@color/card_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Type"
                 android:textColor="@color/green"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -39,8 +39,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="1/1/2021"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textColor="@color/blue"
+                android:textSize="12sp" />
 
 
             <TextView
@@ -51,8 +51,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:text="$ 0.00"
-                android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,8 +64,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="0.00"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
 
         </RelativeLayout>
@@ -82,59 +82,58 @@
                 android:id="@+id/txtAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amount"
-                android:textStyle="bold"
-                android:textSize="18sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/white"
-                android:layout_below="@+id/txtDate"/>
+                android:text="Amount"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtEditAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.0 CODE"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/white"
-                android:layout_below="@+id/editDate"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:text="0.0 CODE"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price"
-                android:textStyle="bold"
-                android:textSize="18sp"
+                android:layout_below="@+id/txtAmount"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/white"
-                android:layout_below="@+id/txtAmount"/>
+                android:text="Price"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/editPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.0"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/txtEditAmount"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/white"
-                android:layout_below="@+id/txtEditAmount"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:text="0.0"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtValueBeforeFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Value Before Fee"
-                android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 android:layout_below="@+id/txtPrice"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"/>
@@ -143,80 +142,78 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$ 0.00"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@+id/editPrice"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/txtValueAfterrFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Value After Fee"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/txtValueBeforeFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/editValueAfterFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Avg Buy "
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/txtValueBeforeFee"
                 android:layout_marginRight="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/txtFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fee"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/txtValueAfterrFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/editFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.00 %"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/editValueAfterFee"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/txtPNL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PNL"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/txtFee"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/editPNL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$ 0.00"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/editFee"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/green"/>
-
-
 
 
             <Button
@@ -225,15 +222,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editPNL"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/white"
-                android:minHeight="30dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/round_button"
+                android:backgroundTint="@color/blue"
+                android:minHeight="30dp"
                 android:text="Delete"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:background="@drawable/round_button"/>
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
 
         </RelativeLayout>

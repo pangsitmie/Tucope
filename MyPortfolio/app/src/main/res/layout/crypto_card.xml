@@ -6,9 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent"
     app:cardElevation="0dp"
-    app:cardCornerRadius="12dp"
-    android:layout_marginBottom="10dp"
-    android:backgroundTint="@color/background_color">
+    app:cardCornerRadius="20dp"
+    android:layout_marginBottom="12dp"
+    android:backgroundTint="@color/card_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:layout_marginBottom="3dp"
                 android:text="CODE"
                 android:textColor="@color/secondary_color"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,7 +43,7 @@
                 android:layout_toRightOf="@id/cryptoSymbol"
                 android:text="0%"
                 android:textColor="@color/green"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
 
@@ -56,7 +56,7 @@
                 android:layout_toLeftOf="@+id/btnAddTransaction"
                 android:text="$ 0.00"
                 android:textColor="@color/secondary_color"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -69,20 +69,20 @@
                 android:layout_toLeftOf="@+id/btnAddTransaction"
                 android:text="0.00"
                 android:textColor="@color/secondary_color"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/btnAddTransaction"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/round_square_button"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/blue"
                 android:paddingBottom="3dp"
                 android:text="+"
-                android:textColor="@color/background_color"
+                android:textColor="@color/card_color"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -104,7 +104,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Amount"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -116,7 +116,7 @@
                 android:layout_marginRight="20dp"
                 android:text="0.0"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -128,7 +128,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Avg Buy Price"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/editValueBeforeFee"
@@ -140,7 +140,7 @@
                 android:layout_marginRight="20dp"
                 android:text="Avg Buy Price"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtValueAfterrFee"
@@ -151,7 +151,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Total Buy Value"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/EditValueAfterFee"
@@ -163,7 +163,7 @@
                 android:layout_marginRight="20dp"
                 android:text="Avg Buy Value"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtFee"
@@ -174,7 +174,7 @@
                 android:layout_marginTop="5dp"
                 android:text="Current Value"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtEditCurrentValue"
@@ -186,7 +186,7 @@
                 android:layout_marginRight="20dp"
                 android:text="Current Value"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtUnrealized"
@@ -198,13 +198,13 @@
                 android:layout_marginBottom="5dp"
                 android:text="Unrealized"
                 android:textColor="@color/secondary_color"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/txtEditUnrealized"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp350.000"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_below="@id/txtEditCurrentValue"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
@@ -237,10 +237,10 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/round_button"
-                android:backgroundTint="@color/dark_pink"
+                android:backgroundTint="@color/black"
                 android:minHeight="30dp"
                 android:text="Delete"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
 

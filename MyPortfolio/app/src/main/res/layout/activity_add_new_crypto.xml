@@ -5,46 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/primary_color">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="20dp"
         android:minWidth="30dp"
         android:minHeight="30dp"
-        android:src="@drawable/ic_arrow_back" />
+        android:src="@drawable/ic_arrow_back"
+        app:tint="@color/blue" />
 
     <EditText
         android:id="@+id/idEditSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="15dp"
         android:layout_toRightOf="@id/btnBack"
-        android:background="@drawable/round_square_button"
-        android:backgroundTint="@color/background_color"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/card_color"
         android:hint="Search..."
         android:inputType="textCapCharacters"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:textColor="@color/secondary_color"
-        android:textColorHint="@color/secondary_color" />
+        android:textColorHint="@color/white_grey"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/tucope_logo_ImageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/idEditSearch"
+        android:layout_marginStart="25dp"
+        android:src="@drawable/tucope_logo_inverse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idEditSearch"
+        android:layout_toRightOf="@id/tucope_logo_ImageView"
+        android:layout_alignBottom="@+id/tucope_logo_ImageView"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:text="Add New Crypto"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVCurrencies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idEditSearch"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/tucope_logo_ImageView"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginBottom="15dp" />
 
     <ProgressBar

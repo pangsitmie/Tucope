@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/background_color"
+    android:background="@color/card_color"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     android:theme="@style/ToolbarTheme">
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/background_color"
+            android:background="@color/card_color"
             android:backgroundTint="@color/black"
             android:padding="4dp"
             app:itemIconTint="@menu/icons_color"
