@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.introductions;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.roundbytes.myportfolio.R;
 
 
 public class Fragment_intro1 extends Fragment {

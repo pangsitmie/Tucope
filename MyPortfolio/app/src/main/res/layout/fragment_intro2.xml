@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_intro2"
-    android:background="@color/card_color">
+    tools:context=".introductions.Fragment_intro2"
+    android:background="@drawable/intro2_background">
 
 
     <ImageView
@@ -79,6 +79,22 @@
         android:minHeight="25dp"
         android:padding="15dp"
         android:src="@drawable/ic_right_arrow"
+        app:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/previousBtn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/black"
+        android:minWidth="25dp"
+        android:minHeight="25dp"
+        android:padding="15dp"
+        android:src="@drawable/ic_arrow_back"
         app:tint="@color/white" />
 
 

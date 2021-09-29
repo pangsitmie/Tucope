@@ -1,4 +1,4 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.stock;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.roundbytes.myportfolio.MainActivity;
+import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.adapter.StockHistoryRecViewAdapter;
 import com.roundbytes.myportfolio.crypto.CryptosTransactions;
 import com.roundbytes.myportfolio.stock.StocksTransactions;

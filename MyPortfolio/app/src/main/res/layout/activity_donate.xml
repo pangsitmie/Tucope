@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_color"
+    tools:context=".activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/tucope_text_ImageView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:src="@drawable/tucope_text"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/tucope_logo_ImageView"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="25dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:text="Help Us Improve"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="40dp"
+        android:text="Your donations are vital to keeping,\nTucope app running and free for you to use "
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView1"
+        app:layout_constraintStart_toStartOf="@+id/textView1"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <Button
+        android:id="@+id/btnBtc"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#FCF7FF"
+        android:drawableLeft="@drawable/ic_btc_logo"
+        android:drawablePadding="10dp"
+        android:maxLines="1"
+        android:minHeight="50dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="1MkCzoY12bcfN11xM2bAmat7577wUJA37d"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/white_grey"
+        android:textSize="14sp"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    <Button
+        android:id="@+id/btnEth"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#FCF7FF"
+        android:drawableLeft="@drawable/ic_eth_logo"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/white_grey"
+        android:maxLines="1"
+        android:minHeight="50dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="0x4553B379e75c8C7879D2221D71B99DA2a3fD8B2E"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/white_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnBtc"
+        app:layout_constraintStart_toStartOf="@+id/btnBtc"
+        app:layout_constraintTop_toBottomOf="@+id/btnBtc" />
+
+    <Button
+        android:id="@+id/btnXrp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#FCF7FF"
+        android:drawableLeft="@drawable/ic_xrp_logo"
+        android:drawablePadding="10dp"
+        android:maxLines="1"
+        android:minHeight="50dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="r4vRuNUEKLsunCcchczLgmZugZvUuMcbE6"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/white_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnEth"
+        app:layout_constraintStart_toStartOf="@+id/btnEth"
+        app:layout_constraintTop_toBottomOf="@+id/btnEth" />
+
+    <Button
+        android:id="@+id/btnDoge"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#FCF7FF"
+        android:drawableLeft="@drawable/ic_doge_logo"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/yellow"
+        android:minHeight="50dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:maxLines="1"
+        android:text="DTSXdU7TSk43MXSshTbk1UwhBn2Evzw8cz"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/white_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnXrp"
+        app:layout_constraintStart_toStartOf="@+id/btnXrp"
+        app:layout_constraintTop_toBottomOf="@+id/btnXrp" />
+
+    <Button
+        android:id="@+id/btnRvn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#FCF7FF"
+        android:drawableLeft="@drawable/ic_raven_logo"
+        android:drawablePadding="10dp"
+        android:minHeight="50dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:maxLines="1"
+        android:text="RBpRoxtRoiqRg9cqRBqoDuNAPXqfLNjvVi"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/white_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnDoge"
+        app:layout_constraintStart_toStartOf="@+id/btnDoge"
+        app:layout_constraintTop_toBottomOf="@+id/btnDoge" />
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="100dp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

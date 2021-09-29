@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.roundbytes.myportfolio.introductions.IntroActivity;
 
 public class SplashScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;

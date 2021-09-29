@@ -1,8 +1,11 @@
-package com.roundbytes.myportfolio;
+package com.roundbytes.myportfolio.introductions;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.roundbytes.myportfolio.R;
+import com.roundbytes.myportfolio.introductions.Fragment_intro1;
 
 public class IntroActivity extends AppCompatActivity {
 

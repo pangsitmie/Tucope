@@ -21,14 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.roundbytes.myportfolio.CryptoHistoryActivity;
+import com.roundbytes.myportfolio.crypto.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
-import com.roundbytes.myportfolio.crypto.AddNewCryptoActivity;
 import com.roundbytes.myportfolio.crypto.CryptoItem;
 import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.crypto.CryptoModel;
-import com.roundbytes.myportfolio.fragment.CryptoFragment;
 
 import java.util.ArrayList;
 

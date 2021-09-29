@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.roundbytes.myportfolio.StockHistoryActivity;
+import com.roundbytes.myportfolio.stock.StockHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
 import com.roundbytes.myportfolio.R;

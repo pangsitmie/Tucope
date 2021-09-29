@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -23,9 +24,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.roundbytes.myportfolio.crypto.CryptoModel;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.fragment.StocksFragment;
+import com.roundbytes.myportfolio.menu.ActivityDonate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,11 +43,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     private Toolbar toolbar;
+    private NavigationView navigationView;
+
+    public String USERNAME;
     public static String UID;
+
+    //FIREBASE REALTIME DATABASE VARIABLE
+    public FirebaseDatabase database;
+    public DatabaseReference myRef;
 
     public static ArrayList<CryptoModel> cryptoModelsArrayList = new ArrayList<>();
 
@@ -49,16 +64,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.nav_view);
+        drawer = findViewById(R.id.drawer_layout);
+
+
+
+
+        /*Toolbar*/
         setSupportActionBar(toolbar);
 
 
-        drawer = findViewById(R.id.drawer_layout);
+
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(this);
 
+        //UPDATE HEADER INFO
+        updateNavHeader();
 
 
         Intent intent = getIntent();
@@ -83,8 +110,65 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //DRAWER NAV LISTENER
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.nav_profile:
+                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_privacy:
+                /*Intent intent = new Intent(getApplicationContext(), )*/
+                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_help:
+                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_donate:
+                Intent intent  = new Intent(getApplicationContext(), ActivityDonate.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_share:
+                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_logout:
+                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    public void updateNavHeader(){
+        navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView headerUserName = headerView.findViewById(R.id.navUserName);
+        TextView headerUserID = headerView.findViewById(R.id.navUserID);
+
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users").child(UID).child("A_Info");
+        DatabaseReference usernameRef = myRef.child("name");
+
+        usernameRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                USERNAME = snapshot.getValue(String.class);
+                headerUserName.setText("Hi, "+USERNAME);
+                headerUserID.setText("UID: "+UID);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     //bottom nav listener
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
@@ -92,15 +176,15 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.nav_stocks:
                     /*selectedFragment = new StocksFragment();*/
-                    selectedFragment = new CryptoFragment();
                     Toast.makeText(getApplicationContext(), "Stay tune for the next update", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.nav_crypto:
                     selectedFragment = new CryptoFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                     break;
 
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();*/
             return true;
         }
 
@@ -160,5 +244,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 
 }
