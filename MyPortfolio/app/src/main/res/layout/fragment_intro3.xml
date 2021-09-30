@@ -70,7 +70,7 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Goodbye ugly notes\nmaximize profits with tucope"
+        android:text="Goodbye ugly notes.\nStay organize with tucope"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp" />
@@ -79,8 +79,8 @@
         android:id="@+id/nextBtn"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
