@@ -32,7 +32,7 @@ import com.roundbytes.myportfolio.R;
 public class WelcomeActivity extends AppCompatActivity {
 
 
-    Button btnSignup, btnGoogle,btnLogin;
+    Button btnSignup, btnGoogle, btnLogin;
 
     //SIGN IN WITH GOOGLE VARIABLE
     private GoogleSignInClient mGoogleSignInClient;

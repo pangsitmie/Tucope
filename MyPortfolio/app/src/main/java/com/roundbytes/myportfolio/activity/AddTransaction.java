@@ -3,6 +3,7 @@ package com.roundbytes.myportfolio.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -271,13 +273,16 @@ public class AddTransaction extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        AddTransaction.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                DatePickerDialog datepickerdialog = new DatePickerDialog(AddTransaction.this,
+                        AlertDialog.THEME_DEVICE_DEFAULT_DARK,mDateSetListener,year,month,day);
+
+                //SET THE DIALOG VIEW TO 90%
+                int width = (int)(getResources().getDisplayMetrics().widthPixels*0.85);
+                int height = WindowManager.LayoutParams.WRAP_CONTENT;
+                datepickerdialog.getWindow().setLayout(width,height);
+
+                datepickerdialog.show();
+                datepickerdialog.getWindow().setLayout(width,height);
             }
         });
 

@@ -30,6 +30,14 @@
 
     </style>
 
+    <!--DATE PICKER-->
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="android:selectableItemBackgroundBorderless">@color/dark_blue</item>
+        <item name="colorControlHighlight">@color/white_grey</item>
+    </style>
+
 
     <!--ANIMATIONS-->
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">

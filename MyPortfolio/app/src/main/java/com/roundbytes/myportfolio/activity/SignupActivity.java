@@ -1,5 +1,6 @@
 package com.roundbytes.myportfolio.activity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -67,13 +69,16 @@ public class SignupActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        SignupActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                DatePickerDialog datepickerdialog = new DatePickerDialog(SignupActivity.this,
+                        AlertDialog.THEME_DEVICE_DEFAULT_DARK,mDateSetListener,year,month,day);
+
+                //SET THE DIALOG VIEW TO 90%
+                int width = (int)(getResources().getDisplayMetrics().widthPixels*0.85);
+                int height = WindowManager.LayoutParams.WRAP_CONTENT;
+                datepickerdialog.getWindow().setLayout(width,height);
+
+                datepickerdialog.show();
+                datepickerdialog.getWindow().setLayout(width,height);
             }
         });
         mDateSetListener = new DatePickerDialog.OnDateSetListener(){

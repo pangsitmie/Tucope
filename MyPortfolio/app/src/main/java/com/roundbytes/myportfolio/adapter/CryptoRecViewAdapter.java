@@ -1,5 +1,6 @@
 package com.roundbytes.myportfolio.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -62,6 +63,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         return new CryptoRecViewAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Log.d(TAG, "onBindViewHolder: Called");
@@ -142,6 +144,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
         //SET TEXT TO CRYPTOCARD
         holder.cryptoCode.setText(cryptos.get(position).getCryptoCode());
+        holder.cryptoName.setText(cryptos.get(position).getCryptoName());
         holder.cryptoAmount.setText(cryptoAmount);
 
         holder.txtEditAmount.setText(cryptoAmount);
@@ -211,7 +214,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView parent;
-        TextView cryptoCode, cryptoAmount, cryptoValue;
+        TextView cryptoCode, cryptoName, cryptoAmount, cryptoValue;
         Button btnAddTransaction, btnDeleteList, btnHistory;
         RelativeLayout cryptoColRelLayout, cryptoExpandRelLayout;
         TextView txtEditAmount, txtEditAvgBuyPrice, txtEditAvgBuyValue,txtEditCurrentValue, txtEditUnrealized, txtEditPercentage ;
@@ -225,6 +228,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
             //crypto card layout
             btnAddTransaction = itemView.findViewById(R.id.btnAddTransaction);
             cryptoCode = itemView.findViewById(R.id.cryptoSymbol);
+            cryptoName = itemView.findViewById(R.id.cryptoName);
             cryptoAmount = itemView.findViewById(R.id.amount);
             cryptoValue = itemView.findViewById(R.id.valueAfterFee);
             btnDeleteList = itemView.findViewById(R.id.btnDeleteList);

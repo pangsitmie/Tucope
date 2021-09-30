@@ -69,7 +69,7 @@ public class AddNewCryptoRecViewAdapter extends RecyclerView.Adapter<AddNewCrypt
             @Override
             public void onClick(View v) {
                 //add to database
-                CryptoItem cryptoItem = new CryptoItem(currencyModel.getSymbol());
+                CryptoItem cryptoItem = new CryptoItem(currencyModel.getSymbol(), currencyModel.getName());
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Users").child(UID).child("CryptoTotal").child("CryptoList");
                 myRef.child(currencyModel.getSymbol()).setValue(cryptoItem);
