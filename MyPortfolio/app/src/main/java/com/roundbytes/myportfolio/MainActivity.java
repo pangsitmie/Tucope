@@ -37,6 +37,7 @@ import com.roundbytes.myportfolio.crypto.CryptoModel;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.fragment.StocksFragment;
 import com.roundbytes.myportfolio.menu.ActivityDonate;
+import com.roundbytes.myportfolio.menu.ActivitySecurity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -122,15 +123,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_privacy:
-                /*Intent intent = new Intent(getApplicationContext(), )*/
-                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(getApplicationContext(), ActivitySecurity.class);
+                startActivity(intent2);
                 break;
             case R.id.nav_help:
                 Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_donate:
-                Intent intent  = new Intent(getApplicationContext(), ActivityDonate.class);
-                startActivity(intent);
+                Intent intent4  = new Intent(getApplicationContext(), ActivityDonate.class);
+                startActivity(intent4);
                 break;
             case R.id.nav_share:
                 try {

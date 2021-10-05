@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Myportfolio"
         android:usesCleartextTraffic="true">
-        <activity android:name=".menu.ActivityDonate"/>
+        <activity
+            android:name=".menu.ActivitySecurity"
+            android:exported="true" />
+        <activity android:name=".menu.ActivityDonate" />
         <activity android:name=".menu.ActivityProfile" />
         <activity android:name=".introductions.IntroActivity" />
         <activity android:name=".activity.WelcomeActivity" />

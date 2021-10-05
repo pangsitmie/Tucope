@@ -40,7 +40,7 @@ public class Fragment_intro3 extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getActivity()
-                        .getSupportFragmentManager().beginTransaction();
+                        .getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                 fragmentTransaction.replace(R.id.fragment_container, new Fragment_intro2());
                 fragmentTransaction.commit();
             }

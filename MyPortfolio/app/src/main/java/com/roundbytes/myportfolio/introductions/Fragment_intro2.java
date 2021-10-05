@@ -29,7 +29,7 @@ public class Fragment_intro2 extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getActivity()
-                        .getSupportFragmentManager().beginTransaction();
+                        .getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left);
                 fragmentTransaction.replace(R.id.fragment_container, new Fragment_intro3());
                 fragmentTransaction.commit();
             }
@@ -39,7 +39,7 @@ public class Fragment_intro2 extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getActivity()
-                        .getSupportFragmentManager().beginTransaction();
+                        .getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_right);
                 fragmentTransaction.replace(R.id.fragment_container, new Fragment_intro1());
                 fragmentTransaction.commit();
             }
