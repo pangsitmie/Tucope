@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,11 +26,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.roundbytes.myportfolio.activity.WelcomeActivity;
 import com.roundbytes.myportfolio.crypto.CryptoModel;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.fragment.StocksFragment;
@@ -130,10 +133,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_share:
-                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                try {
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("text/plain");
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Your Subject");
+                    String sAux = "\nCheck out this amazing application\n\n";
+                    sAux = sAux + "https://play.google.com/store/apps/details?id=com.roundbytes.myportfolio \n"; // here define package name of you app
+                    i.putExtra(Intent.EXTRA_TEXT, sAux);
+                    startActivity(Intent.createChooser(i, "choose one"));
+                } catch (Exception e) {
+                    Log.e(">>>", "Error: " + e);
+                }
                 break;
             case R.id.nav_logout:
-                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                Intent intent1 = new Intent(getApplicationContext(), WelcomeActivity.class);
+                startActivity(intent1);
+                Toast.makeText(this, "Log Out Successful", Toast.LENGTH_SHORT).show();
                 break;
 
         }

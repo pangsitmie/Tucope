@@ -38,7 +38,7 @@ public class SignupActivity extends AppCompatActivity {
     TextView dateOfBirthText,singInText;
     EditText editTextEmail, editTextName, editTextPassword, editTextConfirmPassword;
     Button btnConfirm;
-    String date, dateOfBirth;
+    String date, uploadDateOfBirth;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private FirebaseAuth mAuth;
@@ -99,7 +99,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 String tempName = editTextName.getText().toString().trim();
                 String tempEmail = editTextEmail.getText().toString().trim();
-                dateOfBirth= dateOfBirthText.getText().toString();
+                String tempDate= dateOfBirthText.getText().toString();
                 String tempPassword = editTextPassword.getText().toString().trim();
                 String tempConfirmPassword = editTextConfirmPassword.getText().toString().trim();
 
@@ -134,8 +134,8 @@ public class SignupActivity extends AppCompatActivity {
                     editTextConfirmPassword.requestFocus();
                     return;
                 }
-                if(dateOfBirthText.getText().equals("")){
-                    dateOfBirth = "None";
+                if(tempDate.equals("")){
+                    uploadDateOfBirth = "None";
                 }
 
                 mAuth.createUserWithEmailAndPassword(tempEmail,tempPassword)
@@ -145,7 +145,7 @@ public class SignupActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
 
                                     //INITIALIZE THE USER CLASS
-                                    User user = new User(tempName,tempEmail,dateOfBirth);
+                                    User user = new User(tempName,tempEmail,uploadDateOfBirth);
 
                                     UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     
