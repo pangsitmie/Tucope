@@ -5,13 +5,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -35,7 +35,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.roundbytes.myportfolio.activity.WelcomeActivity;
 import com.roundbytes.myportfolio.crypto.CryptoModel;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
-import com.roundbytes.myportfolio.fragment.StocksFragment;
 import com.roundbytes.myportfolio.menu.ActivityDonate;
 import com.roundbytes.myportfolio.menu.ActivitySecurity;
 
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public String USERNAME;
     public static String UID;
+    public static String CURRENCY = "USD";
 
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
@@ -110,7 +110,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StocksFragment()).commit();
         }
 
-        getCurrencyData();
+        //GET CRYPTO MARKET DATA
+        getCryptoMarketData();
+
+        //GET CURRENCY CONVERSION DATA
+        getConversionRate();
 
 
     }
@@ -132,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_donate:
                 Intent intent4  = new Intent(getApplicationContext(), ActivityDonate.class);
                 startActivity(intent4);
+                break;
+            case R.id.nav_setting:
+                Intent intent5  = new Intent(getApplicationContext(), ActivitySetting.class);
+                startActivity(intent5);
                 break;
             case R.id.nav_share:
                 try {
@@ -158,15 +166,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    //UPDATE LEFT NAVIGATION MENU HEADER
     public void updateNavHeader(){
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView headerUserName = headerView.findViewById(R.id.navUserName);
         TextView headerUserID = headerView.findViewById(R.id.navUserID);
+        TextView headerCurrency = headerView.findViewById(R.id.navCurrency);
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users").child(UID).child("A_Info");
         DatabaseReference usernameRef = myRef.child("name");
+        DatabaseReference currencyRef = myRef.child("currency");
+
+        //set CURRENCY VARIABLE VALUE
+
 
         usernameRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -174,6 +188,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 USERNAME = snapshot.getValue(String.class);
                 headerUserName.setText("Hi, "+USERNAME);
                 headerUserID.setText("UID: "+UID);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        currencyRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CURRENCY = snapshot.getValue(String.class);
+                headerCurrency.setText("CURRENCY: "+CURRENCY);
+
+
+                Log.d("CURRENCY", "onCreate: "+CURRENCY);
             }
 
             @Override
@@ -207,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     };
 
-    private void getCurrencyData(){
+    public void getCryptoMarketData(){
         //loadingPB.setVisibility(View.VISIBLE);
         String url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -218,6 +248,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(JSONObject response) {
                 //loadingPB.setVisibility(View.GONE);
                 try {
+                    JSONObject status = response.getJSONObject("status");
+                    int elapsed = status.getInt("elapsed");
+                    Log.d("elapsed", elapsed+";");
+
                     JSONArray dataArray = response.getJSONArray("data");
                     for (int i=0;i<dataArray.length(); i++){
                         JSONObject dataObj = dataArray.getJSONObject(i);
@@ -250,6 +284,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getConversionRate(){
+        String convertUrl = "http://api.currencylayer.com/live?access_key=ea96fc40df17f730d076f56d056a069d";
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        if(!CURRENCY.equals("USD")){
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, convertUrl, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        JSONObject mainOBJ = response.getJSONObject("quotes");
+                        Log.d("ALL", mainOBJ+"");
+                        String requestCurrency = "USD"+CURRENCY;
+                        double rate = response.getJSONObject("quotes").getDouble(requestCurrency);
+                        Log.d(requestCurrency, rate+"");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.d("currency", "onResponse: FAIL");
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "FAILED TO GET CURRENCY DATA", Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    //KALAU GA ADA HEADER TTP HARUS BUAT HEADER TAPI GA USA DIISI HEADER E
+                    HashMap<String, String> headers = new HashMap<>();
+                    return headers;
+                }
+            };
+            requestQueue.add(jsonObjectRequest);
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ public class User {
     public String name;
     public String email;
     public String dateOfBirth;
+    public String currency;
 
 
     public User() {
@@ -14,10 +15,11 @@ public class User {
     }
 
 
-    public User(String name, String email, String dateOfBirth) {
+    public User(String name, String email, String dateOfBirth, String currency) {
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
+        this.currency = currency;
     }
 
     public String getName() {
@@ -42,5 +44,13 @@ public class User {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }

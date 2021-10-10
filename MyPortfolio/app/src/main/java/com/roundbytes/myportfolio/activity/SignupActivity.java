@@ -89,6 +89,7 @@ public class SignupActivity extends AppCompatActivity {
                 date = day + "/" + month +"/" + year;
                 Log.d("DATE CALL", "onDateSet: mm/dd/yyyy" + date);
                 dateOfBirthText.setText(date);
+                uploadDateOfBirth = date;
             }
         };
 
@@ -145,7 +146,7 @@ public class SignupActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
 
                                     //INITIALIZE THE USER CLASS
-                                    User user = new User(tempName,tempEmail,uploadDateOfBirth);
+                                    User user = new User(tempName,tempEmail,uploadDateOfBirth,"USD");
 
                                     UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     

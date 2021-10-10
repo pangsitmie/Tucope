@@ -8,39 +8,38 @@
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person"
             android:title="Profile" />
-
         <item
             android:id="@+id/nav_privacy"
             android:icon="@drawable/ic_security_24"
             android:title="Privacy" />
-
         <item
             android:id="@+id/nav_help"
-            android:icon="@drawable/ic_baseline_help_24"
+            android:icon="@drawable/ic_help"
             android:title="Help"/>
-
         <item
             android:id="@+id/nav_donate"
             android:icon="@drawable/ic_donate"
-            android:title="Donate" />
+            android:title="Donation" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_setting"
+            android:title="Settings" />
     </group>
 
-    <item android:title="communicate">
 
-        <menu>
+    <group android:checkableBehavior="single"
+        android:id="@+id/my_id">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share"
+            android:title="Share" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
+    </group>
 
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_share"
-                android:title="Share" />
 
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_logout"
-                android:title="Logout" />
-
-        </menu>
-    </item>
 
 
 </menu>
