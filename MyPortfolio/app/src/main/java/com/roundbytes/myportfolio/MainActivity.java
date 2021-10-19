@@ -138,8 +138,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent4);
                 break;
             case R.id.nav_setting:
-                Intent intent5  = new Intent(getApplicationContext(), ActivitySetting.class);
-                startActivity(intent5);
+                /*Intent intent5  = new Intent(getApplicationContext(), ActivitySetting.class);
+                startActivity(intent5);*/
+                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_share:
                 try {

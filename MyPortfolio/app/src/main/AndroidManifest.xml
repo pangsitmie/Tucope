@@ -30,7 +30,8 @@
         <activity android:name=".stock.StockHistoryActivity" />
         <activity android:name=".crypto.CryptoHistoryActivity" />
         <activity android:name=".activity.AddTransaction" />
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.LoginActivity"
+            android:exported="true"/>
         <activity android:name=".MainActivity"
             android:exported="true"/>
         <activity android:name=".activity.SignupActivity"
