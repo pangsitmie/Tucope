@@ -21,6 +21,7 @@
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_raven_logo.xml" value="0.19375" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_security_24.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/ic_xrp_logo.xml" value="0.19375" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/drawable/spinner_bg.xml" value="0.128" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_add_new_crypto.xml" value="0.2421875" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_add_transaction.xml" value="0.181640625" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_crypto_history.xml" value="0.181640625" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_profile.xml" value="0.181640625" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_security.xml" value="0.16" />
-        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_setting.xml" value="0.181640625" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_setting.xml" value="0.128" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_splash_screen.xml" value="0.181640625" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/activity_welcome.xml" value="0.264" />
@@ -41,7 +42,7 @@
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/fragment_intro1.xml" value="0.181640625" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/fragment_intro2.xml" value="0.181640625" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/fragment_intro3.xml" value="0.181640625" />
-        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/header.xml" value="0.2421875" />
+        <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/header.xml" value="0.2" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/layout/new_crypto_card.xml" value="0.264" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/menu/bottom_navigation.xml" value="0.181640625" />
         <entry key="..\:/Users/jerie/Documents/GitHub/myPortfolio/MyPortfolio/app/src/main/res/menu/icons_color.xml" value="0.2421875" />

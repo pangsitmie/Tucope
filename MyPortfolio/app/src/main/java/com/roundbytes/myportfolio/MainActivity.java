@@ -37,6 +37,7 @@ import com.roundbytes.myportfolio.crypto.CryptoModel;
 import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.menu.ActivityDonate;
 import com.roundbytes.myportfolio.menu.ActivitySecurity;
+import com.roundbytes.myportfolio.menu.ActivitySetting;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,9 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /*Toolbar*/
         setSupportActionBar(toolbar);
-
-
-
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);

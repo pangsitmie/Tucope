@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Myportfolio"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ActivitySetting"
+            android:name=".menu.ActivitySetting"
             android:exported="true" />
         <activity
             android:name=".menu.ActivitySecurity"

@@ -1,16 +1,49 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Myportfolio" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Myportfolio" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white_grey</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/secondary_color</item>
+        <item name="colorSecondaryVariant">@color/secondary_color</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/primary_color</item>
+
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/comfortaa</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+
+    </style>
+
+    <!-- styles.xml -->
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/sf_bold</item>
+    </style>
+
+
+    <style name="Theme.Myportfolio.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <!--DATE PICKER-->
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="android:selectableItemBackgroundBorderless">@color/dark_blue</item>
+        <item name="colorControlHighlight">@color/white_grey</item>
+    </style>
+
+
+    <!--ANIMATIONS-->
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name ="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name ="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name ="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name ="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 </resources>

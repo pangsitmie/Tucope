@@ -32,6 +32,7 @@ import com.roundbytes.myportfolio.R;
 import com.roundbytes.myportfolio.crypto.CryptoModel;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdapter.ViewHolder> {
 
@@ -71,7 +72,7 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         //Log.d(TAG, "onBindViewHolder: Called");
 
         //TEMPORARY STRING FOR SET TEXT
-        String cryptoAmount = cryptos.get(position).getAmount()+" "+cryptos.get(position).getCryptoCode();
+        String cryptoAmount = String.format(Locale.ENGLISH,String.valueOf(cryptos.get(position).getAmount()))+" "+cryptos.get(position).getCryptoCode();
         String txtEditAvgBuyPrice = "$ " + String.format("%.2f", cryptos.get(position).getCryptoAvgBuyPrice());
 
         String txtEditAvgBuyValue = "$ " + String.format("%.2f",cryptos.get(position).getCryptoSubTotalBuyValue());

@@ -2,6 +2,7 @@ package com.roundbytes.myportfolio.fragment;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -97,6 +98,7 @@ public class CryptoFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
         //SET RECYCLERVIEW ADAPTER
         adapter = new CryptoRecViewAdapter(getActivity());
