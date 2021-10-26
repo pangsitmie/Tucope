@@ -60,8 +60,10 @@ public class ActivitySetting extends AppCompatActivity implements AdapterView.On
                 //CALL UPDATE FIREBASE CURRENCY VALUE FUN
                 updateFirebaseCurrency(defaultCurrency);
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                intent1.putExtra("refresh","crypto");
+                startActivity(intent1);
+                finish();
             }
         });
 

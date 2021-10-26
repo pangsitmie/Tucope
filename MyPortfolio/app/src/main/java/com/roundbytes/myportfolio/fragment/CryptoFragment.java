@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.internal.StringResourceValueReader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,7 +60,7 @@ public class CryptoFragment extends Fragment {
     private RecyclerView cryptosRecView;
     private CryptoRecViewAdapter adapter;
     private CardView cryptoDetails;
-    private TextView editTotalBuyValue,  editTotalCurrentValue;
+    private TextView editTextCurrency,editTextCurrency2, editTotalBuyValue,  editTotalCurrentValue;
     private Button addBtn;
 
     //FIREBASE REALTIME DATABASE VARIABLE
@@ -81,14 +82,18 @@ public class CryptoFragment extends Fragment {
         //VIEW INITIALIZATION
         viewInitialization(v);
 
-        //REQUEST CURRENCY DATA API
-        //getCurrencyData();
-
         //REFRESH RECYCLER VIEW
         refreshCryptoRecView();
 
         //CRYPTO TOP CARD INITIALIZATION
-        CryptoTopCardInitialization();
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                CryptoTopCardInitialization();
+            }
+        }, 2000);
+
 
         //ADD NEW CRYPTO BUTTON LISTENER
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +119,8 @@ public class CryptoFragment extends Fragment {
     private void viewInitialization(View v)
     {
         cryptoDetails = v.findViewById(R.id.cryptoDetailsCard);
+        editTextCurrency = v.findViewById(R.id.editTextCurrency);
+        editTextCurrency2 = v.findViewById(R.id.editTextCurrency2);
         editTotalBuyValue = v.findViewById(R.id.editTotalBuyValue);
         editTotalCurrentValue = v.findViewById(R.id.editTotalCurrentValue);
         addBtn = v.findViewById(R.id.btnAdd);
@@ -135,12 +142,23 @@ public class CryptoFragment extends Fragment {
         totalCryptoBuyValue.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 double val = snapshot.getValue(Double.class);
+
+                if(MainActivity.CURRENCY.equals("USD"))
+                    editTextCurrency.setText(R.string.USD);
+                if(MainActivity.CURRENCY.equals("IDR"))
+                    editTextCurrency.setText(R.string.IDR);
+                if(MainActivity.CURRENCY.equals("TWD"))
+                    editTextCurrency.setText(R.string.TWD);
+
+                double convertedVal = val*MainActivity.RATE;
+                Log.d(TAG, "VAL: "+val);
+                Log.d(TAG, "main activity rate: "+MainActivity.RATE);
+                Log.d(TAG, "CONVERTED VAL: "+convertedVal);
 
                 NumberFormat nf = NumberFormat.getInstance(Locale.US);
                 nf.setMinimumFractionDigits(2); // <- the trick is here
-                String formatVal = nf.format(val); // <- 1,000.00
+                String formatVal = nf.format(convertedVal); // <- 1,000.00
                 editTotalBuyValue.setText(formatVal);
             }
             @Override
@@ -153,9 +171,21 @@ public class CryptoFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 double val = snapshot.getValue(Double.class);
 
+                if(MainActivity.CURRENCY.equals("USD"))
+                    editTextCurrency2.setText(R.string.USD);
+                if(MainActivity.CURRENCY.equals("IDR"))
+                    editTextCurrency2.setText(R.string.IDR);
+                if(MainActivity.CURRENCY.equals("TWD"))
+                    editTextCurrency2.setText(R.string.TWD);
+
+                double convertedVal = val*MainActivity.RATE;
+                Log.d(TAG, "VAL: "+val);
+                Log.d(TAG, "main activity rate: "+MainActivity.RATE);
+                Log.d(TAG, "CONVERTED VAL: "+convertedVal);
+
                 NumberFormat nf = NumberFormat.getInstance(Locale.US);
                 nf.setMinimumFractionDigits(2); // <- the trick is here
-                String formatVal = nf.format(val); // <- 1,000.00
+                String formatVal = nf.format(convertedVal); // <- 1,000.00
                 editTotalCurrentValue.setText(formatVal);
             }
 
@@ -172,12 +202,13 @@ public class CryptoFragment extends Fragment {
             public void run() {
                 //INITIATE CRYPTO TOP CARD
                 double updateNewCurrentValue = updateCryptoTotalValue();
+                double convertedUpdatedNewCurrentValue = updateNewCurrentValue*MainActivity.RATE;
                 totalCryptoCurrentValue.setValue(updateNewCurrentValue);
 
                 //TEXT FORMATTING AND SET TEXT AGAIN TO UPDATE
                 NumberFormat nf = NumberFormat.getInstance(Locale.US);
                 nf.setMinimumFractionDigits(2); // <- the trick is here
-                String formatVal = nf.format(updateNewCurrentValue); // <- 1,000.00
+                String formatVal = nf.format(convertedUpdatedNewCurrentValue); // <- 1,000.00
                 editTotalCurrentValue.setText(formatVal);
 
             }

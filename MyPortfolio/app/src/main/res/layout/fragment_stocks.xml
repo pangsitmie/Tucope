@@ -43,7 +43,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/currency"
+                    android:id="@+id/editTextCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@+id/currency"
+                    android:layout_toRightOf="@+id/editTextCurrency"
                     android:text="10.000.000"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
@@ -77,7 +77,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/currency2"
+                    android:id="@+id/editTextCurrency2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/totalCurrentValue"
@@ -96,7 +96,7 @@
                     android:layout_below="@+id/totalCurrentValue"
                     android:layout_marginLeft="3dp"
                     android:layout_marginBottom="3dp"
-                    android:layout_toRightOf="@+id/currency2"
+                    android:layout_toRightOf="@+id/editTextCurrency2"
                     android:text="0.00"
                     android:textColor="@color/white"
                     android:textSize="35sp"

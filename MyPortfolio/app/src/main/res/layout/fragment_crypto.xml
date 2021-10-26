@@ -45,13 +45,13 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/currency"
+                        android:id="@+id/editTextCurrency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="20dp"
                         android:layout_toRightOf="@+id/totalBuyValue"
-                        android:text="$"
+                        android:text="@string/USD"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="20dp"
-                        android:layout_toRightOf="@+id/currency"
+                        android:layout_toRightOf="@+id/editTextCurrency"
                         android:text="0.00"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -79,14 +79,14 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/currency2"
+                        android:id="@+id/editTextCurrency2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/totalCurrentValue"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="3dp"
-                        android:text="$"
+                        android:text="@string/USD"
                         android:textColor="@color/white"
                         android:textSize="32sp"
                         android:textStyle="bold" />
@@ -95,9 +95,9 @@
                         android:id="@+id/editTotalCurrentValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/currency2"
+                        android:layout_alignTop="@+id/editTextCurrency2"
                         android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/currency2"
+                        android:layout_toRightOf="@+id/editTextCurrency2"
                         android:text="0.00"
                         android:textColor="@color/white"
                         android:textSize="32sp"

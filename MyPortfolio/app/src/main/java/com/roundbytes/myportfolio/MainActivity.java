@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public String USERNAME;
     public static String UID;
     public static String CURRENCY = "USD";
+    public static double RATE=1.0;
 
     //FIREBASE REALTIME DATABASE VARIABLE
     public FirebaseDatabase database;
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getCryptoMarketData();
 
         //GET CURRENCY CONVERSION DATA
-        getConversionRate();
+
 
 
     }
@@ -136,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent4);
                 break;
             case R.id.nav_setting:
-                /*Intent intent5  = new Intent(getApplicationContext(), ActivitySetting.class);
-                startActivity(intent5);*/
-                Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();
+                Intent intent5  = new Intent(getApplicationContext(), ActivitySetting.class);
+                startActivity(intent5);
+                /*Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();*/
                 break;
             case R.id.nav_share:
                 try {
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 CURRENCY = snapshot.getValue(String.class);
                 headerCurrency.setText("CURRENCY: "+CURRENCY);
 
-
+                getConversionRate();
                 Log.d("CURRENCY", "onCreate: "+CURRENCY);
             }
 
@@ -272,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onErrorResponse(VolleyError error) {
                 //loadingPB.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), "Failed to get data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Failed to get market data", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -296,8 +297,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         JSONObject mainOBJ = response.getJSONObject("quotes");
                         Log.d("ALL", mainOBJ+"");
                         String requestCurrency = "USD"+CURRENCY;
-                        double rate = response.getJSONObject("quotes").getDouble(requestCurrency);
-                        Log.d(requestCurrency, rate+"");
+                        RATE = response.getJSONObject("quotes").getDouble(requestCurrency);
+                        Log.d(requestCurrency, RATE+"");
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Log.d("currency", "onResponse: FAIL");
@@ -320,6 +321,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             };
             requestQueue.add(jsonObjectRequest);
         }
+        else
+            RATE = 1.0;
     }
 
     @Override
