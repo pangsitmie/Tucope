@@ -85,6 +85,7 @@ public class CryptoFragment extends Fragment {
         //REFRESH RECYCLER VIEW
         refreshCryptoRecView();
 
+
         //CRYPTO TOP CARD INITIALIZATION
         final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {

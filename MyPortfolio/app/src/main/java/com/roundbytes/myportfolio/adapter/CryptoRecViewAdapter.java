@@ -22,8 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.roundbytes.myportfolio.SplashScreen;
 import com.roundbytes.myportfolio.crypto.CryptoHistoryActivity;
 import com.roundbytes.myportfolio.activity.AddTransaction;
 import com.roundbytes.myportfolio.MainActivity;
@@ -180,20 +184,45 @@ public class CryptoRecViewAdapter extends RecyclerView.Adapter<CryptoRecViewAdap
         holder.btnDeleteList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+                String tempUID = UID;
+
                 database = FirebaseDatabase.getInstance();
-                myRef = database.getReference("Users").child(UID).child("CryptoTotal").child("CryptoList");
-                myRef.child(cryptos.get(position).getCryptoCode()).removeValue();
+                myRef = database.getReference("Users").child(UID).child("CryptoTotal");
+                DatabaseReference cryptoTotal = myRef.child("totalCryptoBuyValue");
+                cryptoTotal.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        double val = snapshot.getValue(Double.class);
+                        val-= cryptos.get(position).getCryptoSubTotalBuyValue();
+                        cryptoTotal.setValue(val);
+                    }
 
-                //TOAST AND RETURN TO MAIN ACTIVITY ACCORDING TO FRAGMENT
-                Log.d(TAG, "CRYPTO REC VIEW UID DELETE"+MainActivity.UID);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                //Toast.makeText(mContext, cryptos.get(position).getCryptoCode()+" removed", Toast.LENGTH_SHORT).show();
-                //INTENT
-                MainActivity.UID= UID;
-                Intent intent1 = new Intent(mContext, MainActivity.class);
-                intent1.putExtra("refresh","crypto");
-                mContext.startActivity(intent1);
+                    }
+                });
+                myRef.child("CryptoList").child(cryptos.get(position).getCryptoCode()).removeValue();
 
+                Log.d(TAG, "CRYPTO REC VIEW UID DELETE"+tempUID);
+
+
+
+
+                /*Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // Actions to do after 3 seconds
+                        MainActivity.UID= tempUID;
+                        Intent intent1 = new Intent(mContext, MainActivity.class);
+                        intent1.putExtra("refresh","crypto");
+                        mContext.startActivity(intent1);
+
+                    }
+                }, 10000);*/
             }
         });
 
