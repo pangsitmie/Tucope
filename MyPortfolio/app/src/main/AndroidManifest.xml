@@ -15,28 +15,37 @@
         android:theme="@style/Theme.Myportfolio"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".menu.PriceAlertActivity"
+            android:exported="false" />
+        <activity
             android:name=".menu.ActivitySetting"
             android:exported="true" />
         <activity
             android:name=".menu.ActivitySecurity"
             android:exported="true" />
-        <activity android:name=".menu.ActivityDonate"
-            android:exported="true"/>
-        <activity android:name=".menu.ActivityProfile"
-            android:exported="true"/>
+        <activity
+            android:name=".menu.ActivityDonate"
+            android:exported="true" />
+        <activity
+            android:name=".menu.ActivityProfile"
+            android:exported="true" />
         <activity android:name=".introductions.IntroActivity" />
         <activity android:name=".activity.WelcomeActivity" />
         <activity android:name=".crypto.AddNewCryptoActivity" />
         <activity android:name=".stock.StockHistoryActivity" />
         <activity android:name=".crypto.CryptoHistoryActivity" />
         <activity android:name=".activity.AddTransaction" />
-        <activity android:name=".activity.LoginActivity"
-            android:exported="true"/>
-        <activity android:name=".MainActivity"
-            android:exported="true"/>
-        <activity android:name=".activity.SignupActivity"
-            android:exported="true"/>
-        <activity android:name=".SplashScreen"
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

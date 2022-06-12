@@ -39,6 +39,7 @@ import com.roundbytes.myportfolio.fragment.CryptoFragment;
 import com.roundbytes.myportfolio.menu.ActivityDonate;
 import com.roundbytes.myportfolio.menu.ActivitySecurity;
 import com.roundbytes.myportfolio.menu.ActivitySetting;
+import com.roundbytes.myportfolio.menu.PriceAlertActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private NavigationView navigationView;
+    private Handler handler;
 
     public String USERNAME;
     public static String UID;
@@ -113,8 +115,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StocksFragment()).commit();
         }
 
+
         //GET CRYPTO MARKET DATA
         getCryptoMarketData();
+//        handler = new Handler();
+//        final Runnable r = new Runnable() {
+//            public void run() {
+//
+//            }
+//        };
+//        handler.postDelayed(r, 10000);
+
 
         //GET CURRENCY CONVERSION DATA
 
@@ -143,6 +154,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_setting:
                 Intent intent5  = new Intent(getApplicationContext(), ActivitySetting.class);
                 startActivity(intent5);
+                /*Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();*/
+                break;
+            case R.id.nav_price_alert:
+                Intent intent6  = new Intent(getApplicationContext(), PriceAlertActivity.class);
+                startActivity(intent6);
                 /*Toast.makeText(this, "Stay tune for the next update!", Toast.LENGTH_SHORT).show();*/
                 break;
             case R.id.nav_share:
@@ -244,6 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void getCryptoMarketData(){
         //loadingPB.setVisibility(View.VISIBLE);
+//        cryptoModelsArrayList.clear();
         String url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -338,6 +355,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else{
             super.onBackPressed();
         }
+    }
+
+    public static ArrayList<String> getCryptoSymbols(){
+        ArrayList<String> cryptoSymbols = new ArrayList<>();
+        for (int i=0;i< cryptoModelsArrayList.size();i++){
+            cryptoSymbols.add(cryptoModelsArrayList.get(i).getSymbol());
+        }
+        return cryptoSymbols;
     }
 
 
